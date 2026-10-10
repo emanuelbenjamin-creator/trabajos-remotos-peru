@@ -2,7 +2,7 @@
 
 Panel de ofertas remotas a las que se puede postular desde Perú, ordenadas por coincidencia con un perfil de n8n, RAG, automatización con IA y diseño.
 
-GitHub Actions lo actualiza solo todos los días a las 7:00 a. m. (hora de Perú) y lo publica en GitHub Pages.
+GitHub Actions lo actualiza solo tres veces al día (7 a. m., 1 p. m. y 7 p. m., hora de Perú) y lo publica en GitHub Pages.
 
 ## Cómo funciona
 
