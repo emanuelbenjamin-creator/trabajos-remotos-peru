@@ -1,0 +1,312 @@
+<title>Trabajos Remotos Perú</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: una columna de trabajo. Arriba el resumen, luego la tabla de sitios confiables, luego filtros pegados a la lista de ofertas. */
+:root {
+  --bg: #f2f5f4; --surface: #ffffff; --sunk: #e8edeb; --ink: #14201e; --muted: #586966; --line: #d5dddb;
+  --accent: #0a6658; --accent-ink: #ffffff; --accent-soft: #dcefeb;
+  --ok: #1d7a3e; --ok-soft: #dff2e5; --warn: #8a5a00; --warn-soft: #f8ecd0; --info: #33539e; --info-soft: #e2e9f8;
+  --flag: #c8102e;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1514; --surface: #162120; --sunk: #1d2a28; --ink: #e5edeb; --muted: #94a6a2; --line: #2b3a37;
+  --accent: #56c7b2; --accent-ink: #06211c; --accent-soft: #17352f;
+  --ok: #7dd69a; --ok-soft: #173323; --warn: #f0c060; --warn-soft: #3a2e12; --info: #a3bbf5; --info-soft: #1c2947;
+  --flag: #e8475f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e1514; --surface: #162120; --sunk: #1d2a28; --ink: #e5edeb; --muted: #94a6a2; --line: #2b3a37;
+  --accent: #56c7b2; --accent-ink: #06211c; --accent-soft: #17352f;
+  --ok: #7dd69a; --ok-soft: #173323; --warn: #f0c060; --warn-soft: #3a2e12; --info: #a3bbf5; --info-soft: #1c2947;
+  --flag: #e8475f; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 32px }
+a { color: var(--accent) }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em }
+h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.05; font-weight: 700 }
+h2 { font-size: 21px; font-weight: 600 }
+.eyebrow { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px }
+.flag { width: 21px; height: 14px; border-radius: 2px; background: linear-gradient(90deg, var(--flag) 0 33.3%, var(--surface) 33.3% 66.6%, var(--flag) 66.6%); border: 1px solid var(--line) }
+header { display: flex; flex-direction: column; gap: 10px }
+.lede { color: var(--muted); max-width: 65ch; margin: 0 }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line) }
+.stat b { font: 600 24px var(--display); font-variant-numeric: tabular-nums; display: block; line-height: 1.1 }
+.stat span { font-size: 13px; color: var(--muted) }
+
+section { display: flex; flex-direction: column; gap: 12px }
+.sec-note { color: var(--muted); margin: 0; max-width: 70ch; font-size: 14px }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px }
+th { text-align: left; font: 500 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+tr.group td { background: var(--sunk); font: 500 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding-block: 6px }
+td.num { font: 500 13px var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap }
+th.num { text-align: right }
+td.site a { font-weight: 600; text-decoration: none; white-space: nowrap }
+td.site a:hover { text-decoration: underline }
+
+.filters { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 12px }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.row > label.lbl, .lbl { font: 500 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); min-width: 74px }
+input[type="search"], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-width: 0 }
+input[type="search"] { flex: 1 1 220px }
+.chip { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline }
+.chip:hover { border-color: var(--accent) }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
+.chip small { font: 400 12px var(--mono); opacity: .75; font-variant-numeric: tabular-nums }
+.check { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; cursor: pointer }
+.check input { accent-color: var(--accent); width: 16px; height: 16px }
+
+.bar { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between }
+.count { font-weight: 600 }
+.live { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px }
+.jobs { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+.job { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 14px; border-bottom: 1px solid var(--line) }
+.job:last-child { border-bottom: 0 }
+.job h3 { margin: 0; font: 600 16px/1.3 var(--body) }
+.job h3 a { color: var(--ink); text-decoration: none }
+.job h3 a:hover { color: var(--accent); text-decoration: underline }
+.meta { color: var(--muted); font-size: 13.5px; overflow-wrap: anywhere }
+.meta b { color: var(--ink); font-weight: 500 }
+.excerpt { grid-column: 1 / -1; color: var(--muted); font-size: 13.5px; margin: 0; overflow-wrap: anywhere }
+.side { text-align: right; font: 400 12.5px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; display: flex; flex-direction: column; gap: 2px }
+.side .sal { color: var(--ink); font-weight: 500 }
+.tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px }
+.tag { font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 4px; background: var(--sunk); color: var(--muted) }
+.tag.none { background: var(--ok-soft); color: var(--ok) }
+.tag.some { background: var(--warn-soft); color: var(--warn) }
+.tag.req { background: var(--info-soft); color: var(--info) }
+.tag.ver { background: var(--warn-soft); color: var(--warn) }
+.tag.cat { background: var(--accent-soft); color: var(--accent) }
+.tag.fit { background: var(--accent); color: var(--accent-ink) }
+.tag.skill { background: transparent; border: 1px solid var(--line); color: var(--ink) }
+.empty { padding: 28px 14px; text-align: center; color: var(--muted) }
+.more { align-self: center; font: 500 14px var(--body); color: var(--accent-ink); background: var(--accent); border: 0; border-radius: 6px; padding: 9px 18px; cursor: pointer }
+.notes { color: var(--muted); font-size: 13.5px; max-width: 72ch; display: flex; flex-direction: column; gap: 8px }
+.notes p { margin: 0 }
+.notes b { color: var(--ink) }
+@media (max-width: 560px) {
+  .job { grid-template-columns: minmax(0, 1fr) }
+  .side { text-align: left; flex-direction: row; gap: 12px; flex-wrap: wrap }
+  .lbl { min-width: 100% }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="flag" aria-hidden="true"></span> Remoto · aplicable desde Perú</div>
+    <h1>Trabajos Remotos Perú</h1>
+    <p class="lede">Ofertas remotas que aceptan postulantes desde Perú, ordenadas según tu perfil: n8n, RAG, agentes y automatización con IA, y diseño. Con inglés básico, los avisos en español van primero. <span id="fetched"></span></p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section aria-labelledby="h-sites">
+    <h2 id="h-sites">Páginas más confiables</h2>
+    <p class="sec-note">Las siete primeras alimentan este panel. Las demás no permiten leer sus ofertas desde aquí, así que van como enlace directo. Ninguna bolsa seria te cobra por postular a una oferta.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Sitio</th><th>Para qué sirve</th><th>Idioma</th><th>Costo</th><th class="num">Ofertas aquí</th></tr></thead>
+      <tbody id="sites"></tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="h-jobs">
+    <h2 id="h-jobs">Ofertas</h2>
+    <div class="filters">
+      <div class="row">
+        <input type="search" id="q" placeholder="Buscar por puesto, empresa o palabra clave: python, asistente, ventas…" aria-label="Buscar ofertas">
+        <select id="src" aria-label="Sitio de origen"><option value="">Todos los sitios</option></select>
+        <select id="sort" aria-label="Orden"><option value="match">Mejor coincidencia primero</option><option value="date">Más recientes primero</option><option value="exp">Menos experiencia y mejor pago</option></select>
+      </div>
+      <div class="row">
+        <span class="lbl">Tu perfil</span>
+        <label class="check"><input type="checkbox" id="onlyMine"> Solo ofertas que coinciden con lo que sabes</label>
+      </div>
+      <div class="row" id="cats" role="group" aria-label="Área"><span class="lbl">Área</span></div>
+      <div class="row" id="langs" role="group" aria-label="Inglés"><span class="lbl">Inglés</span></div>
+      <div class="row" id="days" role="group" aria-label="Fecha de publicación"><span class="lbl">Publicada</span></div>
+      <div class="row">
+        <span class="lbl">Perú</span>
+        <label class="check"><input type="checkbox" id="onlyPe"> Solo ofertas que confirman Perú, Latinoamérica o todo el mundo</label>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="count" id="count"></span>
+      <span class="live" id="live"></span>
+    </div>
+    <ul class="jobs" id="jobs"></ul>
+    <button class="more" id="more" type="button" hidden>Mostrar 40 más</button>
+  </section>
+
+  <div class="notes">
+    <p><b>Cómo se mide la coincidencia.</b> Cada oferta suma puntos si su título o descripción nombra n8n, RAG o LLM, agentes de IA, automatización sin código, o un puesto de diseño. El título pesa el doble. Suben los avisos en español y bajan los cargos senior o de jefatura. "Alta" significa que nombra varias de tus habilidades, no que el puesto esté asegurado.</p>
+    <p><b>Años de experiencia.</b> La etiqueta "Pide N+ años" sale del mayor número de años que el aviso escribe junto a la palabra experiencia. Si el aviso no lo dice con números, no hay etiqueta. Solo una parte de los avisos publica el pago.</p>
+    <p><b>Con inglés básico.</b> Empieza por los avisos "Sin inglés" y "Menciona inglés". En los avisos en inglés, los proyectos freelance de n8n en Upwork y Workana suelen pedir escribir más que conversar.</p>
+    <p><b>Cómo se clasifica el inglés.</b> Es una estimación automática según el idioma del aviso. "Sin inglés" es un aviso en español que no menciona inglés. "Menciona inglés" es un aviso en español que lo pide en algún nivel, a veces solo lectura técnica. "Aviso en inglés" casi siempre exige conversarlo. Lee el aviso antes de postular.</p>
+    <p><b>Cómo se decide si aplica para Perú.</b> Se incluyen ofertas cuya ubicación dice todo el mundo, Latinoamérica, Américas o Perú. Las marcadas "Perú por verificar" no indican ninguna restricción. Las ofertas solo para EE. UU., Europa u otros países quedaron fuera.</p>
+    <p><b>Cuidado con las estafas.</b> Desconfía si te piden pagar por un curso, equipo o "trámite", si la entrevista es solo por chat, o si el sueldo es demasiado alto para el puesto.</p>
+    <p>El panel se actualiza solo una vez al día, a las 7 a. m. de Perú. La fecha de los datos está arriba y cada oferta enlaza al aviso original.</p>
+  </div>
+</div>
+
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById("data").textContent) || { fetched: "", jobs: [] };
+  var JOBS = DATA.jobs;
+  var CATS = [["", "Todas"], ["ia", "IA y datos"], ["ing", "Ingeniería y software"], ["admin", "Administración y operaciones"], ["ventas", "Ventas y marketing"], ["soporte", "Soporte y atención"], ["diseno", "Diseño y producto"], ["otros", "Otros"]];
+  var CAT_NAME = {}; CATS.forEach(function (c) { CAT_NAME[c[0]] = c[1]; });
+  var LANGS = [["", "Todos"], ["none", "Sin inglés"], ["some", "Menciona inglés"], ["req", "Aviso en inglés"]];
+  var LANG_NAME = { none: "Sin inglés", some: "Menciona inglés", req: "Aviso en inglés" };
+  var CAT_QUERY = { ia: "AI", ing: "engineer", admin: "operations", ventas: "sales", soporte: "customer support", diseno: "designer", otros: "", "": "" };
+  var e = encodeURIComponent;
+  var SITES = [
+    { g: "Alimentan este panel" },
+    { n: "Himalayas", u: "https://himalayas.app/jobs/countries/peru", d: "Filtra por país: muestra solo lo que acepta postulantes desde Perú. Muchas empresas de EE. UU.", lang: "Inglés", cost: "Gratis" },
+    { n: "We Work Remotely", u: "https://weworkremotely.com/", d: "La bolsa remota más grande y antigua. Casi todo es \"Anywhere in the World\".", lang: "Inglés", cost: "Gratis" },
+    { n: "Get on Board", u: "https://www.getonbrd.com/", d: "Tecnología en Latinoamérica. Avisos en español, sueldos publicados en USD.", lang: "Español", cost: "Gratis" },
+    { n: "Jobicy", u: "https://jobicy.com/", d: "Tiene región LATAM propia. Bueno para ventas, soporte y finanzas.", lang: "Inglés", cost: "Gratis" },
+    { n: "Remote OK", u: "https://remoteok.com/", d: "Muchas startups. Varias ofertas no dicen ubicación: verifica antes de postular.", lang: "Inglés", cost: "Gratis" },
+    { n: "Working Nomads", u: "https://www.workingnomads.com/jobs", d: "Selección curada, sobre todo desarrollo y marketing.", lang: "Inglés", cost: "Gratis" },
+    { n: "Remotive", u: "https://remotive.com/", d: "Ofertas revisadas a mano. Su fuente pública solo comparte una parte.", lang: "Inglés", cost: "Gratis" },
+    { g: "Solo enlace: búscalas directamente" },
+    { n: "LinkedIn Empleos", u: "https://www.linkedin.com/jobs/search/?location=Peru&f_WT=2", d: "El mayor volumen. Usa el filtro \"En remoto\" con ubicación Perú o Latinoamérica.", lang: "Ambos", cost: "Gratis" },
+    { n: "Indeed Perú", u: "https://pe.indeed.com/jobs?q=remoto", d: "Empleo local y remoto en español, incluye administración y atención al cliente.", lang: "Español", cost: "Gratis" },
+    { n: "Computrabajo Perú", u: "https://pe.computrabajo.com/", d: "La bolsa más usada en Perú. Filtra por modalidad remota.", lang: "Español", cost: "Gratis" },
+    { n: "Bumeran Perú", u: "https://www.bumeran.com.pe/", d: "Empresas peruanas formales, muchas áreas administrativas.", lang: "Español", cost: "Gratis" },
+    { n: "Torre", u: "https://torre.ai/", d: "Remoto para Latinoamérica, con sueldo visible en cada aviso.", lang: "Ambos", cost: "Gratis" },
+    { n: "Wellfound", u: "https://wellfound.com/remote", d: "Startups de EE. UU. (antes AngelList). Fuerte en IA e ingeniería.", lang: "Inglés", cost: "Gratis" },
+    { n: "Work at a Startup", u: "https://www.workatastartup.com/", d: "Empresas de Y Combinator. Un perfil sirve para postular a todas.", lang: "Inglés", cost: "Gratis" },
+    { n: "Workana", u: "https://www.workana.com/jobs?language=es", d: "Proyectos freelance en español: redacción, diseño, asistencia virtual, programación.", lang: "Español", cost: "Comisión por proyecto" },
+    { n: "Upwork", u: "https://www.upwork.com/nx/search/jobs/", d: "Freelance global, la mayoría de clientes son de EE. UU.", lang: "Inglés", cost: "Comisión por proyecto" },
+    { n: "FlexJobs", u: "https://www.flexjobs.com/", d: "Avisos verificados uno por uno. Útil si quieres evitar estafas del todo.", lang: "Inglés", cost: "Suscripción de pago" }
+  ];
+
+  var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", shown: 40 };
+  try { var saved = JSON.parse(localStorage.getItem("trp-filters-2") || "null"); if (saved) { state.cat = saved.cat || ""; state.lang = saved.lang || ""; state.onlyPe = !!saved.onlyPe; state.onlyMine = saved.onlyMine !== false; state.sort = saved.sort === "date" || saved.sort === "exp" ? saved.sort : "match"; } } catch (err) {}
+  function save() { try { localStorage.setItem("trp-filters-2", JSON.stringify({ cat: state.cat, lang: state.lang, onlyPe: state.onlyPe, onlyMine: state.onlyMine, sort: state.sort })); } catch (err) {} }
+  var LANG_RANK = { none: 0, some: 1, req: 2 };
+  function fit(m) { return m >= 12 ? "Coincidencia alta" : m >= 6 ? "Coincidencia media" : m > 0 ? "Coincidencia baja" : ""; }
+
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function link(href, text) { var a = el("a", null, text); a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; }
+  var MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  function fmtDate(d) { if (!d) return ""; var p = d.split("-"); return (+p[2]) + " " + MONTHS[+p[1] - 1]; }
+  function countBy(list, key) { var m = {}; list.forEach(function (j) { m[j[key]] = (m[j[key]] || 0) + 1; }); return m; }
+
+  // Encabezado
+  var f = DATA.fetched ? new Date(DATA.fetched) : null;
+  if (f) document.getElementById("fetched").textContent = "Datos del " + f.getDate() + " " + MONTHS[f.getMonth()] + " " + f.getFullYear() + ".";
+  var weekAgo = f ? new Date(f.getTime() - 7 * 864e5).toISOString().slice(0, 10) : "";
+  var byLang = countBy(JOBS, "lang"), byCat = countBy(JOBS, "cat"), bySrc = countBy(JOBS, "s");
+  var mine = JOBS.filter(function (j) { return j.m > 0; });
+  [[JOBS.length, "ofertas aplicables desde Perú"], [mine.length, "coinciden con tu perfil"], [mine.filter(function (j) { return j.m >= 6; }).length, "con coincidencia media o alta"], [mine.filter(function (j) { return j.lang !== "req"; }).length, "de tu perfil, con aviso en español"], [mine.filter(function (j) { return j.k.indexOf("n8n") >= 0; }).length, "nombran n8n"]]
+    .forEach(function (s) { var d = el("div", "stat"); d.appendChild(el("b", null, String(s[0]))); d.appendChild(el("span", null, s[1])); document.getElementById("stats").appendChild(d); });
+
+  // Tabla de sitios
+  var tb = document.getElementById("sites");
+  SITES.forEach(function (s) {
+    var tr = el("tr");
+    if (s.g) { tr.className = "group"; var td = el("td", null, s.g); td.colSpan = 5; tr.appendChild(td); tb.appendChild(tr); return; }
+    var site = el("td", "site"); site.appendChild(link(s.u, s.n)); tr.appendChild(site);
+    tr.appendChild(el("td", null, s.d)); tr.appendChild(el("td", null, s.lang)); tr.appendChild(el("td", null, s.cost));
+    tr.appendChild(el("td", "num", bySrc[s.n] ? String(bySrc[s.n]) : "—"));
+    tb.appendChild(tr);
+  });
+
+  // Filtros
+  var srcSel = document.getElementById("src");
+  Object.keys(bySrc).sort(function (a, b) { return bySrc[b] - bySrc[a]; }).forEach(function (s) { var o = el("option", null, s + " (" + bySrc[s] + ")"); o.value = s; srcSel.appendChild(o); });
+  function chips(hostId, items, key, counts) {
+    var host = document.getElementById(hostId);
+    items.forEach(function (it) {
+      var b = el("button", "chip", it[1]); b.type = "button"; b.id = hostId + "-" + (it[0] || "all");
+      if (it[0]) b.appendChild(el("small", null, String(counts[it[0]] || 0)));
+      b.setAttribute("aria-pressed", String(state[key] === it[0]));
+      b.addEventListener("click", function () {
+        state[key] = it[0]; state.shown = 40; save();
+        Array.prototype.forEach.call(host.querySelectorAll(".chip"), function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+        render();
+      });
+      host.appendChild(b);
+    });
+  }
+  chips("cats", CATS, "cat", byCat);
+  chips("langs", LANGS, "lang", byLang);
+  // Fecha: se cuenta hacia atrás desde hoy, no desde el día en que se tomaron los datos
+  var DAYS = [["", "Cualquier fecha"], ["1", "Hoy y ayer"], ["3", "Últimos 3 días"], ["7", "Última semana"], ["14", "Últimas 2 semanas"], ["30", "Último mes"]];
+  function since(n) { return new Date(Date.now() - n * 864e5).toISOString().slice(0, 10); }
+  var byDays = {}; DAYS.forEach(function (d) { if (d[0]) { var c = since(+d[0]); byDays[d[0]] = JOBS.filter(function (j) { return j.d >= c; }).length; } });
+  chips("days", DAYS, "days", byDays);
+  var qIn = document.getElementById("q"), peIn = document.getElementById("onlyPe");
+  peIn.checked = state.onlyPe;
+  qIn.addEventListener("input", function () { state.q = qIn.value.trim().toLowerCase(); state.shown = 40; render(); });
+  srcSel.addEventListener("change", function () { state.src = srcSel.value; state.shown = 40; render(); });
+  peIn.addEventListener("change", function () { state.onlyPe = peIn.checked; state.shown = 40; save(); render(); });
+  var mineIn = document.getElementById("onlyMine"), sortSel = document.getElementById("sort");
+  mineIn.checked = state.onlyMine; sortSel.value = state.sort;
+  mineIn.addEventListener("change", function () { state.onlyMine = mineIn.checked; state.shown = 40; save(); render(); });
+  sortSel.addEventListener("change", function () { state.sort = sortSel.value; state.shown = 40; save(); render(); });
+  document.getElementById("more").addEventListener("click", function () { state.shown += 40; render(); });
+
+  function matches(j) {
+    if (state.cat && j.cat !== state.cat) return false;
+    if (state.lang && j.lang !== state.lang) return false;
+    if (state.src && j.s !== state.src) return false;
+    if (state.onlyPe && j.pe !== "si") return false;
+    if (state.onlyMine && !(j.m > 0)) return false;
+    if (state.days && !(j.d >= since(+state.days))) return false;
+    if (state.q) {
+      var hay = (j.t + " " + j.c + " " + j.x + " " + j.l).toLowerCase();
+      var words = state.q.split(/\s+/);
+      for (var i = 0; i < words.length; i++) if (hay.indexOf(words[i]) < 0) return false;
+    }
+    return true;
+  }
+
+  function render() {
+    var list = JOBS.filter(matches);
+    if (state.sort === "match") list.sort(function (a, b) { return (b.m - a.m) || (LANG_RANK[a.lang] - LANG_RANK[b.lang]) || (b.d || "").localeCompare(a.d || ""); });
+    // Menos experiencia: primero las que dicen cuántos años piden (de menos a más) y publican pago; las que no lo dicen van al final
+    if (state.sort === "exp") list.sort(function (a, b) { var ea = a.e < 0 ? 99 : a.e, eb = b.e < 0 ? 99 : b.e; return (ea - eb) || ((b.pay || 0) - (a.pay || 0)) || (b.m - a.m); });
+    document.getElementById("count").textContent = list.length + (list.length === 1 ? " oferta" : " ofertas");
+    var term = state.q || CAT_QUERY[state.cat] || "n8n";
+    var live = document.getElementById("live"); live.textContent = "";
+    live.appendChild(el("span", null, "Buscar" + (term ? " \"" + term + "\"" : "") + " en vivo:"));
+    live.appendChild(link("https://www.linkedin.com/jobs/search/?keywords=" + e(term) + "&location=Peru&f_WT=2", "LinkedIn"));
+    live.appendChild(link("https://pe.indeed.com/jobs?q=" + e((term + " remoto").trim()), "Indeed Perú"));
+    live.appendChild(link(term ? "https://weworkremotely.com/remote-jobs/search?term=" + e(term) : "https://weworkremotely.com/", "We Work Remotely"));
+    live.appendChild(link("https://www.upwork.com/nx/search/jobs/?q=" + e(term), "Upwork"));
+
+    var ul = document.getElementById("jobs"); ul.textContent = "";
+    if (!list.length) { ul.appendChild(el("li", "empty", "Ninguna oferta coincide. Quita un filtro o prueba otra palabra.")); }
+    list.slice(0, state.shown).forEach(function (j) {
+      var li = el("li", "job");
+      var main = el("div");
+      var h = el("h3"); h.appendChild(link(j.u, j.t)); main.appendChild(h);
+      var meta = el("div", "meta"); if (j.c) { meta.appendChild(el("b", null, j.c)); meta.appendChild(document.createTextNode(" · ")); }
+      meta.appendChild(document.createTextNode((j.l ? j.l + " · " : "") + j.s)); main.appendChild(meta);
+      li.appendChild(main);
+      var side = el("div", "side"); if (j.sal) side.appendChild(el("span", "sal", j.sal)); side.appendChild(el("span", null, fmtDate(j.d))); li.appendChild(side);
+      if (j.x) li.appendChild(el("p", "excerpt", j.x + (j.x.length >= 170 ? "…" : "")));
+      var tags = el("div", "tags");
+      if (j.m > 0) tags.appendChild(el("span", "tag fit", fit(j.m)));
+      (j.k || []).forEach(function (k) { tags.appendChild(el("span", "tag skill", k)); });
+      tags.appendChild(el("span", "tag cat", CAT_NAME[j.cat]));
+      tags.appendChild(el("span", "tag " + j.lang, LANG_NAME[j.lang]));
+      if (j.e >= 0) tags.appendChild(el("span", "tag", j.e === 0 ? "Junior o práctica" : "Pide " + j.e + "+ " + (j.e === 1 ? "año" : "años")));
+      if (j.pe === "ver") tags.appendChild(el("span", "tag ver", "Perú por verificar"));
+      li.appendChild(tags);
+      ul.appendChild(li);
+    });
+    var more = document.getElementById("more"), left = list.length - state.shown;
+    more.hidden = left <= 0; if (left > 0) more.textContent = "Mostrar " + Math.min(40, left) + " más";
+  }
+  render();
+})();
+</script>
