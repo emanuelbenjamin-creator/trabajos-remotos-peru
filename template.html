@@ -54,7 +54,7 @@ td.site a:hover { text-decoration: underline }
 .filters { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 12px }
 .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
 .row > label.lbl, .lbl { font: 500 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); min-width: 74px }
-input[type="search"], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-width: 0 }
+input[type="search"], input[type="date"], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-width: 0 }
 input[type="search"] { flex: 1 1 220px }
 .chip { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline }
 .chip:hover { border-color: var(--accent) }
@@ -131,6 +131,12 @@ input[type="search"] { flex: 1 1 220px }
       <div class="row" id="langs" role="group" aria-label="Inglés"><span class="lbl">Inglés</span></div>
       <div class="row" id="days" role="group" aria-label="Fecha de publicación"><span class="lbl">Publicada</span></div>
       <div class="row">
+        <span class="lbl">Entre fechas</span>
+        <label class="check">Desde <input type="date" id="from"></label>
+        <label class="check">Hasta <input type="date" id="to"></label>
+        <button class="chip" type="button" id="clearDates">Quitar fechas</button>
+      </div>
+      <div class="row">
         <span class="lbl">Perú</span>
         <label class="check"><input type="checkbox" id="onlyPe"> Solo ofertas que confirman Perú, Latinoamérica o todo el mundo</label>
       </div>
@@ -187,7 +193,7 @@ input[type="search"] { flex: 1 1 220px }
     { n: "FlexJobs", u: "https://www.flexjobs.com/", d: "Avisos verificados uno por uno. Útil si quieres evitar estafas del todo.", lang: "Inglés", cost: "Suscripción de pago" }
   ];
 
-  var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", shown: 40 };
+  var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", from: "", to: "", shown: 40 };
   try { var saved = JSON.parse(localStorage.getItem("trp-filters-2") || "null"); if (saved) { state.cat = saved.cat || ""; state.lang = saved.lang || ""; state.onlyPe = !!saved.onlyPe; state.onlyMine = saved.onlyMine !== false; state.sort = saved.sort === "date" || saved.sort === "exp" ? saved.sort : "match"; } } catch (err) {}
   function save() { try { localStorage.setItem("trp-filters-2", JSON.stringify({ cat: state.cat, lang: state.lang, onlyPe: state.onlyPe, onlyMine: state.onlyMine, sort: state.sort })); } catch (err) {} }
   var LANG_RANK = { none: 0, some: 1, req: 2 };
@@ -243,6 +249,15 @@ input[type="search"] { flex: 1 1 220px }
   function since(n) { return new Date(Date.now() - n * 864e5).toISOString().slice(0, 10); }
   var byDays = {}; DAYS.forEach(function (d) { if (d[0]) { var c = since(+d[0]); byDays[d[0]] = JOBS.filter(function (j) { return j.d >= c; }).length; } });
   chips("days", DAYS, "days", byDays);
+  // Rango exacto: al elegir fechas se suelta el atajo de "últimos N días", y al revés
+  var fromIn = document.getElementById("from"), toIn = document.getElementById("to");
+  var dates = JOBS.map(function (j) { return j.d; }).filter(Boolean).sort();
+  if (dates.length) { fromIn.min = toIn.min = dates[0]; fromIn.max = toIn.max = dates[dates.length - 1]; }
+  function pressDays(value) { Array.prototype.forEach.call(document.querySelectorAll("#days .chip"), function (c) { c.setAttribute("aria-pressed", String(c.id === "days-" + (value || "all"))); }); }
+  function onRange() { state.from = fromIn.value; state.to = toIn.value; if (state.from || state.to) { state.days = ""; pressDays(""); } state.shown = 40; render(); }
+  fromIn.addEventListener("change", onRange); toIn.addEventListener("change", onRange);
+  document.getElementById("clearDates").addEventListener("click", function () { fromIn.value = toIn.value = ""; onRange(); });
+  document.getElementById("days").addEventListener("click", function (ev) { if (ev.target.closest(".chip") && state.days) { fromIn.value = toIn.value = ""; state.from = state.to = ""; render(); } });
   var qIn = document.getElementById("q"), peIn = document.getElementById("onlyPe");
   peIn.checked = state.onlyPe;
   qIn.addEventListener("input", function () { state.q = qIn.value.trim().toLowerCase(); state.shown = 40; render(); });
@@ -261,6 +276,8 @@ input[type="search"] { flex: 1 1 220px }
     if (state.onlyPe && j.pe !== "si") return false;
     if (state.onlyMine && !(j.m > 0)) return false;
     if (state.days && !(j.d >= since(+state.days))) return false;
+    if (state.from && !(j.d >= state.from)) return false;
+    if (state.to && !(j.d && j.d <= state.to)) return false;
     if (state.q) {
       var hay = (j.t + " " + j.c + " " + j.x + " " + j.l).toLowerCase();
       var words = state.q.split(/\s+/);
