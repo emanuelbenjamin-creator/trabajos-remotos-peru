@@ -1,125 +1,169 @@
 <title>Trabajos Remotos Perú</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@700;800&display=swap">
 <style>
-/* Layout: una columna de trabajo. Arriba el resumen, luego la tabla de sitios confiables, luego filtros pegados a la lista de ofertas. */
+/* Layout: barra fija arriba, portada neón con esquinas, y debajo una columna tipo feed: filtros, luego cada oferta como una publicación. Tema único oscuro. */
 :root {
-  --bg: #f2f5f4; --surface: #ffffff; --sunk: #e8edeb; --ink: #14201e; --muted: #586966; --line: #d5dddb;
-  --accent: #0a6658; --accent-ink: #ffffff; --accent-soft: #dcefeb;
-  --ok: #1d7a3e; --ok-soft: #dff2e5; --warn: #8a5a00; --warn-soft: #f8ecd0; --info: #33539e; --info-soft: #e2e9f8;
-  --flag: #c8102e;
-  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --bg: #080a18; --panel: #15202b; --panel-2: #1c2937; --line: #2b3b4c; --ink: #e9ebf7; --muted: #8d9bae;
+  --mint: #2ff5c8; --mint-ink: #04231c; --lav: #dcd7ff; --blue: #1d9bf0; --pink: #f43f9d; --yellow: #f5c84b; --green: #34d399;
+  --display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0e1514; --surface: #162120; --sunk: #1d2a28; --ink: #e5edeb; --muted: #94a6a2; --line: #2b3a37;
-  --accent: #56c7b2; --accent-ink: #06211c; --accent-soft: #17352f;
-  --ok: #7dd69a; --ok-soft: #173323; --warn: #f0c060; --warn-soft: #3a2e12; --info: #a3bbf5; --info-soft: #1c2947;
-  --flag: #e8475f; color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: #0e1514; --surface: #162120; --sunk: #1d2a28; --ink: #e5edeb; --muted: #94a6a2; --line: #2b3a37;
-  --accent: #56c7b2; --accent-ink: #06211c; --accent-soft: #17352f;
-  --ok: #7dd69a; --ok-soft: #173323; --warn: #f0c060; --warn-soft: #3a2e12; --info: #a3bbf5; --info-soft: #1c2947;
-  --flag: #e8475f; color-scheme: dark }
-
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
-.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 32px }
-a { color: var(--accent) }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
-h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em }
-h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.05; font-weight: 700 }
-h2 { font-size: 21px; font-weight: 600 }
-.eyebrow { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px }
-.flag { width: 21px; height: 14px; border-radius: 2px; background: linear-gradient(90deg, var(--flag) 0 33.3%, var(--surface) 33.3% 66.6%, var(--flag) 66.6%); border: 1px solid var(--line) }
-header { display: flex; flex-direction: column; gap: 10px }
-.lede { color: var(--muted); max-width: 65ch; margin: 0 }
-.stats { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line) }
-.stat b { font: 600 24px var(--display); font-variant-numeric: tabular-nums; display: block; line-height: 1.1 }
-.stat span { font-size: 13px; color: var(--muted) }
+html { scroll-behavior: smooth; scroll-padding-top: 72px }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); min-height: 100vh; position: relative }
+/* Resplandores verde y magenta con una cuadrícula tenue, como una pantalla de terminal */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(rgba(47, 245, 200, .035) 1px, transparent 1px) 0 0 / 100% 44px,
+    linear-gradient(90deg, rgba(47, 245, 200, .035) 1px, transparent 1px) 0 0 / 44px 100%,
+    radial-gradient(60% 55% at 18% 75%, rgba(24, 120, 100, .55), transparent 70%),
+    radial-gradient(55% 50% at 85% 20%, rgba(120, 20, 95, .5), transparent 70%),
+    var(--bg) }
+a { color: var(--blue) }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px }
 
-section { display: flex; flex-direction: column; gap: 12px }
+.nav { position: sticky; top: 0; z-index: 5; background: rgba(21, 32, 43, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line) }
+.nav-in { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 8px 18px; flex-wrap: wrap }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; color: var(--ink); text-decoration: none; margin-right: auto }
+.logo { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 700 12px var(--body); color: #fff; background: linear-gradient(135deg, var(--blue), #7c3aed 55%, var(--pink)) }
+.nav a.lnk { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 14px; padding: 6px 2px; border-bottom: 2px solid transparent }
+.nav a.lnk:hover { color: var(--ink); border-bottom-color: var(--blue) }
+
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 64px; display: flex; flex-direction: column; gap: 36px }
+
+.hero { position: relative; text-align: center; padding: 56px 20px 40px; border: 1px solid rgba(47, 245, 200, .12); display: flex; flex-direction: column; align-items: center; gap: 16px }
+.hero::before, .hero::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid var(--mint) }
+.hero::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0 }
+.hero::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0 }
+.eyebrow { font: 500 12px var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--mint) }
+.eyebrow i { font-style: normal; color: var(--muted) }
+h1 { font: 800 clamp(30px, 7.4vw, 62px)/1.02 var(--display); letter-spacing: -0.03em; margin: 0; text-wrap: balance;
+  background: linear-gradient(90deg, var(--lav) 30%, var(--mint) 85%); -webkit-background-clip: text; background-clip: text; color: transparent }
+.lede { font: 400 clamp(14px, 2.2vw, 17px)/1.6 var(--mono); color: #9aa0c8; max-width: 52ch; margin: 0 }
+.lede b { color: var(--mint); font-weight: 500 }
+.fetched { font: 400 11px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: rgba(47, 245, 200, .55) }
+.stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin-top: 8px }
+.stat { font-size: 14px; color: var(--muted) }
+.stat b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; margin-right: 5px }
+
+section { display: flex; flex-direction: column; gap: 14px }
+h2 { font: 700 20px var(--body); margin: 0; display: flex; align-items: center; gap: 10px }
+h2::before { content: "//"; font: 500 14px var(--mono); color: var(--mint) }
 .sec-note { color: var(--muted); margin: 0; max-width: 70ch; font-size: 14px }
-.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px }
+.filters { padding: 16px; display: flex; flex-direction: column; gap: 14px }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.lbl { font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); min-width: 92px }
+input[type="search"], input[type="date"], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; min-width: 0 }
+input[type="search"] { flex: 1 1 220px }
+input[type="date"] { font-family: var(--mono); font-size: 13.5px }
+input[type="date"].on { border-color: var(--mint); color: var(--mint) }
+.chip { font: 500 14px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline }
+.chip:hover { border-color: var(--blue) }
+.chip[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; font-weight: 600 }
+.chip small { font: 400 12px var(--mono); opacity: .75; font-variant-numeric: tabular-nums }
+.check { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer }
+.check input[type="checkbox"] { accent-color: var(--mint); width: 16px; height: 16px }
+.today { font: 700 15px var(--body); color: var(--mint-ink); background: var(--mint); border: 2px solid var(--mint); border-radius: 999px; padding: 10px 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px }
+.today small { font: 700 12px var(--mono); background: rgba(4, 35, 28, .18); border-radius: 999px; padding: 2px 8px; font-variant-numeric: tabular-nums }
+.today[aria-pressed="false"] { background: transparent; color: var(--mint) }
+.today[aria-pressed="false"] small { background: rgba(47, 245, 200, .14) }
+.today:hover { filter: brightness(1.1) }
+.today-note { color: var(--muted); font-size: 13.5px }
+.range { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: rgba(47, 245, 200, .09); border: 1px solid rgba(47, 245, 200, .4); border-radius: 12px; padding: 10px 14px; font-size: 14px }
+.range b { color: var(--mint); font-weight: 600 }
+.range button { margin-left: auto; font: 600 13px var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer }
+.range button:hover { border-color: var(--mint) }
+
+.bar { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between; padding-inline: 4px }
+.count { font-weight: 700; font-size: 16px }
+.live { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px }
+
+.jobs { list-style: none; margin: 0; padding: 0; overflow: hidden }
+.job { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 16px; border-bottom: 1px solid var(--line) }
+.job:last-child { border-bottom: 0 }
+.job:hover { background: var(--panel-2) }
+.av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font: 700 14px var(--body); color: #fff; letter-spacing: .02em }
+.av.g0 { background: linear-gradient(135deg, #1d9bf0, #7c3aed) } .av.g1 { background: linear-gradient(135deg, #7c3aed, #f43f9d) }
+.av.g2 { background: linear-gradient(135deg, #0e9f8a, #1d9bf0) } .av.g3 { background: linear-gradient(135deg, #f43f9d, #f59e0b) }
+.post { display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+.who { font-size: 14px; color: var(--muted); overflow-wrap: anywhere }
+.who b { color: var(--ink); font-weight: 700 }
+.job h3 { margin: 0; font: 700 17px/1.3 var(--body) }
+.job h3 a { color: var(--ink); text-decoration: none }
+.job h3 a:hover { color: var(--blue); text-decoration: underline }
+.excerpt { color: #aab4c3; font-size: 14.5px; margin: 0; overflow-wrap: anywhere }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px }
+.tag { font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: rgba(141, 155, 174, .16); color: #b7c2d0 }
+.tag.cat { background: rgba(29, 155, 240, .18); color: #6cc0f8 }
+.tag.none { background: rgba(52, 211, 153, .18); color: var(--green) }
+.tag.some, .tag.ver { background: rgba(245, 200, 75, .18); color: var(--yellow) }
+.tag.req { background: rgba(141, 155, 174, .16); color: #b7c2d0 }
+.tag.skill { background: rgba(244, 63, 157, .16); color: #fb7fbf }
+.tag.fit { background: var(--mint); color: var(--mint-ink) }
+.tag.fit.mid { background: rgba(47, 245, 200, .16); color: var(--mint) }
+.tag.fit.low { background: transparent; border: 1px solid var(--line); color: var(--muted) }
+.foot { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; margin-top: 4px; font: 500 13px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums }
+.foot .sal { color: var(--mint) }
+.foot a { margin-left: auto; font: 600 13px var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; text-decoration: none }
+.foot a:hover { border-color: var(--blue); color: var(--blue) }
+.empty { padding: 32px 16px; text-align: center; color: var(--muted) }
+.more { align-self: center; font: 700 14px var(--body); color: #fff; background: var(--blue); border: 0; border-radius: 999px; padding: 10px 22px; cursor: pointer }
+.more:hover { filter: brightness(1.1) }
+
+.scroll { overflow-x: auto }
 table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px }
-th { text-align: left; font: 500 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap }
-td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { text-align: left; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 12px 14px; border-bottom: 1px solid var(--line); white-space: nowrap }
+td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: #c5cedb }
 tr:last-child td { border-bottom: 0 }
-tr.group td { background: var(--sunk); font: 500 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding-block: 6px }
-td.num { font: 500 13px var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap }
+tr.group td { background: var(--panel-2); font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mint); padding-block: 7px }
+td.num { font: 500 13px var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--ink) }
 th.num { text-align: right }
-td.site a { font-weight: 600; text-decoration: none; white-space: nowrap }
+td.site a { font-weight: 700; text-decoration: none; white-space: nowrap }
 td.site a:hover { text-decoration: underline }
 
-.filters { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 12px }
-.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
-.row > label.lbl, .lbl { font: 500 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); min-width: 74px }
-input[type="search"], input[type="date"], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-width: 0 }
-input[type="search"] { flex: 1 1 220px }
-.chip { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline }
-.chip:hover { border-color: var(--accent) }
-.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
-.chip small { font: 400 12px var(--mono); opacity: .75; font-variant-numeric: tabular-nums }
-.check { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; cursor: pointer }
-.check input { accent-color: var(--accent); width: 16px; height: 16px }
-
-.bar { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between }
-.count { font-weight: 600 }
-.live { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px }
-.jobs { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
-.job { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 14px; border-bottom: 1px solid var(--line) }
-.job:last-child { border-bottom: 0 }
-.job h3 { margin: 0; font: 600 16px/1.3 var(--body) }
-.job h3 a { color: var(--ink); text-decoration: none }
-.job h3 a:hover { color: var(--accent); text-decoration: underline }
-.meta { color: var(--muted); font-size: 13.5px; overflow-wrap: anywhere }
-.meta b { color: var(--ink); font-weight: 500 }
-.excerpt { grid-column: 1 / -1; color: var(--muted); font-size: 13.5px; margin: 0; overflow-wrap: anywhere }
-.side { text-align: right; font: 400 12.5px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; display: flex; flex-direction: column; gap: 2px }
-.side .sal { color: var(--ink); font-weight: 500 }
-.tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px }
-.tag { font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 4px; background: var(--sunk); color: var(--muted) }
-.tag.none { background: var(--ok-soft); color: var(--ok) }
-.tag.some { background: var(--warn-soft); color: var(--warn) }
-.tag.req { background: var(--info-soft); color: var(--info) }
-.tag.ver { background: var(--warn-soft); color: var(--warn) }
-.tag.cat { background: var(--accent-soft); color: var(--accent) }
-.tag.fit { background: var(--accent); color: var(--accent-ink) }
-.tag.skill { background: transparent; border: 1px solid var(--line); color: var(--ink) }
-.empty { padding: 28px 14px; text-align: center; color: var(--muted) }
-.more { align-self: center; font: 500 14px var(--body); color: var(--accent-ink); background: var(--accent); border: 0; border-radius: 6px; padding: 9px 18px; cursor: pointer }
-.notes { color: var(--muted); font-size: 13.5px; max-width: 72ch; display: flex; flex-direction: column; gap: 8px }
+.notes { color: var(--muted); font-size: 14px; max-width: 72ch; display: flex; flex-direction: column; gap: 10px }
 .notes p { margin: 0 }
 .notes b { color: var(--ink) }
+footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); letter-spacing: .18em; text-transform: uppercase; padding-top: 8px; border-top: 1px solid var(--line) }
 @media (max-width: 560px) {
-  .job { grid-template-columns: minmax(0, 1fr) }
-  .side { text-align: left; flex-direction: row; gap: 12px; flex-wrap: wrap }
+  .hero { padding: 40px 14px 28px }
+  .job { grid-template-columns: 36px minmax(0, 1fr); gap: 10px; padding: 14px 12px }
+  .av { width: 36px; height: 36px; font-size: 12px }
   .lbl { min-width: 100% }
+  .foot a { margin-left: 0 }
 }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
 </style>
 
-<div class="wrap">
-  <header>
-    <div class="eyebrow"><span class="flag" aria-hidden="true"></span> Remoto · aplicable desde Perú</div>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="#inicio"><span class="logo" aria-hidden="true">TR</span>Trabajos Remotos</a>
+  <a class="lnk" href="#ofertas">Ofertas</a>
+  <a class="lnk" href="#sitios">Sitios</a>
+  <a class="lnk" href="#notas">Notas</a>
+</div></nav>
+
+<div class="wrap" id="inicio">
+  <header class="hero">
+    <div class="eyebrow"><i>//</i> Remoto · aplicable desde Perú</div>
     <h1>Trabajos Remotos Perú</h1>
-    <p class="lede">Ofertas remotas que aceptan postulantes desde Perú, ordenadas según tu perfil: n8n, RAG, agentes y automatización con IA, y diseño. Con inglés básico, los avisos en español van primero. <span id="fetched"></span></p>
+    <p class="lede">Ofertas ordenadas según tu perfil: <b>n8n, RAG, agentes de IA</b> y <b>diseño</b>. Con inglés básico, los avisos en español van primero.</p>
     <div class="stats" id="stats"></div>
+    <div class="fetched" id="fetched"></div>
   </header>
 
-  <section aria-labelledby="h-sites">
-    <h2 id="h-sites">Páginas más confiables</h2>
-    <p class="sec-note">Las siete primeras alimentan este panel. Las demás no permiten leer sus ofertas desde aquí, así que van como enlace directo. Ninguna bolsa seria te cobra por postular a una oferta.</p>
-    <div class="scroll"><table>
-      <thead><tr><th>Sitio</th><th>Para qué sirve</th><th>Idioma</th><th>Costo</th><th class="num">Ofertas aquí</th></tr></thead>
-      <tbody id="sites"></tbody>
-    </table></div>
-  </section>
-
-  <section aria-labelledby="h-jobs">
+  <section id="ofertas" aria-labelledby="h-jobs">
     <h2 id="h-jobs">Ofertas</h2>
-    <div class="filters">
+    <div class="panel filters">
       <div class="row">
-        <input type="search" id="q" placeholder="Buscar por puesto, empresa o palabra clave: python, asistente, ventas…" aria-label="Buscar ofertas">
+        <button class="today" type="button" id="today" aria-pressed="false">Ofertas de hoy <small id="todayN">0</small></button>
+        <span class="today-note" id="todayNote"></span>
+      </div>
+      <div class="row">
+        <input type="search" id="q" placeholder="Buscar: python, asistente, ventas…" aria-label="Buscar ofertas">
         <select id="src" aria-label="Sitio de origen"><option value="">Todos los sitios</option></select>
         <select id="sort" aria-label="Orden"><option value="match">Mejor coincidencia primero</option><option value="date">Más recientes primero</option><option value="exp">Menos experiencia y mejor pago</option></select>
       </div>
@@ -134,8 +178,8 @@ input[type="search"] { flex: 1 1 220px }
         <span class="lbl">Entre fechas</span>
         <label class="check">Desde <input type="date" id="from"></label>
         <label class="check">Hasta <input type="date" id="to"></label>
-        <button class="chip" type="button" id="clearDates">Quitar fechas</button>
       </div>
+      <div class="range" id="range" hidden><span id="rangeText"></span><button type="button" id="clearDates">Quitar filtro de fecha</button></div>
       <div class="row">
         <span class="lbl">Perú</span>
         <label class="check"><input type="checkbox" id="onlyPe"> Solo ofertas que confirman Perú, Latinoamérica o todo el mundo</label>
@@ -145,19 +189,29 @@ input[type="search"] { flex: 1 1 220px }
       <span class="count" id="count"></span>
       <span class="live" id="live"></span>
     </div>
-    <ul class="jobs" id="jobs"></ul>
+    <ul class="panel jobs" id="jobs"></ul>
     <button class="more" id="more" type="button" hidden>Mostrar 40 más</button>
   </section>
 
-  <div class="notes">
+  <section id="sitios" aria-labelledby="h-sites">
+    <h2 id="h-sites">Páginas más confiables</h2>
+    <p class="sec-note">Las siete primeras alimentan este panel. Las demás no permiten leer sus ofertas desde aquí, así que van como enlace directo. Ninguna bolsa seria te cobra por postular a una oferta.</p>
+    <div class="panel scroll"><table>
+      <thead><tr><th>Sitio</th><th>Para qué sirve</th><th>Idioma</th><th>Costo</th><th class="num">Ofertas aquí</th></tr></thead>
+      <tbody id="sites"></tbody>
+    </table></div>
+  </section>
+
+  <div class="notes" id="notas">
     <p><b>Cómo se mide la coincidencia.</b> Cada oferta suma puntos si su título o descripción nombra n8n, RAG o LLM, agentes de IA, automatización sin código, o un puesto de diseño. El título pesa el doble. Suben los avisos en español y bajan los cargos senior o de jefatura. "Alta" significa que nombra varias de tus habilidades, no que el puesto esté asegurado.</p>
     <p><b>Años de experiencia.</b> La etiqueta "Pide N+ años" sale del mayor número de años que el aviso escribe junto a la palabra experiencia. Si el aviso no lo dice con números, no hay etiqueta. Solo una parte de los avisos publica el pago.</p>
     <p><b>Con inglés básico.</b> Empieza por los avisos "Sin inglés" y "Menciona inglés". En los avisos en inglés, los proyectos freelance de n8n en Upwork y Workana suelen pedir escribir más que conversar.</p>
     <p><b>Cómo se clasifica el inglés.</b> Es una estimación automática según el idioma del aviso. "Sin inglés" es un aviso en español que no menciona inglés. "Menciona inglés" es un aviso en español que lo pide en algún nivel, a veces solo lectura técnica. "Aviso en inglés" casi siempre exige conversarlo. Lee el aviso antes de postular.</p>
     <p><b>Cómo se decide si aplica para Perú.</b> Se incluyen ofertas cuya ubicación dice todo el mundo, Latinoamérica, Américas o Perú. Las marcadas "Perú por verificar" no indican ninguna restricción. Las ofertas solo para EE. UU., Europa u otros países quedaron fuera.</p>
     <p><b>Cuidado con las estafas.</b> Desconfía si te piden pagar por un curso, equipo o "trámite", si la entrevista es solo por chat, o si el sueldo es demasiado alto para el puesto.</p>
-    <p>El panel se actualiza solo tres veces al día: 7 a. m., 1 p. m. y 7 p. m. de Perú. La fecha de los datos está arriba y cada oferta enlaza al aviso original.</p>
+    <p>El panel se actualiza solo tres veces al día: 7 a. m., 1 p. m. y 7 p. m. de Perú. Cada oferta enlaza al aviso original.</p>
   </div>
+  <footer>Se actualiza 7 a. m. · 1 p. m. · 7 p. m. hora de Perú</footer>
 </div>
 
 <script id="data" type="application/json">/*__DATA__*/null</script>
@@ -193,26 +247,32 @@ input[type="search"] { flex: 1 1 220px }
     { n: "FlexJobs", u: "https://www.flexjobs.com/", d: "Avisos verificados uno por uno. Útil si quieres evitar estafas del todo.", lang: "Inglés", cost: "Suscripción de pago" }
   ];
 
-  var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", from: "", to: "", shown: 40 };
+  var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", from: "", to: "", today: false, shown: 40 };
   try { var saved = JSON.parse(localStorage.getItem("trp-filters-2") || "null"); if (saved) { state.cat = saved.cat || ""; state.lang = saved.lang || ""; state.onlyPe = !!saved.onlyPe; state.onlyMine = saved.onlyMine !== false; state.sort = saved.sort === "date" || saved.sort === "exp" ? saved.sort : "match"; } } catch (err) {}
   function save() { try { localStorage.setItem("trp-filters-2", JSON.stringify({ cat: state.cat, lang: state.lang, onlyPe: state.onlyPe, onlyMine: state.onlyMine, sort: state.sort })); } catch (err) {} }
   var LANG_RANK = { none: 0, some: 1, req: 2 };
   function fit(m) { return m >= 12 ? "Coincidencia alta" : m >= 6 ? "Coincidencia media" : m > 0 ? "Coincidencia baja" : ""; }
+  function fitClass(m) { return m >= 12 ? "" : m >= 6 ? " mid" : " low"; }
 
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function link(href, text) { var a = el("a", null, text); a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; }
   var MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
   function fmtDate(d) { if (!d) return ""; var p = d.split("-"); return (+p[2]) + " " + MONTHS[+p[1] - 1]; }
+  function fmtFull(d) { return fmtDate(d) + " " + d.slice(0, 4); }
   function countBy(list, key) { var m = {}; list.forEach(function (j) { m[j[key]] = (m[j[key]] || 0) + 1; }); return m; }
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  // "Hoy" según el reloj de quien mira la página
+  function todayStr() { var n = new Date(); return n.getFullYear() + "-" + pad(n.getMonth() + 1) + "-" + pad(n.getDate()); }
+  function initials(name) { var w = (name || "?").replace(/[^A-Za-zÀ-ÿ0-9 ]/g, " ").trim().split(/\s+/); return ((w[0] || "?").charAt(0) + (w[1] ? w[1].charAt(0) : (w[0] || "").charAt(1))).toUpperCase(); }
+  function hue(name) { var h = 0; for (var i = 0; i < (name || "").length; i++) h = (h * 31 + name.charCodeAt(i)) % 997; return h % 4; }
 
-  // Encabezado
+  // Portada
   var f = DATA.fetched ? new Date(DATA.fetched) : null;
-  if (f) document.getElementById("fetched").textContent = "Datos del " + f.getDate() + " " + MONTHS[f.getMonth()] + " " + f.getFullYear() + ".";
-  var weekAgo = f ? new Date(f.getTime() - 7 * 864e5).toISOString().slice(0, 10) : "";
+  if (f) document.getElementById("fetched").textContent = "Datos del " + f.getDate() + " " + MONTHS[f.getMonth()] + " " + f.getFullYear() + " · " + pad(f.getHours()) + ":" + pad(f.getMinutes());
   var byLang = countBy(JOBS, "lang"), byCat = countBy(JOBS, "cat"), bySrc = countBy(JOBS, "s");
   var mine = JOBS.filter(function (j) { return j.m > 0; });
-  [[JOBS.length, "ofertas aplicables desde Perú"], [mine.length, "coinciden con tu perfil"], [mine.filter(function (j) { return j.m >= 6; }).length, "con coincidencia media o alta"], [mine.filter(function (j) { return j.lang !== "req"; }).length, "de tu perfil, con aviso en español"], [mine.filter(function (j) { return j.k.indexOf("n8n") >= 0; }).length, "nombran n8n"]]
-    .forEach(function (s) { var d = el("div", "stat"); d.appendChild(el("b", null, String(s[0]))); d.appendChild(el("span", null, s[1])); document.getElementById("stats").appendChild(d); });
+  [[JOBS.length, "ofertas"], [mine.length, "de tu perfil"], [mine.filter(function (j) { return j.lang !== "req"; }).length, "en español"], [mine.filter(function (j) { return j.k.indexOf("n8n") >= 0; }).length, "nombran n8n"]]
+    .forEach(function (s) { var d = el("div", "stat"); d.appendChild(el("b", null, String(s[0]))); d.appendChild(document.createTextNode(s[1])); document.getElementById("stats").appendChild(d); });
 
   // Tabla de sitios
   var tb = document.getElementById("sites");
@@ -228,7 +288,7 @@ input[type="search"] { flex: 1 1 220px }
   // Filtros
   var srcSel = document.getElementById("src");
   Object.keys(bySrc).sort(function (a, b) { return bySrc[b] - bySrc[a]; }).forEach(function (s) { var o = el("option", null, s + " (" + bySrc[s] + ")"); o.value = s; srcSel.appendChild(o); });
-  function chips(hostId, items, key, counts) {
+  function chips(hostId, items, key, counts, onPick) {
     var host = document.getElementById(hostId);
     items.forEach(function (it) {
       var b = el("button", "chip", it[1]); b.type = "button"; b.id = hostId + "-" + (it[0] || "all");
@@ -236,28 +296,49 @@ input[type="search"] { flex: 1 1 220px }
       b.setAttribute("aria-pressed", String(state[key] === it[0]));
       b.addEventListener("click", function () {
         state[key] = it[0]; state.shown = 40; save();
-        Array.prototype.forEach.call(host.querySelectorAll(".chip"), function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+        if (onPick) onPick();
         render();
       });
       host.appendChild(b);
     });
   }
-  chips("cats", CATS, "cat", byCat);
-  chips("langs", LANGS, "lang", byLang);
-  // Fecha: se cuenta hacia atrás desde hoy, no desde el día en que se tomaron los datos
+  function press(hostId, value) { Array.prototype.forEach.call(document.querySelectorAll("#" + hostId + " .chip"), function (c) { c.setAttribute("aria-pressed", String(c.id === hostId + "-" + (value || "all"))); }); }
+  chips("cats", CATS, "cat", byCat, function () { press("cats", state.cat); });
+  chips("langs", LANGS, "lang", byLang, function () { press("langs", state.lang); });
+
+  // Fecha. Hay tres maneras y solo una está activa a la vez: el botón de hoy, un atajo de últimos días, o un rango exacto
   var DAYS = [["", "Cualquier fecha"], ["1", "Hoy y ayer"], ["3", "Últimos 3 días"], ["7", "Última semana"], ["14", "Últimas 2 semanas"], ["30", "Último mes"]];
   function since(n) { return new Date(Date.now() - n * 864e5).toISOString().slice(0, 10); }
   var byDays = {}; DAYS.forEach(function (d) { if (d[0]) { var c = since(+d[0]); byDays[d[0]] = JOBS.filter(function (j) { return j.d >= c; }).length; } });
-  chips("days", DAYS, "days", byDays);
-  // Rango exacto: al elegir fechas se suelta el atajo de "últimos N días", y al revés
-  var fromIn = document.getElementById("from"), toIn = document.getElementById("to");
+  var fromIn = document.getElementById("from"), toIn = document.getElementById("to"), todayBtn = document.getElementById("today");
   var dates = JOBS.map(function (j) { return j.d; }).filter(Boolean).sort();
   if (dates.length) { fromIn.min = toIn.min = dates[0]; fromIn.max = toIn.max = dates[dates.length - 1]; }
-  function pressDays(value) { Array.prototype.forEach.call(document.querySelectorAll("#days .chip"), function (c) { c.setAttribute("aria-pressed", String(c.id === "days-" + (value || "all"))); }); }
-  function onRange() { state.from = fromIn.value; state.to = toIn.value; if (state.from || state.to) { state.days = ""; pressDays(""); } state.shown = 40; render(); }
+  function setDate(mode, a, b) {
+    state.today = mode === "today"; state.days = mode === "days" ? a : ""; state.from = mode === "range" ? a : ""; state.to = mode === "range" ? b : "";
+    if (mode !== "range") { fromIn.value = ""; toIn.value = ""; }
+    state.shown = 40; syncDate(); render();
+  }
+  function syncDate() {
+    press("days", state.days);
+    todayBtn.setAttribute("aria-pressed", String(state.today));
+    fromIn.classList.toggle("on", !!state.from); toIn.classList.toggle("on", !!state.to);
+    var box = document.getElementById("range"), text = document.getElementById("rangeText"), msg = "", strong = "";
+    if (state.today) { msg = "Mostrando solo ofertas publicadas "; strong = "hoy, " + fmtFull(todayStr()); }
+    else if (state.days) { msg = "Mostrando ofertas publicadas "; strong = "desde el " + fmtFull(since(+state.days)) + " hasta hoy"; }
+    else if (state.from && state.to) { msg = "Mostrando ofertas publicadas "; strong = "del " + fmtFull(state.from) + " al " + fmtFull(state.to); }
+    else if (state.from) { msg = "Mostrando ofertas publicadas "; strong = "desde el " + fmtFull(state.from); }
+    else if (state.to) { msg = "Mostrando ofertas publicadas "; strong = "hasta el " + fmtFull(state.to); }
+    box.hidden = !strong; text.textContent = msg; if (strong) text.appendChild(el("b", null, strong));
+  }
+  chips("days", DAYS, "days", byDays, function () { setDate(state.days ? "days" : "none", state.days); });
+  function onRange() { if (fromIn.value || toIn.value) setDate("range", fromIn.value, toIn.value); else setDate("none"); }
   fromIn.addEventListener("change", onRange); toIn.addEventListener("change", onRange);
-  document.getElementById("clearDates").addEventListener("click", function () { fromIn.value = toIn.value = ""; onRange(); });
-  document.getElementById("days").addEventListener("click", function (ev) { if (ev.target.closest(".chip") && state.days) { fromIn.value = toIn.value = ""; state.from = state.to = ""; render(); } });
+  document.getElementById("clearDates").addEventListener("click", function () { setDate("none"); });
+  var todayCount = JOBS.filter(function (j) { return j.d >= todayStr(); }).length;
+  document.getElementById("todayN").textContent = String(todayCount);
+  document.getElementById("todayNote").textContent = todayCount ? "" : "Todavía no hay ofertas con fecha de hoy. Prueba \"Hoy y ayer\".";
+  todayBtn.addEventListener("click", function () { setDate(state.today ? "none" : "today"); });
+
   var qIn = document.getElementById("q"), peIn = document.getElementById("onlyPe");
   peIn.checked = state.onlyPe;
   qIn.addEventListener("input", function () { state.q = qIn.value.trim().toLowerCase(); state.shown = 40; render(); });
@@ -275,6 +356,7 @@ input[type="search"] { flex: 1 1 220px }
     if (state.src && j.s !== state.src) return false;
     if (state.onlyPe && j.pe !== "si") return false;
     if (state.onlyMine && !(j.m > 0)) return false;
+    if (state.today && !(j.d >= todayStr())) return false;
     if (state.days && !(j.d >= since(+state.days))) return false;
     if (state.from && !(j.d >= state.from)) return false;
     if (state.to && !(j.d && j.d <= state.to)) return false;
@@ -294,36 +376,42 @@ input[type="search"] { flex: 1 1 220px }
     document.getElementById("count").textContent = list.length + (list.length === 1 ? " oferta" : " ofertas");
     var term = state.q || CAT_QUERY[state.cat] || "n8n";
     var live = document.getElementById("live"); live.textContent = "";
-    live.appendChild(el("span", null, "Buscar" + (term ? " \"" + term + "\"" : "") + " en vivo:"));
+    live.appendChild(el("span", null, "Buscar \"" + term + "\" en vivo:"));
     live.appendChild(link("https://www.linkedin.com/jobs/search/?keywords=" + e(term) + "&location=Peru&f_WT=2", "LinkedIn"));
     live.appendChild(link("https://pe.indeed.com/jobs?q=" + e((term + " remoto").trim()), "Indeed Perú"));
-    live.appendChild(link(term ? "https://weworkremotely.com/remote-jobs/search?term=" + e(term) : "https://weworkremotely.com/", "We Work Remotely"));
+    live.appendChild(link("https://weworkremotely.com/remote-jobs/search?term=" + e(term), "We Work Remotely"));
     live.appendChild(link("https://www.upwork.com/nx/search/jobs/?q=" + e(term), "Upwork"));
 
     var ul = document.getElementById("jobs"); ul.textContent = "";
     if (!list.length) { ul.appendChild(el("li", "empty", "Ninguna oferta coincide. Quita un filtro o prueba otra palabra.")); }
     list.slice(0, state.shown).forEach(function (j) {
       var li = el("li", "job");
-      var main = el("div");
-      var h = el("h3"); h.appendChild(link(j.u, j.t)); main.appendChild(h);
-      var meta = el("div", "meta"); if (j.c) { meta.appendChild(el("b", null, j.c)); meta.appendChild(document.createTextNode(" · ")); }
-      meta.appendChild(document.createTextNode((j.l ? j.l + " · " : "") + j.s)); main.appendChild(meta);
-      li.appendChild(main);
-      var side = el("div", "side"); if (j.sal) side.appendChild(el("span", "sal", j.sal)); side.appendChild(el("span", null, fmtDate(j.d))); li.appendChild(side);
-      if (j.x) li.appendChild(el("p", "excerpt", j.x + (j.x.length >= 170 ? "…" : "")));
+      var av = el("div", "av g" + hue(j.c || j.s), initials(j.c || j.s)); av.setAttribute("aria-hidden", "true"); li.appendChild(av);
+      var post = el("div", "post");
+      var who = el("div", "who"); who.appendChild(el("b", null, j.c || j.s));
+      who.appendChild(document.createTextNode(" · " + (j.c ? j.s + " · " : "") + fmtDate(j.d))); post.appendChild(who);
+      var h = el("h3"); h.appendChild(link(j.u, j.t)); post.appendChild(h);
+      if (j.x) post.appendChild(el("p", "excerpt", j.x + (j.x.length >= 170 ? "…" : "")));
       var tags = el("div", "tags");
-      if (j.m > 0) tags.appendChild(el("span", "tag fit", fit(j.m)));
+      if (j.m > 0) tags.appendChild(el("span", "tag fit" + fitClass(j.m), fit(j.m)));
       (j.k || []).forEach(function (k) { tags.appendChild(el("span", "tag skill", k)); });
       tags.appendChild(el("span", "tag cat", CAT_NAME[j.cat]));
       tags.appendChild(el("span", "tag " + j.lang, LANG_NAME[j.lang]));
       if (j.e >= 0) tags.appendChild(el("span", "tag", j.e === 0 ? "Junior o práctica" : "Pide " + j.e + "+ " + (j.e === 1 ? "año" : "años")));
       if (j.pe === "ver") tags.appendChild(el("span", "tag ver", "Perú por verificar"));
-      li.appendChild(tags);
+      post.appendChild(tags);
+      var foot = el("div", "foot");
+      if (j.sal) foot.appendChild(el("span", "sal", j.sal));
+      if (j.l) foot.appendChild(el("span", null, j.l));
+      foot.appendChild(link(j.u, "Ver aviso"));
+      post.appendChild(foot);
+      li.appendChild(post);
       ul.appendChild(li);
     });
     var more = document.getElementById("more"), left = list.length - state.shown;
     more.hidden = left <= 0; if (left > 0) more.textContent = "Mostrar " + Math.min(40, left) + " más";
   }
+  syncDate();
   render();
 })();
 </script>
