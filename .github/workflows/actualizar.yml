@@ -2,8 +2,8 @@ name: Actualizar ofertas
 
 on:
   schedule:
-    # Tres veces al día: 12:00, 18:00 y 00:00 UTC = 7 a. m., 1 p. m. y 7 p. m. en Perú
-    - cron: "0 0,12,18 * * *"
+    # Cada 3 horas. En hora de Perú: 1, 4, 7 y 10 de la mañana y de la tarde
+    - cron: "0 */3 * * *"
   workflow_dispatch:
   push:
     branches: [main]
