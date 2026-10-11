@@ -1,4 +1,4 @@
-# Trabajos Remotos Perú
+# WorkJob
 
 Panel de ofertas remotas a las que se puede postular desde Perú, ordenadas por coincidencia con un perfil de n8n, RAG, automatización con IA y diseño.
 

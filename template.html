@@ -1,4 +1,4 @@
-<title>Trabajos Remotos Perú</title>
+<title>WorkJob</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@700;800&display=swap">
 <style>
 /* Layout: barra fija arriba, portada neón con esquinas, y debajo una columna tipo feed: filtros, luego cada oferta como una publicación. Tema único oscuro. */
@@ -32,6 +32,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .nav a.lnk:hover { color: var(--ink); border-bottom-color: var(--blue) }
 .nav a.push { font: 700 14px var(--body); color: #fff; background: var(--blue); border-radius: 999px; padding: 7px 16px; text-decoration: none }
 .nav a.push:hover { filter: brightness(1.1) }
+.push-msg { font-size: 13px; color: var(--mint) }
 
 .wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 64px; display: flex; flex-direction: column; gap: 36px }
 
@@ -142,18 +143,19 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
 </style>
 
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="#inicio"><span class="logo" aria-hidden="true">TR</span>Trabajos Remotos</a>
+  <a class="brand" href="#inicio"><span class="logo" aria-hidden="true">WJ</span>WorkJob</a>
   <a class="lnk" href="#ofertas">Ofertas</a>
   <a class="lnk" href="#sitios">Sitios</a>
   <a class="lnk" href="#notas">Notas</a>
-  <a class="push" href="https://github.com/emanuelbenjamin-creator/trabajos-remotos-peru/actions/workflows/actualizar.yml" target="_blank" rel="noopener" title="Abre GitHub: pulsa Run workflow, espera 2 minutos y recarga esta página">Actualizar ahora</a>
+  <span class="push-msg" id="pushMsg" role="status"></span>
+  <a class="push" id="push" href="https://github.com/emanuelbenjamin-creator/trabajos-remotos-peru/actions/workflows/actualizar.yml" target="_blank" rel="noopener" title="Abre GitHub: pulsa Run workflow, espera 2 minutos y recarga esta página">Actualizar ahora</a>
 </div></nav>
 
 <div class="wrap" id="inicio">
   <header class="hero">
     <div class="eyebrow"><i>//</i> Remoto · aplicable desde Perú</div>
-    <h1>Trabajos Remotos Perú</h1>
-    <p class="lede">Ofertas ordenadas según tu perfil: <b>n8n, RAG, agentes de IA</b> y <b>diseño</b>. Con inglés básico, los avisos en español van primero.</p>
+    <h1>WorkJob</h1>
+    <p class="lede">Trabajos remotos para postular desde Perú, ordenados según tu perfil: <b>n8n, RAG, agentes de IA</b> y <b>diseño</b>. Con inglés básico, los avisos en español van primero.</p>
     <div class="stats" id="stats"></div>
     <div class="fetched" id="fetched"></div>
   </header>
@@ -250,6 +252,21 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
     { n: "Upwork", u: "https://www.upwork.com/nx/search/jobs/", d: "Freelance global, la mayoría de clientes son de EE. UU.", lang: "Inglés", cost: "Comisión por proyecto" },
     { n: "FlexJobs", u: "https://www.flexjobs.com/", d: "Avisos verificados uno por uno. Útil si quieres evitar estafas del todo.", lang: "Inglés", cost: "Suscripción de pago" }
   ];
+
+  // Actualizar con un clic, sin sesión de GitHub: pega aquí la dirección de un webhook propio (n8n u otro)
+  // que lance la tarea en GitHub. Vacío = el botón abre la página de la tarea en GitHub.
+  var PUSH_URL = "";
+  var pushBtn = document.getElementById("push"), pushMsg = document.getElementById("pushMsg");
+  if (PUSH_URL) pushBtn.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    var last = 0; try { last = +localStorage.getItem("wj-push") || 0; } catch (err) {}
+    if (Date.now() - last < 5 * 60000) { pushMsg.textContent = "Ya se pidió hace poco. Recarga en un par de minutos."; return; }
+    pushMsg.textContent = "Pidiendo actualización…";
+    fetch(PUSH_URL, { method: "POST", mode: "no-cors" }).then(function () {
+      try { localStorage.setItem("wj-push", String(Date.now())); } catch (err) {}
+      pushMsg.textContent = "Pedido enviado. Recarga la página en 2 minutos.";
+    }).catch(function () { pushMsg.textContent = "No se pudo enviar el pedido. Revisa el webhook."; });
+  });
 
   var state = { q: "", cat: "", lang: "", src: "", onlyPe: false, onlyMine: true, sort: "match", days: "", from: "", to: "", today: false, shown: 40 };
   try { var saved = JSON.parse(localStorage.getItem("trp-filters-2") || "null"); if (saved) { state.cat = saved.cat || ""; state.lang = saved.lang || ""; state.onlyPe = !!saved.onlyPe; state.onlyMine = saved.onlyMine !== false; state.sort = saved.sort === "date" || saved.sort === "exp" ? saved.sort : "match"; } } catch (err) {}
