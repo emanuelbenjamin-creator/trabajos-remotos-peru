@@ -62,6 +62,50 @@ const SKILLS = [
   ["Diseño", 5, /dise[ñn]ador|designer|\bux\b|\bui\b|dise[ñn]o (gr[aá]fico|web|ux|ui|de producto)|(graphic|web|product|visual) design/i, true],
   ["Figma / Canva", 3, /figma|canva\b|photoshop|illustrator/i],
 ];
+// Pestaña Skills: qué piden las ofertas. Se busca en título y descripción completos; [etiqueta, grupo, regex]
+const DEMAND = [
+  ["Inglés", "Idioma", /\benglish\b|\bingl[eé]s\b/i],
+  ["Comunicación", "Blandas", /communication skills|excellent (written|verbal|communication)|strong communicat|habilidades de comunicaci[oó]n|comunicaci[oó]n (efectiva|asertiva|oral|escrita)/i],
+  ["Autonomía y proactividad", "Blandas", /self.?starter|self.?motivated|autonom|work independently|proactiv/i],
+  ["Trabajo en equipo", "Blandas", /team ?player|teamwork|trabajo en equipo|collaborative (mindset|spirit|attitude)|esp[ií]ritu colaborativo/i],
+  ["Resolución de problemas", "Blandas", /problem.?solving|resoluci[oó]n de problemas|analytical (skills|thinking|mind)|pensamiento anal[ií]tico/i],
+  ["LLM / IA generativa", "IA y automatización", /\bllms?\b|large language model|generative ai|\bgenai\b|ia generativa|openai|\bgpt-?\d|chatgpt|\bclaude\b|anthropic|gemini/i],
+  ["Agentes de IA", "IA y automatización", /\bai agents?\b|agentes? de ia|\bagentic\b|ag[eé]ntic[oa]s?/i],
+  ["Prompt engineering", "IA y automatización", /prompt(ing| engineer| design)|ingenier[ií]a de prompts/i],
+  ["RAG y bases vectoriales", "IA y automatización", /\brag\b|retrieval.augmented|embeddings?|vector (db|database|store|search)|pinecone|weaviate|qdrant|pgvector|chroma ?db/i],
+  ["LangChain / LlamaIndex", "IA y automatización", /langchain|langgraph|llamaindex|llama.?index/i],
+  ["Machine learning", "IA y automatización", /machine learning|aprendizaje autom[aá]tico|pytorch|tensorflow|scikit|\bml (engineer|models?|ops)\b|\bmlops\b/i],
+  ["n8n", "IA y automatización", /\bn8n\b/i],
+  ["Zapier / Make", "IA y automatización", /zapier|make\.com|integromat/i],
+  ["No-code / low-code", "IA y automatización", /\bno.?code\b|\blow.?code\b|airtable|bubble\.io|retool/i],
+  ["Automatización de procesos", "IA y automatización", /workflow automation|process automation|automate (workflows|processes)|automatizaci[oó]n de (procesos|flujos|tareas)|\brpa\b|uipath|power automate/i],
+  ["APIs REST y webhooks", "Programación", /\bapis?\b|\brest(ful)?\b|webhooks?|graphql/i],
+  ["Python", "Programación", /\bpython\b/i],
+  ["JavaScript / TypeScript", "Programación", /javascript|typescript/i],
+  ["React", "Programación", /\breact(\.js|js)?\b/i],
+  ["Node.js", "Programación", /\bnode(\.js|js)\b|\bnode\b(?= ?(and|&|,|\/) ?(express|typescript|react))/i],
+  ["Git / GitHub", "Programación", /\bgit\b|github|gitlab|bitbucket/i],
+  ["Testing / QA", "Programación", /\bqa\b|quality assurance|unit tests?|test automation|automated testing|cypress|playwright|selenium|jest\b|pytest/i],
+  ["SQL y bases de datos", "Datos", /\bsql\b|postgres|mysql|mongodb|bases? de datos|database/i],
+  ["Excel / Google Sheets", "Datos", /\bexcel\b|google sheets|spreadsheets?|hojas de c[aá]lculo/i],
+  ["Análisis de datos / BI", "Datos", /data analy|an[aá]lisis de datos|power ?bi|tableau|looker|dashboards?|\bkpis?\b/i],
+  ["AWS", "Nube", /\baws\b|amazon web services|lambda functions?|\bs3\b|\bec2\b/i],
+  ["Azure / Google Cloud", "Nube", /\bazure\b|\bgcp\b|google cloud/i],
+  ["Docker / Kubernetes", "Nube", /docker|kubernetes|\bk8s\b|containeri[sz]/i],
+  ["Figma", "Diseño", /figma/i],
+  ["Adobe / Canva", "Diseño", /photoshop|illustrator|adobe|canva\b|after effects|premiere/i],
+  ["UX / UI", "Diseño", /\bux\b|\bui\b|user experience|user interface|experiencia de usuario|usabilidad|usability/i],
+  ["Portafolio", "Requisitos", /portfolio|portafolio/i],
+  ["Título universitario", "Requisitos", /bachelor'?s|\bdegree\b|t[ií]tulo (universitario|profesional)|licenciatura|bachiller|egresad[oa]|titulad[oa]/i],
+  ["CRM (HubSpot, Salesforce)", "Negocio", /hubspot|salesforce|pipedrive|zoho|\bcrm\b/i],
+  ["Atención al cliente", "Negocio", /customer (service|support|success|experience)|atenci[oó]n al cliente|servicio al cliente|soporte al cliente/i],
+  ["Marketing digital y SEO", "Negocio", /\bseo\b|\bsem\b|google ads|meta ads|facebook ads|marketing digital|digital marketing|email marketing|paid (media|social)/i],
+  ["Agile / Scrum / Jira", "Negocio", /\bagile\b|scrum|kanban|\bjira\b|metodolog[ií]as? [aá]giles?/i],
+  ["Gestión de proyectos", "Negocio", /project management|gesti[oó]n de proyectos|asana|trello|monday\.com|clickup|notion/i],
+];
+const SENIOR = /\b(senior|sr\.?|lead|principal|head|director|architect|arquitecto|staff|l[ií]der|jefe|vp)\b/i;
+const JUNIOR = /\b(junior|jr\.?|trainee|practicante|intern(ship)?|entry.level|pasant[eí]a?)\b/i;
+
 const jobs = [];
 function add(o, text, langHint) {
   if (!o.t || !o.u || !o.pe) return;
@@ -75,6 +119,8 @@ function add(o, text, langHint) {
   o.lang = language(o.t + " " + text, langHint);
   o.cat = category(o.t, o.sc); delete o.sc;
   o.x = text.slice(0, 170);
+  const all = o.t + " " + text;
+  o.dk = DEMAND.reduce((a, d, i) => (d[2].test(all) && a.push(i), a), []);
   // Coincidencia con el perfil: el título pesa completo, el cuerpo la mitad
   let m = 0; const k = [];
   for (const [label, w, re, titleOnly] of SKILLS) {
@@ -83,7 +129,7 @@ function add(o, text, langHint) {
   }
   // Inglés básico: suben los avisos en español; bajan los cargos de mucha senioridad
   if (m && o.lang === "none") m += 4; else if (m && o.lang === "some") m += 3;
-  if (m && /\b(senior|sr\.?|lead|principal|head|director|architect|arquitecto|staff|l[ií]der|jefe|vp)\b/i.test(o.t)) m -= 3;
+  if (m && SENIOR.test(o.t)) m -= 3;
   if (m < 1 && k.length) m = 1;
   o.m = Math.round(m); o.k = k;
   // Experiencia: el mayor número de años que el aviso pide junto a la palabra "experiencia"; -1 = no lo dice
@@ -92,7 +138,7 @@ function add(o, text, langHint) {
     const n = +y[1], near = text.slice(Math.max(0, y.index - 80), y.index + 100);
     if (n >= 1 && n <= 15 && /experien/i.test(near)) e = Math.max(e, n);
   }
-  if (/\b(junior|jr\.?|trainee|practicante|intern(ship)?|entry.level|pasant[eí]a?)\b/i.test(o.t)) e = e < 0 ? 0 : Math.min(e, 1);
+  if (JUNIOR.test(o.t)) e = e < 0 ? 0 : Math.min(e, 1);
   o.e = e;
   // Pago mensual en USD (punto medio del rango), solo si el aviso lo publica en USD
   const pm = /^USD ([\d.]+)(k?)(?:–([\d.]+)(k?))?\/(año|mes)/.exec(o.sal || "");
@@ -152,8 +198,32 @@ console.log("coinciden con el perfil:", out.filter((o) => o.m > 0).length);
 // Si las fuentes fallaron y hay muy pocas ofertas, no se publica: se conserva la página anterior
 if (out.length < 150) { console.error("Muy pocas ofertas (" + out.length + "); se cancela la publicación."); process.exit(1); }
 
+// Pestaña Skills. Accesible = no es un cargo senior y pide 2 años o menos (o no lo dice)
+const pct = (c, n) => n ? Math.round(c / n * 1000) / 10 : 0;
+const mine = out.filter((o) => o.m > 0), acc = out.filter((o) => !SENIOR.test(o.t) && o.e <= 2);
+const catN = tally("cat");
+const skillList = DEMAND.map(([l, g], i) => {
+  const has = (o) => o.dk.includes(i);
+  const cat = {}; for (const c in catN) cat[c] = pct(out.filter((o) => o.cat === c && has(o)).length, catN[c]);
+  const s = { l, g, all: pct(out.filter(has).length, out.length), mine: pct(mine.filter(has).length, mine.length), acc: pct(acc.filter(has).length, acc.length), cat };
+  s.r = Math.round((s.all * 0.5 + s.mine * 0.3 + s.acc * 0.2) * 10) / 10;
+  return s;
+}).sort((a, b) => b.r - a.r);
+const pays = out.filter((o) => o.pay).map((o) => o.pay).sort((a, b) => a - b);
+const q = (p) => pays.length ? pays[Math.floor((pays.length - 1) * p)] : 0;
+const expBins = { "nd": 0, "0-1": 0, "2-3": 0, "4-5": 0, "6+": 0 };
+for (const o of out) expBins[o.e < 0 ? "nd" : o.e <= 1 ? "0-1" : o.e <= 3 ? "2-3" : o.e <= 5 ? "4-5" : "6+"]++;
+const skills = {
+  n: out.length, nMine: mine.length, nAcc: acc.length, cats: catN, list: skillList,
+  exp: expBins, lang: tally("lang"),
+  junior: out.filter((o) => JUNIOR.test(o.t)).length, senior: out.filter((o) => SENIOR.test(o.t)).length,
+  pay: { n: pays.length, p25: q(0.25), p50: q(0.5) },
+};
+console.log("skills top:", skillList.slice(0, 10).map((s) => s.l + " " + s.all + "%").join(", "));
+for (const o of out) delete o.dk;
+
 const tpl = fs.readFileSync(path.join(__dirname, "..", "template.html"), "utf8");
-const data = JSON.stringify({ fetched: new Date().toISOString(), jobs: out }).replace(/</g, "\\u003c");
+const data = JSON.stringify({ fetched: new Date().toISOString(), jobs: out, skills }).replace(/</g, "\\u003c");
 const head = '<!doctype html>\n<html lang="es">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="robots" content="noindex">\n<style>body { margin: 0 } [hidden] { display: none !important }</style>\n';
 const dest = path.join(__dirname, "..", "public", "index.html");
 fs.mkdirSync(path.dirname(dest), { recursive: true });

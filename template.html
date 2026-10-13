@@ -131,6 +131,39 @@ td.site a:hover { text-decoration: underline }
 .notes { color: var(--muted); font-size: 14px; max-width: 72ch; display: flex; flex-direction: column; gap: 10px }
 .notes p { margin: 0 }
 .notes b { color: var(--ink) }
+/* Pestaña Skills: se muestra sola cuando la dirección termina en #skills */
+.nav a.lnk.on { color: var(--ink); border-bottom-color: var(--mint) }
+body.v-skills #inicio > :not(#skills):not(footer), body:not(.v-skills) #skills { display: none }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px }
+.kpi { padding: 14px 16px; display: flex; flex-direction: column; gap: 2px }
+.kpi b { font: 700 26px var(--display); color: var(--mint); font-variant-numeric: tabular-nums }
+.kpi span { color: var(--muted); font-size: 13.5px }
+.rank td { vertical-align: middle }
+.rank .meter { display: block; height: 8px; border-radius: 999px; background: var(--bg); min-width: 90px; overflow: hidden }
+.rank .meter i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue), var(--mint)) }
+.rank td.skill { font-weight: 600; color: var(--ink) }
+.rank td.grp { font-size: 12.5px; color: var(--muted); white-space: nowrap }
+.rank td.pos { font: 500 12px var(--mono); color: var(--muted); width: 1% }
+.mins { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px }
+.min { padding: 16px; display: flex; flex-direction: column; gap: 10px }
+.min h3 { margin: 0; font: 700 15px var(--body) }
+.min p { margin: 0; color: var(--muted); font-size: 13.5px }
+.min p b { color: var(--ink) }
+.hbar { display: grid; grid-template-columns: 92px minmax(0, 1fr) 44px; gap: 8px; align-items: center; font-size: 13px }
+.hbar span:first-child { color: var(--muted) }
+.hbar .meter { height: 10px; border-radius: 999px; background: var(--bg); overflow: hidden }
+.hbar .meter i { display: block; height: 100%; background: var(--mint); border-radius: 999px }
+.hbar .meter i.alt { background: var(--pink) }
+.hbar b { font: 500 12.5px var(--mono); text-align: right; font-variant-numeric: tabular-nums }
+.phases { display: flex; flex-direction: column; gap: 10px }
+.phase { padding: 16px; display: flex; flex-direction: column; gap: 10px; border-left: 3px solid var(--mint) }
+.phase:nth-child(2) { border-left-color: var(--blue) } .phase:nth-child(3) { border-left-color: var(--pink) } .phase:nth-child(4) { border-left-color: var(--yellow) }
+.phase header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px }
+.phase h3 { margin: 0; font: 700 16px var(--body) }
+.phase .wk { font: 500 12px var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase }
+.phase ul { margin: 0; padding-left: 20px; color: #c5cedb; font-size: 14px; display: flex; flex-direction: column; gap: 4px }
+.phase .deliv { font-size: 14px; color: var(--ink); background: rgba(47, 245, 200, .08); border-radius: 10px; padding: 8px 12px }
+.phase .deliv b { color: var(--mint) }
 footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); letter-spacing: .18em; text-transform: uppercase; padding-top: 8px; border-top: 1px solid var(--line) }
 @media (max-width: 560px) {
   .hero { padding: 40px 14px 28px }
@@ -147,6 +180,7 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
   <a class="lnk" href="#ofertas">Ofertas</a>
   <a class="lnk" href="#sitios">Sitios</a>
   <a class="lnk" href="#notas">Notas</a>
+  <a class="lnk" href="#skills" id="tabSkills">Skills</a>
   <span class="push-msg" id="pushMsg" role="status"></span>
   <a class="push" id="push" href="https://github.com/emanuelbenjamin-creator/trabajos-remotos-peru/actions/workflows/actualizar.yml" target="_blank" rel="noopener" title="Abre GitHub: pulsa Run workflow, espera 2 minutos y recarga esta página">Actualizar ahora</a>
 </div></nav>
@@ -214,9 +248,34 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
     <p><b>Cómo se clasifica el inglés.</b> Es una estimación automática según el idioma del aviso. "Sin inglés" es un aviso en español que no menciona inglés. "Menciona inglés" es un aviso en español que lo pide en algún nivel, a veces solo lectura técnica. "Aviso en inglés" casi siempre exige conversarlo. Lee el aviso antes de postular.</p>
     <p><b>Cómo se decide si aplica para Perú.</b> Se incluyen ofertas cuya ubicación dice todo el mundo, Latinoamérica, Américas o Perú. Las marcadas "Perú por verificar" no indican ninguna restricción. Las ofertas solo para EE. UU., Europa u otros países quedaron fuera.</p>
     <p><b>Cuidado con las estafas.</b> Desconfía si te piden pagar por un curso, equipo o "trámite", si la entrevista es solo por chat, o si el sueldo es demasiado alto para el puesto.</p>
-    <p>El panel se actualiza solo cada 3 horas, a las 1, 4, 7 y 10 de la mañana y de la tarde, hora de Perú. Cada oferta enlaza al aviso original.</p>
+    <p>El panel se actualiza solo cada 3 horas, a la 1:17, 4:17, 7:17 y 10:17 de la mañana y de la tarde (GitHub a veces se retrasa), hora de Perú. Cada oferta enlaza al aviso original.</p>
     <p><b>Actualizar ahora.</b> El botón de arriba abre la tarea en GitHub. Ahí pulsa "Run workflow" dos veces, espera unos 2 minutos y recarga esta página. Necesitas tener la sesión de GitHub iniciada.</p>
   </div>
+  <section id="skills" aria-labelledby="h-skills">
+    <h2 id="h-skills">Skills</h2>
+    <p class="sec-note">Qué piden las ofertas de este panel, cuál es el mínimo para postular y un plan de 12 semanas para llegar. Las cifras se recalculan en cada actualización. <span id="skFetched"></span></p>
+    <div class="kpis" id="skKpis"></div>
+
+    <h2>Habilidades más pedidas</h2>
+    <p class="sec-note">Ordenadas por relevancia: la mitad pesa cuánto se pide en todas las ofertas, un 30 % cuánto se pide en las que coinciden con tu perfil y un 20 % cuánto se pide en las ofertas accesibles (no senior, con 2 años o menos de experiencia o sin dato). Elige un área para ver solo lo que pide esa área.</p>
+    <div class="row" id="skCats" role="group" aria-label="Área"></div>
+    <div class="panel scroll"><table class="rank">
+      <thead><tr><th>#</th><th>Habilidad</th><th>Grupo</th><th id="skColMain">Ofertas que la piden</th><th class="num" id="skColPct">Todas</th><th class="num">Tu perfil</th><th class="num">Accesibles</th></tr></thead>
+      <tbody id="skRank"></tbody>
+    </table></div>
+
+    <h2>El mínimo para postular</h2>
+    <div class="mins" id="skMins"></div>
+
+    <h2>Plan de trabajo: 12 semanas</h2>
+    <p class="sec-note">Pensado para tu perfil (n8n, RAG, agentes de IA y diseño, con inglés básico). Va de lo que más piden las ofertas a lo que te diferencia. El número junto a cada habilidad es el % de ofertas que la nombra. Cada fase termina con algo que puedes mostrar en tu portafolio.</p>
+    <div class="phases" id="skPlan"></div>
+
+    <div class="notes">
+      <p><b>Cómo se cuenta.</b> Una oferta "pide" una habilidad si su título o descripción la nombra, en español o inglés. Es una estimación por palabras clave: un aviso que dice "deseable" cuenta igual que uno que dice "obligatorio". Las habilidades blandas se cuentan solo con frases claras ("excellent communication", "trabajo en equipo") para no inflarlas.</p>
+      <p><b>El inglés.</b> El porcentaje de la tabla cuenta los avisos que mencionan la palabra inglés o English. Aparte, casi todos los avisos escritos en inglés lo exigen aunque no lo digan: por eso el recuadro de idioma es el dato que más importa.</p>
+    </div>
+  </section>
   <footer>Se actualiza cada 3 horas</footer>
 </div>
 
@@ -434,5 +493,129 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
   }
   syncDate();
   render();
+
+  // Pestaña Skills
+  var SK = DATA.skills;
+  function view() {
+    var on = location.hash === "#skills";
+    document.body.classList.toggle("v-skills", on);
+    document.getElementById("tabSkills").classList.toggle("on", on);
+    if (on) window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", view);
+  view();
+  if (!SK) { document.getElementById("skKpis").appendChild(el("p", "sec-note", "El análisis aparecerá en la próxima actualización.")); return; }
+
+  function share(c, n) { return n ? Math.round(c / n * 100) : 0; }
+  function meter(p, cls) { var m = el("span", "meter"), i = el("i", cls); i.style.width = Math.min(100, p) + "%"; m.appendChild(i); return m; }
+  var BY_LABEL = {}; SK.list.forEach(function (s) { BY_LABEL[s.l] = s; });
+  if (f) document.getElementById("skFetched").textContent = "Datos del " + f.getDate() + " " + MONTHS[f.getMonth()] + ".";
+
+  // Cifras resumen
+  var noYears = SK.exp.nd + SK.exp["0-1"], spanish = (SK.lang.none || 0) + (SK.lang.some || 0);
+  [[String(SK.n), "ofertas analizadas"],
+   [share(noYears, SK.n) + " %", "no piden años o piden 0–1"],
+   [share(spanish, SK.n) + " %", "avisos en español"],
+   [SK.pay.n ? "USD " + SK.pay.p50.toLocaleString("en-US") : "—", "pago mensual típico (mediana de " + SK.pay.n + " que lo publican)"]]
+    .forEach(function (k) { var d = el("div", "panel kpi"); d.appendChild(el("b", null, k[0])); d.appendChild(el("span", null, k[1])); document.getElementById("skKpis").appendChild(d); });
+
+  // Ranking con filtro por área
+  var skCat = "";
+  var skHost = document.getElementById("skCats");
+  CATS.filter(function (c) { return c[0] !== "otros"; }).forEach(function (c) {
+    var b = el("button", "chip", c[1]); b.type = "button";
+    if (c[0]) b.appendChild(el("small", null, String(SK.cats[c[0]] || 0)));
+    b.setAttribute("aria-pressed", String(c[0] === skCat));
+    b.addEventListener("click", function () {
+      skCat = c[0];
+      Array.prototype.forEach.call(skHost.children, function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      rank();
+    });
+    skHost.appendChild(b);
+  });
+  function rank() {
+    var main = function (s) { return skCat ? s.cat[skCat] || 0 : s.all; };
+    var list = SK.list.slice();
+    if (skCat) list.sort(function (a, b) { return main(b) - main(a); });
+    document.getElementById("skColPct").textContent = skCat ? CAT_NAME[skCat] : "Todas";
+    var top = Math.max.apply(null, list.map(main)) || 1;
+    var body = document.getElementById("skRank"); body.textContent = "";
+    list.forEach(function (s, i) {
+      var tr = el("tr");
+      tr.appendChild(el("td", "pos", String(i + 1)));
+      tr.appendChild(el("td", "skill", s.l));
+      tr.appendChild(el("td", "grp", s.g));
+      var td = el("td"); td.appendChild(meter(main(s) / top * 100)); tr.appendChild(td);
+      tr.appendChild(el("td", "num", Math.round(main(s)) + " %"));
+      tr.appendChild(el("td", "num", Math.round(s.mine) + " %"));
+      tr.appendChild(el("td", "num", Math.round(s.acc) + " %"));
+      body.appendChild(tr);
+    });
+  }
+  rank();
+
+  // El mínimo para postular
+  function card(title, rows, note) {
+    var c = el("div", "panel min"); c.appendChild(el("h3", null, title));
+    rows.forEach(function (r) {
+      var h = el("div", "hbar"); h.appendChild(el("span", null, r[0]));
+      h.appendChild(meter(share(r[1], SK.n), r[2])); h.appendChild(el("b", null, share(r[1], SK.n) + " %"));
+      c.appendChild(h);
+    });
+    var p = el("p"); p.innerHTML = note; c.appendChild(p);
+    document.getElementById("skMins").appendChild(c);
+  }
+  var accTop = SK.list.slice().sort(function (a, b) { return b.acc - a.acc; }).slice(0, 5);
+  card("Experiencia que piden", [["No lo dice", SK.exp.nd], ["0–1 años", SK.exp["0-1"]], ["2–3 años", SK.exp["2-3"]], ["4–5 años", SK.exp["4-5"]], ["6+ años", SK.exp["6+"], "alt"]],
+    "Mínimo realista: <b>0–3 años o proyectos que lo demuestren</b>. Casi la mitad de los avisos no pone un número: ahí un portafolio pesa más que los años.");
+  card("Idioma del aviso", [["Español", SK.lang.none || 0], ["Español + inglés", SK.lang.some || 0], ["Inglés", SK.lang.req || 0, "alt"]],
+    "Mínimo realista: <b>leer y escribir inglés técnico</b>. Con inglés básico compites en " + (SK.lang.none || 0) + " avisos; con inglés escrito se abren casi todos.");
+  card("Nivel del puesto", [["Junior / práctica", SK.junior], ["Senior / líder", SK.senior, "alt"]],
+    "Hay " + SK.senior + " cargos senior y solo " + SK.junior + " junior. Pero sin contar los cargos senior ni los que piden más de 2 años, quedan " + SK.nAcc + " ofertas accesibles (" + share(SK.nAcc, SK.n) + " % del total): ahí está tu oportunidad.");
+  var accCard = el("div", "panel min"); accCard.appendChild(el("h3", null, "Lo que piden las ofertas accesibles"));
+  accTop.forEach(function (s) { var h = el("div", "hbar"); h.appendChild(el("span", null, s.l)); h.appendChild(meter(s.acc)); h.appendChild(el("b", null, Math.round(s.acc) + " %")); accCard.appendChild(h); });
+  var ap = el("p"); ap.innerHTML = "En " + SK.nAcc + " ofertas que no son senior y piden 2 años o menos. Pago mensual publicado: <b>desde USD " + SK.pay.p25.toLocaleString("en-US") + "</b> (cuarto más bajo) hasta una mediana de USD " + SK.pay.p50.toLocaleString("en-US") + ".";
+  accCard.appendChild(ap); document.getElementById("skMins").appendChild(accCard);
+  Array.prototype.forEach.call(document.querySelectorAll("#skMins .hbar"), function (h) { if (h.firstChild.textContent.length > 12) h.style.gridTemplateColumns = "150px minmax(0, 1fr) 44px"; });
+
+  // Plan de trabajo. Las habilidades se nombran por su etiqueta en DEMAND para mostrar su % actual
+  var PLAN = [
+    { t: "Fase 1 · Base técnica", w: "Semanas 1–3", sk: ["APIs REST y webhooks", "JavaScript / TypeScript", "Git / GitHub", "Inglés"],
+      do: ["APIs REST y webhooks: llamar APIs desde n8n con el nodo HTTP Request, leer documentación, autenticación por API key y OAuth.",
+           "JSON y JavaScript básico en los nodos Code de n8n: variables, arrays, map/filter, fechas.",
+           "Git y GitHub: repositorio por proyecto, commits claros y un README en inglés.",
+           "Inglés técnico escrito, 20 minutos al día: documentación, mensajes cortos y descripciones de proyectos."],
+      out: "2 flujos de n8n publicados en GitHub, con capturas y README en inglés. Por ejemplo: formulario → Google Sheets → aviso por correo o Slack." },
+    { t: "Fase 2 · IA aplicada", w: "Semanas 4–6", sk: ["LLM / IA generativa", "Agentes de IA", "RAG y bases vectoriales", "Prompt engineering", "Python"],
+      do: ["Modelos de lenguaje por API (OpenAI o Claude): prompts de sistema, salida en JSON, costo por token.",
+           "RAG: dividir documentos, embeddings y una base vectorial (Supabase pgvector, Pinecone o Qdrant) dentro de n8n.",
+           "Agentes con herramientas: el nodo AI Agent de n8n con memoria y llamadas a APIs.",
+           "Python básico: scripts, requests y pandas, lo justo para leer y adaptar código."],
+      out: "Un chatbot RAG que responde sobre documentos reales (por ejemplo, normas o manuales), con video demo de 2 minutos narrado o subtitulado en inglés." },
+    { t: "Fase 3 · Datos y negocio", w: "Semanas 7–9", sk: ["SQL y bases de datos", "Excel / Google Sheets", "CRM (HubSpot, Salesforce)", "Zapier / Make", "Análisis de datos / BI"],
+      do: ["SQL: SELECT, JOIN, GROUP BY sobre Postgres o Supabase.",
+           "Google Sheets / Excel: tablas dinámicas, BUSCARX y fórmulas para reportes.",
+           "Un CRM con cuenta gratuita (HubSpot): contactos, etapas y conexión por API.",
+           "Zapier o Make: rehacer uno de tus flujos de n8n para poder ofrecer las tres herramientas."],
+      out: "Un caso completo: leads de un formulario → CRM → clasificación con IA → reporte semanal en Sheets o dashboard. Con el tiempo ahorrado escrito en números." },
+    { t: "Fase 4 · Portafolio y postulación", w: "Semanas 10–12", sk: ["Portafolio", "Comunicación", "Autonomía y proactividad", "UX / UI"],
+      do: ["Portafolio: una página (puedes diseñarla en Figma) con los 3 proyectos, problema → solución → resultado.",
+           "CV de una página en inglés y en español, con logros medibles y enlaces a GitHub.",
+           "Perfiles en Upwork, Workana y Get on Board con tus proyectos como muestras.",
+           "10 postulaciones por semana desde Ofertas, con \"Solo ofertas que coinciden con lo que sabes\", \"Sin inglés\" o \"Menciona inglés\", y orden \"Menos experiencia y mejor pago\".",
+           "Practicar una entrevista corta en inglés: presentarte y explicar un proyecto en 2 minutos."],
+      out: "Portafolio publicado, CV listo y al menos 30 postulaciones enviadas, con un registro de respuestas para ajustar el CV." },
+  ];
+  var planHost = document.getElementById("skPlan");
+  PLAN.forEach(function (ph) {
+    var c = el("article", "panel phase"), hd = el("header");
+    hd.appendChild(el("h3", null, ph.t)); hd.appendChild(el("span", "wk", ph.w)); c.appendChild(hd);
+    var tags = el("div", "tags");
+    ph.sk.forEach(function (l) { var s = BY_LABEL[l]; if (s) tags.appendChild(el("span", "tag skill", l + " · " + Math.round(s.all) + " %")); });
+    c.appendChild(tags);
+    var ul = el("ul"); ph.do.forEach(function (d) { ul.appendChild(el("li", null, d)); }); c.appendChild(ul);
+    var dv = el("div", "deliv"); dv.appendChild(el("b", null, "Entregable: ")); dv.appendChild(document.createTextNode(ph.out)); c.appendChild(dv);
+    planHost.appendChild(c);
+  });
 })();
 </script>
