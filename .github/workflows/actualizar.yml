@@ -2,8 +2,8 @@ name: Actualizar ofertas
 
 on:
   schedule:
-    # Cada 3 horas. En hora de Perú: 1, 4, 7 y 10 de la mañana y de la tarde
-    - cron: "0 */3 * * *"
+    # Cada 3 horas, al minuto 17 para evitar la congestión de GitHub en hora en punto. En hora de Perú: 1:17, 4:17, 7:17 y 10:17 de la mañana y de la tarde
+    - cron: "17 */3 * * *"
   workflow_dispatch:
   push:
     branches: [main]
