@@ -1,0 +1,147 @@
+{
+  "id": "prompt",
+  "semana": 1,
+  "titulo": "LLMs por API y prompt engineering",
+  "resumen": "Llamar a GPT, Claude o Gemini desde n8n y Python, escribir prompts que funcionan siempre, obtener JSON y darle herramientas al modelo.",
+  "skill": "Prompt engineering",
+  "intro": "Usar un chat es fácil; integrar un LLM en un proceso que corre mil veces al día sin fallar es un oficio. Aquí está la diferencia entre «sé usar ChatGPT» y «sé construir con LLMs», que es lo que pagan las ofertas.\n\nPrompt engineering aparece pocas veces escrito tal cual en los avisos, porque se da por incluido en «LLM», «IA generativa» y «agentes», que sí aparecen en buena parte de las ofertas de tu perfil. Lo que piden en la práctica es saber llamar al modelo por API, controlar el formato de salida y conectarlo con herramientas.\n\nEn estas 8 sesiones construyes el Proyecto 1 del plan: un flujo que recibe un formulario, usa un LLM para clasificar y resumir, guarda en Google Sheets y avisa por correo o Telegram.",
+  "objetivos": [
+    "Llamar a los principales modelos por API desde n8n y desde Python.",
+    "Escribir prompts con rol, contexto, instrucciones, ejemplos y formato.",
+    "Obtener salidas en JSON validadas.",
+    "Usar tool use (function calling) para que el modelo use herramientas.",
+    "Comparar prompts y modelos con un conjunto de pruebas.",
+    "Controlar costo, latencia y errores en producción."
+  ],
+  "herramientas": [
+    { "n": "Anthropic Console (API de Claude)", "u": "https://platform.claude.com/docs/en/get-started", "para": "Crear tu API key y probar prompts con Claude.", "costo": "Pago por uso · créditos iniciales a veces" },
+    { "n": "OpenAI Platform", "u": "https://developers.openai.com/api/docs/guides/text", "para": "API de los modelos GPT.", "costo": "Pago por uso" },
+    { "n": "Google AI Studio", "u": "https://aistudio.google.com/", "para": "API de Gemini con nivel gratuito para practicar.", "costo": "Gratis con límites" },
+    { "n": "n8n (nodos AI)", "u": "https://docs.n8n.io/build/integrate-ai", "para": "Nodos de chat, Basic LLM Chain y Structured Output Parser.", "costo": "Gratis autoalojado" },
+    { "n": "Google Colab", "u": "https://colab.research.google.com/", "para": "Ejecutar Python en el navegador para probar las APIs.", "costo": "Gratis" },
+    { "n": "promptfoo", "u": "https://github.com/promptfoo/promptfoo", "para": "Probar y comparar prompts y modelos automáticamente.", "costo": "Gratis (open source)" }
+  ],
+  "cursos": [
+    { "n": "ChatGPT Prompt Engineering for Developers", "u": "https://www.deeplearning.ai/courses/chatgpt-prompt-eng", "para": "El curso corto más conocido sobre prompts por API, con Andrew Ng e Isa Fulford.", "plataforma": "DeepLearning.AI", "idioma": "Inglés", "duracion": "≈ 1,5 h", "costo": "gratis" },
+    { "n": "Building Systems with the ChatGPT API", "u": "https://www.deeplearning.ai/courses/chatgpt-building-system", "para": "Encadenar llamadas, clasificar, moderar y evaluar.", "plataforma": "DeepLearning.AI", "idioma": "Inglés", "duracion": "≈ 1 h", "costo": "gratis" },
+    { "n": "Tutorial interactivo de prompt engineering de Anthropic", "u": "https://github.com/anthropics/prompt-eng-interactive-tutorial", "para": "9 capítulos con ejercicios, del prompt básico a técnicas avanzadas.", "plataforma": "GitHub", "idioma": "Inglés", "duracion": "≈ 6 h", "costo": "gratis" },
+    { "n": "Prompt Engineering Guide (en español)", "u": "https://www.promptingguide.ai/es", "para": "Guía de referencia con todas las técnicas y ejemplos.", "plataforma": "DAIR.AI", "idioma": "Español", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "Learn Prompting", "u": "https://learnprompting.org/", "para": "Curso abierto de prompting desde lo básico.", "plataforma": "Learn Prompting", "idioma": "Inglés", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "Prompt Engineering for ChatGPT (Vanderbilt)", "u": "https://www.coursera.org/learn/prompt-engineering", "para": "Patrones de prompt con certificado universitario.", "plataforma": "Coursera", "idioma": "Inglés", "duracion": "≈ 18 h", "costo": "pago" },
+    { "n": "Curso de Prompt Engineering", "u": "https://platzi.com/cursos/prompt-engineering/", "para": "Técnicas de prompting en español.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 3 h", "costo": "pago" }
+  ],
+  "repos": [
+    { "u": "https://github.com/anthropics/prompt-eng-interactive-tutorial", "para": "El tutorial oficial de Anthropic en notebooks." },
+    { "u": "https://github.com/dair-ai/Prompt-Engineering-Guide", "para": "La guía de prompting más completa, con papers y ejemplos." },
+    { "u": "https://github.com/openai/openai-cookbook", "para": "Ejemplos oficiales de OpenAI: structured outputs, function calling, embeddings." },
+    { "u": "https://github.com/anthropics/claude-cookbooks", "para": "Recetas oficiales de Anthropic: tool use, RAG, extracción de datos." },
+    { "u": "https://github.com/google-gemini/cookbook", "para": "Ejemplos oficiales de la API de Gemini." },
+    { "u": "https://github.com/f/prompts.chat", "para": "Colección comunitaria de prompts para inspirarte." }
+  ],
+  "sesiones": [
+    {
+      "t": "Tu primera llamada a un LLM por API",
+      "min": 50,
+      "texto": "Todas las APIs de chat funcionan parecido: envías una lista de mensajes con su rol (`system` con las instrucciones generales, `user` con lo que pide la persona y `assistant` con respuestas anteriores) y recibes la respuesta del modelo junto con cuántos tokens usaste.\n\nEn n8n, el nodo de chat del proveedor (OpenAI, Anthropic, Gemini u Ollama) dentro de un Basic LLM Chain hace esto por ti; solo configuras la credencial y el prompt. En Python son unas pocas líneas con el SDK oficial.\n\nLa API no recuerda conversaciones: cada llamada es independiente. Si quieres continuidad, envías el historial tú mismo. Eso explica por qué las conversaciones largas cuestan cada vez más.",
+      "claves": ["Mensajes con rol: system, user, assistant", "Basic LLM Chain en n8n", "SDK oficial en Python", "La API no tiene memoria"],
+      "practica": "Obtén una API key gratuita de Gemini en Google AI Studio. Llámala desde n8n (Basic LLM Chain) y desde Google Colab con Python para resumir el mismo texto en 3 viñetas.",
+      "preguntas": [
+        { "q": "¿Dónde guardo la API key en Colab?", "a": "En los Secrets de Colab (el icono de llave), nunca escrita en una celda. Así no se filtra si compartes el notebook." },
+        { "q": "¿Para qué sirve el mensaje system?", "a": "Define el rol, el tono y las reglas generales que el modelo debe seguir en toda la conversación." },
+        { "q": "¿Cómo sé cuánto me costó una llamada?", "a": "La respuesta incluye los tokens de entrada y de salida. Multiplícalos por el precio por millón del modelo." }
+      ],
+      "links": [{ "n": "Claude: primeros pasos con la API", "u": "https://platform.claude.com/docs/en/get-started" }, { "n": "OpenAI: generación de texto", "u": "https://developers.openai.com/api/docs/guides/text" }]
+    },
+    {
+      "t": "Anatomía de un buen prompt",
+      "min": 45,
+      "texto": "Un prompt profesional se parece a las instrucciones que le darías a un practicante nuevo. Tiene: rol (quién es), contexto (para qué empresa, qué público), tarea (qué hacer exactamente), restricciones (qué no hacer, longitud, tono) y formato de salida (cómo entregarlo).\n\nSé específico: «resume» es vago; «resume en 3 viñetas de máximo 15 palabras, para un gerente sin tiempo, destacando montos y fechas» funciona. Separa las instrucciones de los datos con etiquetas como `<correo>...</correo>`: el modelo distingue mejor y te protege de inyecciones.\n\nPide lo que quieres en positivo («escribe en párrafos») en vez de solo prohibir. Y escribe como si el modelo no supiera nada de tu negocio, porque no lo sabe.",
+      "claves": ["Rol, contexto, tarea, restricciones, formato", "Ser específico y medible", "Etiquetas para separar datos", "Instrucciones en positivo"],
+      "practica": "Escribe un prompt para clasificar correos de clientes de una tienda en «reclamo», «consulta», «pedido» u «otro», con prioridad alta, media o baja. Pruébalo con 10 correos inventados variados.",
+      "preguntas": [
+        { "q": "¿Escribo los prompts en inglés o en español?", "a": "Los modelos grandes entienden bien ambos. Escribe en el idioma de los datos y pide la respuesta en el idioma que necesites. Mantén consistencia." },
+        { "q": "¿Por qué usar etiquetas tipo XML?", "a": "Delimitan claramente qué es instrucción y qué es dato. Si un correo dice «ignora todo», queda dentro de la etiqueta y pesa menos." },
+        { "q": "¿Un prompt largo es mejor?", "a": "Uno claro es mejor. Agrega detalle donde el modelo falla en tus pruebas, no por adelantado." }
+      ],
+      "links": [{ "n": "Claude: guía de prompt engineering", "u": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" }]
+    },
+    {
+      "t": "Ejemplos (few-shot) y razonamiento paso a paso",
+      "min": 45,
+      "texto": "Mostrar es más poderoso que explicar. Con 2 a 5 ejemplos de entrada y salida esperada (few-shot), el modelo copia el patrón: formato, criterio y tono. Elige ejemplos variados, incluyendo casos difíciles y bordes.\n\nPara tareas que requieren pensar (calcular, decidir entre opciones, analizar), pedir que razone antes de responder mejora la precisión. Pídelo en una sección separada (`<analisis>` y luego `<respuesta>`) para poder quedarte solo con la respuesta. Los modelos de razonamiento ya lo hacen internamente.\n\nOtra técnica clave es encadenar: en lugar de un megaprompt, divide en pasos (extraer → clasificar → redactar), cada uno con su prompt. Es más fácil de depurar y suele ser más barato.",
+      "claves": ["Few-shot con ejemplos variados", "Pensar antes de responder", "Separar análisis y respuesta", "Encadenar prompts simples"],
+      "practica": "Mejora tu clasificador de correos agregando 4 ejemplos difíciles. Mide cuántos de tus 10 correos clasifica bien antes y después.",
+      "preguntas": [
+        { "q": "¿Los ejemplos no hacen el prompt más caro?", "a": "Sí, agregan tokens de entrada. Pero si mejoran mucho la precisión, compensan. Con caché de prompts el costo baja." },
+        { "q": "¿Cuándo divido una tarea en varias llamadas?", "a": "Cuando una sola instrucción mezcla objetivos distintos o cuando necesitas revisar un resultado intermedio." },
+        { "q": "¿El modelo copia demasiado los ejemplos?", "a": "Puede pasar. Por eso deben ser variados y no compartir detalles irrelevantes como la misma longitud o las mismas palabras." }
+      ],
+      "links": [{ "n": "Prompt Engineering Guide: técnicas", "u": "https://www.promptingguide.ai/es" }]
+    },
+    {
+      "t": "Salida en JSON estructurado",
+      "min": 50,
+      "texto": "Para automatizar necesitas datos, no prosa. Si el modelo devuelve `{\"categoria\": \"reclamo\", \"prioridad\": \"alta\", \"resumen\": \"...\"}`, el siguiente nodo puede usarlo directamente.\n\nHay tres niveles de seguridad. Pedirlo en el prompt con un ejemplo funciona casi siempre. Mejor aún, las APIs ofrecen salida estructurada: le pasas un JSON Schema y el modelo está obligado a cumplirlo. En n8n, el Structured Output Parser hace esto y valida el resultado.\n\nAun así, valida: campos obligatorios, valores permitidos (enum) y tipos. Si falla, reintenta o envía el caso a revisión. Nunca confíes en que un texto libre tendrá siempre el mismo formato.",
+      "claves": ["JSON en lugar de prosa", "JSON Schema y salida estructurada", "Structured Output Parser de n8n", "Validar siempre"],
+      "practica": "Haz que tu clasificador devuelva JSON con `categoria` (enum), `prioridad` (enum), `resumen` (texto de máximo 20 palabras) y `requiere_humano` (booleano). Conecta el resultado a Google Sheets.",
+      "preguntas": [
+        { "q": "¿Qué es un enum en un schema?", "a": "Una lista cerrada de valores permitidos. Evita que el modelo invente categorías nuevas." },
+        { "q": "El modelo envuelve el JSON en texto o en bloques de código. ¿Qué hago?", "a": "Usa la salida estructurada de la API o el parser de n8n. Si no está disponible, pide «responde solo con JSON» y limpia el texto antes de parsear." },
+        { "q": "¿Por qué agregar `requiere_humano`?", "a": "Para que el sistema derive los casos dudosos. Es un patrón que los clientes valoran mucho." }
+      ],
+      "links": [{ "n": "OpenAI: structured outputs", "u": "https://developers.openai.com/api/docs/guides/structured-outputs" }, { "n": "Claude: structured outputs", "u": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs" }]
+    },
+    {
+      "t": "Tool use (function calling)",
+      "min": 55,
+      "texto": "Tool use le da al modelo manos. Defines herramientas con nombre, descripción y parámetros (por ejemplo `buscar_pedido(numero)` o `consultar_clima(ciudad)`). Cuando la pregunta lo requiere, el modelo no inventa: responde «quiero llamar a buscar_pedido con numero=1234». Tu código ejecuta la función, le devuelve el resultado y el modelo redacta la respuesta final.\n\nEl modelo nunca ejecuta nada por sí mismo: tú decides qué herramientas existen y qué pueden hacer. Por eso las descripciones deben ser claras y los permisos, mínimos.\n\nEs la base de los agentes que verás en la semana 2. En n8n, el nodo AI Agent hace este ciclo por ti: conectas herramientas (Sheets, HTTP Request, otro flujo) y el agente decide cuándo usarlas.",
+      "claves": ["Definición: nombre, descripción, parámetros", "El modelo pide, tu código ejecuta", "Ciclo: pedir → ejecutar → responder", "Permisos mínimos"],
+      "practica": "En n8n crea un AI Agent con una herramienta que consulte una hoja de Google Sheets de pedidos. Pregúntale «¿en qué estado está el pedido 1023?» y revisa en la ejecución cómo llamó a la herramienta.",
+      "preguntas": [
+        { "q": "¿Qué pasa si la descripción de la herramienta es ambigua?", "a": "El modelo la usa cuando no debe o no la usa cuando debería. La descripción es parte del prompt: escríbela con el mismo cuidado." },
+        { "q": "¿Puede el modelo borrar datos con una herramienta?", "a": "Solo si tú creaste una herramienta que borra. Para acciones irreversibles, exige confirmación humana." },
+        { "q": "¿Function calling y tool use son lo mismo?", "a": "Sí: OpenAI popularizó el nombre function calling y Anthropic usa tool use. El concepto es el mismo." }
+      ],
+      "links": [{ "n": "Claude: tool use", "u": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }, { "n": "OpenAI: function calling", "u": "https://developers.openai.com/api/docs/guides/function-calling" }]
+    },
+    {
+      "t": "Comparar modelos y evaluar prompts",
+      "min": 45,
+      "texto": "¿Cómo sabes si tu prompt nuevo es mejor? Midiéndolo. Arma un conjunto de prueba: 20 a 50 casos reales con la respuesta correcta. Cada vez que cambias el prompt o el modelo, corres todos y cuentas aciertos.\n\nPara clasificación o extracción la comparación es exacta. Para textos libres (resúmenes, respuestas) puedes usar criterios («¿menciona el monto?», «¿menos de 50 palabras?») o un segundo LLM como juez con una rúbrica clara.\n\nHerramientas como promptfoo automatizan esto, pero una hoja de Google Sheets con columnas «entrada», «esperado» y «obtenido» ya es un sistema de evaluación. Mostrar esta tabla en tu portafolio es una señal fuerte de profesionalismo.",
+      "claves": ["Conjunto de prueba con respuestas correctas", "Medir antes y después de cada cambio", "Rúbricas y LLM como juez", "Calidad, costo y velocidad juntos"],
+      "practica": "Crea una hoja con 20 correos y su clasificación correcta. Haz un flujo de n8n que los pase por dos modelos distintos y calcule el porcentaje de aciertos y el costo de cada uno.",
+      "preguntas": [
+        { "q": "¿Cuántos casos de prueba necesito?", "a": "Para empezar, 20 a 50 bien elegidos, incluyendo casos difíciles. Agrega cada error real que encuentres en producción." },
+        { "q": "¿Es confiable usar un LLM como juez?", "a": "Sí con una rúbrica concreta y revisando una muestra a mano. No para decidir cosas críticas sin control humano." },
+        { "q": "¿Qué pongo en el portafolio sobre esto?", "a": "La tabla de resultados: «el modelo A acierta 92 % a 3 dólares por mil correos; el B, 95 % a 12 dólares; elegí A por costo». Eso demuestra criterio." }
+      ],
+      "links": [{ "n": "promptfoo", "u": "https://github.com/promptfoo/promptfoo" }, { "n": "Building Systems with the ChatGPT API", "u": "https://www.deeplearning.ai/courses/chatgpt-building-system" }]
+    },
+    {
+      "t": "Producción: costo, latencia, límites y seguridad",
+      "min": 45,
+      "texto": "En producción tu flujo hará miles de llamadas. Cuida cuatro cosas.\n\nCosto: usa el modelo más pequeño que cumpla, limita `max_tokens` y aprovecha el caché de prompts para instrucciones largas que se repiten. Latencia: el streaming muestra la respuesta mientras se genera; para procesos en lote existen APIs batch más baratas. Límites: los proveedores limitan peticiones y tokens por minuto; usa reintentos con espera ante errores 429 y 529.\n\nSeguridad: nunca pongas datos sensibles sin necesidad, separa datos de instrucciones, valida la salida y registra cada llamada (prompt, respuesta, tokens, costo) para poder auditar. Un registro en una hoja o base de datos te salvará cuando algo falle.",
+      "claves": ["Modelo mínimo suficiente", "Caché de prompts y batch", "Reintentos ante 429", "Registrar cada llamada"],
+      "practica": "Agrega a tu flujo un registro de cada llamada (fecha, modelo, tokens, costo, resultado) en una hoja aparte y un reintento con espera en el nodo del LLM.",
+      "preguntas": [
+        { "q": "¿Qué es el caché de prompts?", "a": "El proveedor guarda la parte fija de tu prompt (instrucciones, ejemplos) y te cobra mucho menos cuando la repites en llamadas siguientes." },
+        { "q": "¿Cuándo uso la API batch?", "a": "Para procesar grandes volúmenes que no necesitan respuesta inmediata, como clasificar todo el histórico de correos. Suele costar la mitad." },
+        { "q": "¿Qué hago si el proveedor se cae?", "a": "Ten un modelo de respaldo de otro proveedor y una ruta de error que guarde el caso para reprocesarlo." }
+      ],
+      "links": [{ "n": "OpenAI: guía de prompting", "u": "https://developers.openai.com/api/docs/guides/prompt-engineering" }]
+    },
+    {
+      "t": "Proyecto 1: clasificador inteligente de solicitudes",
+      "min": 90,
+      "texto": "Junta todo en un proyecto para tu portafolio. Flujo: un formulario (n8n Form o Google Forms) o un webhook recibe una solicitud → el LLM devuelve JSON con categoría, prioridad, resumen y si requiere humano → se guarda en Google Sheets → si la prioridad es alta, llega un aviso por correo o Telegram → cualquier error dispara tu Error Workflow.\n\nDocúmentalo como un caso real: el problema (un equipo pierde horas leyendo y repartiendo solicitudes), la solución (diagrama del flujo), los resultados (precisión medida con tu conjunto de prueba, costo por cada mil solicitudes, tiempo ahorrado estimado) y cómo instalarlo.\n\nSúbelo a GitHub con el flujo exportado, capturas y un README en inglés. Graba un video de 2 minutos mostrándolo funcionar.",
+      "claves": ["Formulario → LLM → Sheets → aviso", "JSON validado", "Error Workflow", "Métricas: precisión, costo, tiempo"],
+      "practica": "Construye y publica el Proyecto 1 completo. Checklist: flujo exportado sin claves, README en inglés, captura del flujo, tabla de evaluación, video de 2 minutos.",
+      "preguntas": [
+        { "q": "¿Cómo calculo el tiempo ahorrado?", "a": "Estima cuánto tarda una persona en leer y clasificar una solicitud (por ejemplo, 2 minutos), multiplica por el volumen mensual y réstale el tiempo de revisar los casos derivados." },
+        { "q": "¿Uso datos reales?", "a": "Usa datos inventados o anonimizados. Nunca publiques datos de clientes reales en un repo público." },
+        { "q": "¿Qué hace que este proyecto destaque frente a otros?", "a": "Las métricas y el manejo de errores. Muchos portafolios muestran un flujo que funciona una vez; pocos muestran precisión medida y qué pasa cuando algo falla." }
+      ],
+      "links": [{ "n": "Plantillas de n8n para inspirarte", "u": "https://github.com/enescingoz/awesome-n8n-templates" }]
+    }
+  ]
+}

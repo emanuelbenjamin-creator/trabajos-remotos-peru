@@ -1,0 +1,144 @@
+{
+  "id": "git",
+  "semana": 1,
+  "titulo": "Git y GitHub",
+  "resumen": "Guardar versiones de tu trabajo, colaborar y mostrar tus proyectos. GitHub es tu portafolio técnico.",
+  "skill": "Git / GitHub",
+  "intro": "Git guarda la historia de tus archivos: cada cambio queda registrado y puedes volver atrás. GitHub es el sitio donde se publican esos repositorios, se colabora y, para ti, donde un reclutador ve lo que sabes hacer.\n\nAparece en una de cada siete ofertas, pero en la práctica lo dan por sentado en casi cualquier puesto técnico. Y hay un motivo más: tu perfil de GitHub con flujos de n8n documentados, proyectos de RAG y un README claro en inglés vale más que un certificado.\n\nEn estas 8 sesiones aprendes lo que se usa todos los días (commit, push, ramas, pull requests) y terminas con tu portafolio publicado en GitHub Pages.",
+  "objetivos": [
+    "Crear repositorios y guardar cambios con commits claros.",
+    "Sincronizar tu trabajo con GitHub (push y pull).",
+    "Trabajar con ramas y pull requests.",
+    "Resolver un conflicto sin miedo.",
+    "Proteger claves con `.gitignore` y variables de entorno.",
+    "Publicar un portafolio y documentar proyectos con un buen README."
+  ],
+  "herramientas": [
+    { "n": "Git", "u": "https://git-scm.com/downloads/", "para": "El programa de control de versiones.", "costo": "Gratis" },
+    { "n": "GitHub", "u": "https://github.com/", "para": "Alojar repositorios, colaborar y mostrar tu portafolio.", "costo": "Gratis" },
+    { "n": "GitHub Desktop", "u": "https://github.com/apps/desktop", "para": "Usar Git con una interfaz visual si la terminal te intimida.", "costo": "Gratis" },
+    { "n": "Visual Studio Code", "u": "https://code.visualstudio.com/", "para": "Editor con Git integrado.", "costo": "Gratis" },
+    { "n": "GitHub Pages", "u": "https://pages.github.com/", "para": "Publicar una web estática gratis desde un repositorio.", "costo": "Gratis" },
+    { "n": "gitignore.io", "u": "https://www.toptal.com/developers/gitignore", "para": "Genera el `.gitignore` correcto para tu proyecto.", "costo": "Gratis" }
+  ],
+  "cursos": [
+    { "n": "Pro Git (libro oficial en español)", "u": "https://git-scm.com/book/es/v2", "para": "La referencia completa de Git, gratis y traducida.", "plataforma": "git-scm.com", "idioma": "Español", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "GitHub Skills", "u": "https://skills.github.com/", "para": "Cursos interactivos dentro de GitHub: haces el ejercicio y un bot te corrige.", "plataforma": "GitHub", "idioma": "Inglés", "duracion": "≈ 1 h cada uno", "costo": "gratis" },
+    { "n": "Learn Git Branching", "u": "https://learngitbranching.js.org/?locale=es_AR", "para": "Juego visual para entender ramas, merge y rebase.", "plataforma": "Web", "idioma": "Español", "duracion": "≈ 3 h", "costo": "gratis" },
+    { "n": "Introduction to Git and GitHub (Google)", "u": "https://www.coursera.org/learn/introduction-git-github", "para": "Curso de Google con certificado; puedes verlo gratis como oyente.", "plataforma": "Coursera", "idioma": "Inglés", "duracion": "≈ 15 h", "costo": "pago" },
+    { "n": "Curso Profesional de Git y GitHub", "u": "https://platzi.com/cursos/git-github/", "para": "Git de cero a flujo profesional, en español.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 6 h", "costo": "pago" },
+    { "n": "Git Complete: The definitive guide", "u": "https://www.udemy.com/course/git-complete/", "para": "Curso práctico de Git con terminal.", "plataforma": "Udemy", "idioma": "Inglés", "duracion": "≈ 6 h", "costo": "pago" }
+  ],
+  "repos": [
+    { "u": "https://github.com/firstcontributions/first-contributions", "para": "Haz tu primera contribución open source paso a paso." },
+    { "u": "https://github.com/mouredev/hello-git", "para": "Curso de Git y GitHub desde cero de MoureDev, en español." },
+    { "u": "https://github.com/skills/introduction-to-github", "para": "El primer curso interactivo de GitHub Skills." },
+    { "u": "https://github.com/github/gitignore", "para": "Plantillas oficiales de `.gitignore` por lenguaje." }
+  ],
+  "sesiones": [
+    {
+      "t": "Por qué Git y cómo piensa",
+      "min": 40,
+      "texto": "Sin Git, versionas con nombres como `flujo_final_v3_ahora_si.json`. Con Git, cada versión es un commit: una foto del proyecto con un mensaje que explica qué cambió y quién lo hizo.\n\nGit trabaja en tres zonas: el directorio de trabajo (tus archivos), el área de preparación o staging (lo que elegiste guardar) y el repositorio (la historia de commits). El ciclo diario es: editas, `git add` para preparar, `git commit` para guardar.\n\nGit vive en tu PC; GitHub es un servidor donde subes una copia para respaldarla, compartirla y colaborar. Son cosas distintas: puedes usar Git sin GitHub.",
+      "claves": ["Commit = foto con mensaje", "Trabajo → staging → repositorio", "Git (local) vs GitHub (remoto)"],
+      "practica": "Instala Git, configura tu nombre y correo (`git config --global user.name` y `user.email`) y crea tu cuenta de GitHub con un nombre de usuario profesional.",
+      "preguntas": [
+        { "q": "¿Qué correo pongo en la configuración de Git?", "a": "El de tu cuenta de GitHub, o el correo privado `noreply` que GitHub te ofrece si no quieres exponer el tuyo." },
+        { "q": "¿Git sirve para archivos que no son código?", "a": "Sí, para cualquier texto: flujos de n8n exportados en JSON, prompts, documentación. Con archivos binarios grandes (videos) no es buena idea." },
+        { "q": "¿Qué nombre de usuario de GitHub conviene?", "a": "Uno corto y profesional, idealmente tu nombre. Va a aparecer en tu CV y en la URL de tu portafolio." }
+      ],
+      "links": [{ "n": "Pro Git: primeros pasos", "u": "https://git-scm.com/book/es/v2" }]
+    },
+    {
+      "t": "Tu primer repositorio: init, add y commit",
+      "min": 45,
+      "texto": "`git init` convierte una carpeta en repositorio. `git status` te dice qué cambió y qué está preparado; úsalo todo el tiempo. `git add archivo` (o `git add .` para todo) prepara los cambios y `git commit -m \"mensaje\"` los guarda.\n\nUn buen mensaje de commit dice qué y por qué en una línea corta, en imperativo: «Agrega reintentos al flujo de leads», no «cambios». Muchos equipos los escriben en inglés: «Add retry to lead workflow».\n\n`git log --oneline` muestra la historia y `git diff` qué cambió antes de guardarlo. Haz commits pequeños y frecuentes: es más fácil entenderlos y deshacerlos.",
+      "claves": ["`git init`, `status`, `add`, `commit`", "Mensajes claros en imperativo", "`git log` y `git diff`", "Commits pequeños"],
+      "practica": "Crea una carpeta `mis-flujos-n8n`, exporta un flujo de n8n en JSON, guárdalo allí y haz tres commits con cambios distintos. Revisa la historia con `git log --oneline`.",
+      "preguntas": [
+        { "q": "Hice `git add` de un archivo por error. ¿Cómo lo saco?", "a": "`git restore --staged archivo` lo quita del staging sin borrar tus cambios." },
+        { "q": "¿Cómo corrijo el mensaje del último commit?", "a": "`git commit --amend -m \"nuevo mensaje\"`, siempre que no lo hayas subido todavía." },
+        { "q": "¿Cada cuánto hago commit?", "a": "Cada vez que terminas un paso que funciona. Si el mensaje necesita la palabra «y», probablemente eran dos commits." }
+      ],
+      "links": [{ "n": "GitHub Docs: Hello World", "u": "https://docs.github.com/es/get-started/using-github/hello-world" }]
+    },
+    {
+      "t": "GitHub: remote, push y pull",
+      "min": 45,
+      "texto": "Para subir tu repositorio crea uno vacío en GitHub y conéctalo: `git remote add origin URL`. Luego `git push -u origin main` sube tus commits. Desde ahí, `git push` sube lo nuevo y `git pull` trae lo que otros (o tú desde otra PC) subieron.\n\n`git clone URL` descarga un repositorio completo, con toda su historia. Es lo que harás con los repos de este curso para estudiarlos.\n\nGitHub ya no acepta contraseñas en la terminal: usa GitHub Desktop, el inicio de sesión de VS Code o un token personal. Es la misma idea de autenticación que viste en APIs.",
+      "claves": ["`remote add origin`", "`push` y `pull`", "`clone`", "Autenticación con token o GitHub Desktop"],
+      "practica": "Sube tu repo `mis-flujos-n8n` a GitHub. Luego clona `public-apis/public-apis` y busca en su README tres APIs gratuitas que no pidan clave.",
+      "preguntas": [
+        { "q": "`git push` me rechaza porque hay cambios remotos. ¿Qué hago?", "a": "Primero `git pull` para traerlos e integrarlos, resuelve conflictos si aparecen, y vuelve a hacer push." },
+        { "q": "¿Repositorio público o privado?", "a": "Para portafolio, público. Para trabajo de clientes o con datos sensibles, privado." },
+        { "q": "¿Qué diferencia hay entre clone y fork?", "a": "Clone copia un repo a tu PC. Fork crea tu propia copia en GitHub, desde la que puedes proponer cambios al original." }
+      ],
+      "links": [{ "n": "GitHub Skills", "u": "https://skills.github.com/" }]
+    },
+    {
+      "t": "Ramas y merge",
+      "min": 50,
+      "texto": "Una rama es una línea de trabajo paralela. Creas una para probar algo sin tocar la versión que funciona: `git switch -c nueva-funcion`. Trabajas, haces commits y, cuando está lista, la unes a `main` con `git merge`.\n\nAsí trabajan los equipos: `main` siempre funciona y cada cambio vive en su rama hasta que se revisa. Aunque trabajes solo, es un buen hábito: si el experimento sale mal, borras la rama y listo.\n\nLearn Git Branching te deja ver gráficamente qué pasa con cada comando; 30 minutos allí te ahorran mucha confusión.",
+      "claves": ["`git switch -c rama`", "`main` siempre estable", "`git merge`", "Borrar ramas terminadas"],
+      "practica": "Haz los primeros niveles de Learn Git Branching. Luego, en tu repo, crea una rama `mejora-errores`, agrega un archivo y únela a `main`.",
+      "preguntas": [
+        { "q": "¿Pierdo mis cambios al cambiar de rama?", "a": "No si hiciste commit. Si tienes cambios sin guardar, Git te avisará; guárdalos con commit o `git stash` antes de cambiar." },
+        { "q": "¿Qué es `main` y qué era `master`?", "a": "Es el nombre de la rama principal. Antes se llamaba `master`; hoy GitHub usa `main` por defecto." },
+        { "q": "¿Merge o rebase?", "a": "Merge une historias y deja registro de la unión; rebase reescribe tus commits encima de otra rama. Para empezar, usa merge." }
+      ],
+      "links": [{ "n": "Learn Git Branching", "u": "https://learngitbranching.js.org/?locale=es_AR" }]
+    },
+    {
+      "t": "Pull requests y colaboración",
+      "min": 45,
+      "texto": "Un pull request (PR) es la propuesta de unir una rama a otra, con espacio para revisar el código, comentar línea por línea y aprobar. Es el corazón del trabajo en equipo en GitHub, y en una empresa remota es como más te comunicarás con otros desarrolladores.\n\nUn buen PR es pequeño, tiene un título claro y una descripción con qué cambia, por qué y cómo probarlo. Las revisiones son por escrito y en inglés casi siempre: practica responder comentarios con calma y precisión.\n\nLos issues son la lista de tareas y errores de un proyecto. Leer los issues de n8n o de LangChain te enseña mucho sobre problemas reales.",
+      "claves": ["PR = propuesta de cambio con revisión", "Título y descripción claros", "Comentarios por escrito", "Issues como lista de tareas"],
+      "practica": "Sigue el tutorial de first-contributions: haz fork, crea una rama, agrega tu nombre y abre tu primer pull request a un proyecto real.",
+      "preguntas": [
+        { "q": "¿Qué pongo en la descripción de un PR?", "a": "Qué cambia, por qué y cómo comprobarlo. Si hay capturas o un video corto, mejor." },
+        { "q": "Me pidieron cambios en mi PR. ¿Abro otro?", "a": "No. Haz nuevos commits en la misma rama y súbelos: el PR se actualiza solo." },
+        { "q": "¿Contribuir a open source ayuda a conseguir trabajo?", "a": "Sí: demuestra que sabes colaborar, leer código ajeno y comunicarte por escrito en inglés, tres cosas que piden las ofertas remotas." }
+      ],
+      "links": [{ "n": "first-contributions", "u": "https://github.com/firstcontributions/first-contributions" }]
+    },
+    {
+      "t": "Conflictos y cómo deshacer cosas",
+      "min": 45,
+      "texto": "Un conflicto aparece cuando dos ramas cambiaron la misma línea. Git no adivina: marca el archivo con `<<<<<<<`, `=======` y `>>>>>>>` mostrando ambas versiones. Tú eliges el resultado, borras las marcas, haces `add` y `commit`. VS Code te ofrece botones para aceptar una u otra.\n\nPara deshacer: `git restore archivo` descarta cambios no guardados; `git revert commit` crea un commit que deshace otro (seguro, ideal si ya lo subiste); `git reset` mueve la historia hacia atrás (úsalo solo en commits que no subiste).\n\nRegla de oro: nunca reescribas historia que ya compartiste con otros.",
+      "claves": ["Marcas de conflicto", "Resolver, `add` y `commit`", "`restore`, `revert`, `reset`", "No reescribir historia compartida"],
+      "practica": "Provoca un conflicto: cambia la misma línea en dos ramas distintas, intenta unirlas y resuélvelo en VS Code.",
+      "preguntas": [
+        { "q": "¿Cómo recupero un archivo que borré y ya hice commit?", "a": "Si estaba en un commit anterior, `git restore --source=COMMIT archivo` lo recupera desde esa versión." },
+        { "q": "¿Revert o reset?", "a": "Si el commit ya está en GitHub, revert. Reset solo para limpiar commits locales que nadie más tiene." },
+        { "q": "¿Cómo evito conflictos?", "a": "Ramas cortas, commits pequeños y hacer pull seguido para integrar los cambios de los demás pronto." }
+      ],
+      "links": [{ "n": "Pro Git: ramificaciones", "u": "https://git-scm.com/book/es/v2" }]
+    },
+    {
+      "t": "Secretos, .gitignore y un buen README",
+      "min": 45,
+      "texto": "`.gitignore` lista lo que Git no debe guardar: archivos `.env` con claves, carpetas de dependencias (`node_modules`, `.venv`), datos personales. Créalo al empezar, no cuando ya subiste algo.\n\nLos flujos de n8n exportados no incluyen las credenciales, pero revisa que no tengan claves pegadas en un nodo HTTP o en un nodo Code.\n\nEl README es la portada de tu repo. Un buen README en inglés tiene: qué problema resuelve, una captura o GIF, cómo funciona (diagrama simple), cómo instalarlo y qué tecnologías usa. Es lo primero que lee un reclutador: escríbelo como si fuera una mini propuesta comercial.",
+      "claves": ["`.gitignore` desde el inicio", "Nada de claves en el código", "README: problema, captura, uso, tecnologías", "Escribirlo en inglés"],
+      "practica": "Agrega a tu repo un `.gitignore` generado con gitignore.io y escribe un README en inglés con problema, captura del flujo, pasos para importarlo y tecnologías usadas.",
+      "preguntas": [
+        { "q": "Ya subí un archivo que debía ignorar. ¿Basta con agregarlo a .gitignore?", "a": "No: también debes quitarlo del repo con `git rm --cached archivo` y hacer commit. Si tenía claves, revócalas." },
+        { "q": "¿El README va en inglés o español?", "a": "En inglés para llegar a empresas extranjeras. Puedes añadir una sección corta en español si tu público también es local." },
+        { "q": "¿Qué hace que un README destaque?", "a": "Una captura o GIF arriba, resultados medibles («ahorra 5 horas por semana») e instrucciones que funcionan a la primera." }
+      ],
+      "links": [{ "n": "gitignore.io", "u": "https://www.toptal.com/developers/gitignore" }, { "n": "Plantillas de .gitignore", "u": "https://github.com/github/gitignore" }]
+    },
+    {
+      "t": "Tu portafolio en GitHub Pages",
+      "min": 60,
+      "texto": "GitHub Pages publica gratis una web estática desde un repositorio. Si el repo se llama `tuusuario.github.io`, la web queda en esa dirección. Es perfecta para tu portafolio: una página con tus proyectos, enlaces a cada repo y un video demo.\n\nTambién puedes fijar hasta seis repos en tu perfil de GitHub y crear un README de perfil (un repo con tu mismo nombre de usuario) que se muestra arriba de tu perfil.\n\nTu perfil es tu carta de presentación técnica: foto, bio en una línea («Automation & AI developer · n8n · RAG»), enlace a LinkedIn y proyectos fijados con buenos README.",
+      "claves": ["Repo `usuario.github.io`", "Repos fijados", "README de perfil", "Bio clara con tus herramientas"],
+      "practica": "Crea el repo `tuusuario.github.io` con un `index.html` sencillo que liste tus proyectos, actívalo en Settings → Pages y fija tus mejores repos en tu perfil.",
+      "preguntas": [
+        { "q": "¿Necesito saber diseño web para el portafolio?", "a": "No. Puedes diseñarlo en Figma o Canva, partir de una plantilla o pedir a un LLM una página simple y editarla. Importa más el contenido que la decoración." },
+        { "q": "¿Puedo usar un dominio propio?", "a": "Sí, GitHub Pages permite dominios personalizados con HTTPS gratis. Solo pagas el dominio." },
+        { "q": "¿Cuántos proyectos muestro?", "a": "Tres buenos son mejor que diez a medias. Uno de automatización, uno de RAG o agentes y uno de negocio con resultados." }
+      ],
+      "links": [{ "n": "GitHub Pages", "u": "https://pages.github.com/" }]
+    }
+  ]
+}

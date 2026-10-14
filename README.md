@@ -32,3 +32,19 @@ En `#skills` la página muestra qué habilidades piden las ofertas, el mínimo d
 En GitHub: pestaña **Actions** → **Actualizar ofertas** → **Run workflow**.
 
 Cada oferta enlaza a su aviso original en la bolsa de donde salió.
+
+## Clases
+
+`clases.html` tiene 13 temas de 8 sesiones cada uno (intro, conceptos, práctica, preguntas y respuestas), con herramientas, cursos gratis y de pago, y repositorios. `scripts/build.js` la genera a partir de:
+
+- `learn/temas/<tema>.json`: el contenido de cada tema. Para editar una clase, cambia su JSON; el build falla con un mensaje claro si falta un campo o un tema no tiene 8 sesiones.
+- `learn/template.html`: la página. Toma los estilos de `template.html`.
+- `learn/repos.json`: estrellas de los repos, que actualiza el revisor de enlaces.
+
+Para revisar que todos los enlaces sigan vivos:
+
+```bash
+node scripts/check-links.mjs
+```
+
+Los sitios que bloquean robots (Udemy, Upwork, Canva…) salen como aviso y hay que revisarlos a mano. En GitHub Actions este paso corre antes del build y no bloquea la publicación.

@@ -181,6 +181,7 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
   <a class="lnk" href="#sitios">Sitios</a>
   <a class="lnk" href="#notas">Notas</a>
   <a class="lnk" href="#skills" id="tabSkills">Skills</a>
+  <a class="lnk" href="clases.html">Clases</a>
   <span class="push-msg" id="pushMsg" role="status"></span>
   <a class="push" id="push" href="https://github.com/emanuelbenjamin-creator/trabajos-remotos-peru/actions/workflows/actualizar.yml" target="_blank" rel="noopener" title="Abre GitHub: pulsa Run workflow, espera 2 minutos y recarga esta página">Actualizar ahora</a>
 </div></nav>
@@ -271,6 +272,7 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
     <p class="sec-note">Pensado para tu perfil (n8n, RAG, agentes de IA y diseño, con inglés básico). Va de lo que más piden las ofertas a lo que te diferencia. El número junto a cada habilidad es el % de ofertas que la nombra. Cada fase termina con algo que puedes mostrar en tu portafolio.</p>
     <div class="row" id="skPlanPick" role="group" aria-label="Duración del plan"></div>
     <p class="sec-note" id="skPlanNote"></p>
+    <p class="sec-note">Cada tema tiene su página de clases con 8 sesiones, preguntas y respuestas, herramientas, cursos y repositorios: <a href="clases.html">ir a Clases</a>.</p>
     <div class="phases" id="skPlan"></div>
 
     <div class="notes">
@@ -611,28 +613,28 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
   // Plan intensivo de 3 semanas: 6 días por semana, unas 5 horas al día, más 30 minutos diarios de inglés
   var PLAN3 = [
     { t: "Semana 1 · APIs y LLMs", w: "Días 1–6", sk: ["APIs REST y webhooks", "LLM / IA generativa", "Prompt engineering", "JavaScript / TypeScript", "Git / GitHub", "Inglés"],
-      do: [["Día 1", "APIs REST, JSON y webhooks: métodos GET y POST, headers, códigos de estado y API keys. Probar APIs públicas en Hoppscotch y luego desde n8n (HTTP Request y Webhook)."],
-           ["Día 2", "JavaScript para los nodos Code de n8n (variables, arrays, map/filter, fechas). Crear tu cuenta de GitHub y subir tu primer flujo exportado con un README."],
-           ["Día 3", "Cómo funciona un LLM: tokens, ventana de contexto, temperatura, alucinaciones y costo por token. Comparar GPT (OpenAI), Claude (Anthropic), Gemini (Google) y modelos abiertos como Llama o Mistral, corriendo uno en tu PC con Ollama."],
-           ["Día 4", "LLMs por API: llamarlos desde n8n y desde Python con el SDK oficial. Usar prompt de sistema, ejemplos (few-shot) y salida en JSON estructurado."],
-           ["Día 5", "Prompt engineering y tool use (function calling): que el modelo extraiga datos de correos o facturas y llame a una herramienta. Probar el mismo prompt en dos modelos y comparar calidad y costo."],
-           ["Día 6", "Proyecto 1: formulario o webhook → el LLM clasifica y resume → Google Sheets → aviso por correo o Telegram. Subirlo a GitHub con README en inglés y capturas."]],
+      do: [["Día 1", "APIs REST, JSON y webhooks: métodos GET y POST, headers, códigos de estado y API keys. Probar APIs públicas en Hoppscotch y luego desde n8n (HTTP Request y Webhook).", "apis"],
+           ["Día 2", "JavaScript para los nodos Code de n8n (variables, arrays, map/filter, fechas). Crear tu cuenta de GitHub y subir tu primer flujo exportado con un README.", "js"],
+           ["Día 3", "Cómo funciona un LLM: tokens, ventana de contexto, temperatura, alucinaciones y costo por token. Comparar GPT (OpenAI), Claude (Anthropic), Gemini (Google) y modelos abiertos como Llama o Mistral, corriendo uno en tu PC con Ollama.", "llm"],
+           ["Día 4", "LLMs por API: llamarlos desde n8n y desde Python con el SDK oficial. Usar prompt de sistema, ejemplos (few-shot) y salida en JSON estructurado.", "prompt"],
+           ["Día 5", "Prompt engineering y tool use (function calling): que el modelo extraiga datos de correos o facturas y llame a una herramienta. Probar el mismo prompt en dos modelos y comparar calidad y costo.", "prompt"],
+           ["Día 6", "Proyecto 1: formulario o webhook → el LLM clasifica y resume → Google Sheets → aviso por correo o Telegram. Subirlo a GitHub con README en inglés y capturas.", "prompt"]],
       out: "Proyecto 1 publicado: automatización con LLM en n8n, documentada en inglés." },
     { t: "Semana 2 · Python, SQL, RAG y agentes", w: "Días 7–12", sk: ["Python", "SQL y bases de datos", "RAG y bases vectoriales", "Agentes de IA", "LangChain / LlamaIndex"],
-      do: [["Día 7", "Python básico en Google Colab: variables, listas, diccionarios, funciones, requests y json. Llamar a un LLM desde Python."],
-           ["Día 8", "SQL en Supabase (Postgres): SELECT, WHERE, JOIN y GROUP BY. Guardar y consultar desde n8n los resultados del proyecto 1."],
-           ["Día 9", "Embeddings y bases vectoriales: qué es un embedding, cómo dividir documentos (chunking), pgvector en Supabase y los nodos Vector Store de n8n. Leer qué hacen LangChain y LlamaIndex."],
-           ["Día 10", "RAG completo: cargar PDFs, recuperar fragmentos y responder citando la fuente. Armar 10 preguntas de prueba y anotar cuáles responde bien: eso es evaluar un LLM."],
-           ["Día 11", "Agentes de IA: el nodo AI Agent de n8n con memoria y herramientas (consultar Sheets o SQL, llamar una API, enviar un correo). Entender qué es MCP y poner límites de costo y de pasos."],
-           ["Día 12", "Proyecto 2: un asistente RAG con agente sobre documentos reales (por ejemplo, normas legales o manuales de una empresa). Grabar un video demo de 2 minutos con subtítulos en inglés."]],
+      do: [["Día 7", "Python básico en Google Colab: variables, listas, diccionarios, funciones, requests y json. Llamar a un LLM desde Python.", "python"],
+           ["Día 8", "SQL en Supabase (Postgres): SELECT, WHERE, JOIN y GROUP BY. Guardar y consultar desde n8n los resultados del proyecto 1.", "sql"],
+           ["Día 9", "Embeddings y bases vectoriales: qué es un embedding, cómo dividir documentos (chunking), pgvector en Supabase y los nodos Vector Store de n8n. Leer qué hacen LangChain y LlamaIndex.", "rag"],
+           ["Día 10", "RAG completo: cargar PDFs, recuperar fragmentos y responder citando la fuente. Armar 10 preguntas de prueba y anotar cuáles responde bien: eso es evaluar un LLM.", "rag"],
+           ["Día 11", "Agentes de IA: el nodo AI Agent de n8n con memoria y herramientas (consultar Sheets o SQL, llamar una API, enviar un correo). Entender qué es MCP y poner límites de costo y de pasos.", "agentes"],
+           ["Día 12", "Proyecto 2: un asistente RAG con agente sobre documentos reales (por ejemplo, normas legales o manuales de una empresa). Grabar un video demo de 2 minutos con subtítulos en inglés.", "agentes"]],
       out: "Proyecto 2 publicado: asistente RAG con agente, con su video demo y sus 10 preguntas de evaluación." },
     { t: "Semana 3 · Negocio, portafolio y postulación", w: "Días 13–18", sk: ["Excel / Google Sheets", "CRM (HubSpot, Salesforce)", "Zapier / Make", "Análisis de datos / BI", "Portafolio", "Comunicación"],
-      do: [["Día 13", "Google Sheets y Excel para reportes: tablas dinámicas, BUSCARX y QUERY. Un dashboard simple en Looker Studio."],
-           ["Día 14", "CRM con cuenta gratuita de HubSpot (contactos, etapas, API). Rehacer un flujo tuyo en Zapier o Make para poder ofrecer las tres herramientas."],
-           ["Día 15", "Proyecto 3: leads → el LLM los clasifica y redacta la respuesta → HubSpot → reporte semanal en Sheets. Escribir cuánto tiempo ahorra, en números."],
-           ["Día 16", "Portafolio: diseñar una página en Figma o Canva y publicarla en GitHub Pages, con los 3 proyectos en formato problema → solución → resultado."],
-           ["Día 17", "CV de una página en inglés y en español. Actualizar LinkedIn y crear perfiles en Upwork, Workana y Get on Board con tus proyectos como muestras."],
-           ["Día 18", "Postular a 10 ofertas desde WorkJob (Coincide con tu perfil, Sin inglés o Menciona inglés, orden Menos experiencia). Grabarte presentando un proyecto en inglés en 2 minutos y abrir un registro de postulaciones."]],
+      do: [["Día 13", "Google Sheets y Excel para reportes: tablas dinámicas, BUSCARX y QUERY. Un dashboard simple en Looker Studio.", "datos"],
+           ["Día 14", "CRM con cuenta gratuita de HubSpot (contactos, etapas, API). Rehacer un flujo tuyo en Zapier o Make para poder ofrecer las tres herramientas.", "negocio"],
+           ["Día 15", "Proyecto 3: leads → el LLM los clasifica y redacta la respuesta → HubSpot → reporte semanal en Sheets. Escribir cuánto tiempo ahorra, en números.", "negocio"],
+           ["Día 16", "Portafolio: diseñar una página en Figma o Canva y publicarla en GitHub Pages, con los 3 proyectos en formato problema → solución → resultado.", "postular"],
+           ["Día 17", "CV de una página en inglés y en español. Actualizar LinkedIn y crear perfiles en Upwork, Workana y Get on Board con tus proyectos como muestras.", "postular"],
+           ["Día 18", "Postular a 10 ofertas desde WorkJob (Coincide con tu perfil, Sin inglés o Menciona inglés, orden Menos experiencia). Grabarte presentando un proyecto en inglés en 2 minutos y abrir un registro de postulaciones.", "postular"]],
       out: "3 proyectos, portafolio publicado, CV y perfiles listos, y las primeras 10 postulaciones enviadas. Después, sigue con 10 postulaciones por semana." },
   ];
   var PLANS = [
@@ -654,7 +656,10 @@ footer { text-align: center; color: var(--muted); font: 400 11px var(--mono); le
       var ul = el("ul");
       ph.do.forEach(function (d) {
         var li = el("li");
-        if (Array.isArray(d)) { li.appendChild(el("b", null, d[0] + ". ")); li.appendChild(document.createTextNode(d[1])); } else li.textContent = d;
+        if (Array.isArray(d)) {
+          li.appendChild(el("b", null, d[0] + ". ")); li.appendChild(document.createTextNode(d[1] + " "));
+          if (d[2]) { var cl = el("a", null, "Ver la clase →"); cl.href = "clases.html#" + d[2]; li.appendChild(cl); }
+        } else li.textContent = d;
         ul.appendChild(li);
       });
       c.appendChild(ul);

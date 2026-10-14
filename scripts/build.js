@@ -229,3 +229,29 @@ const dest = path.join(__dirname, "..", "public", "index.html");
 fs.mkdirSync(path.dirname(dest), { recursive: true });
 fs.writeFileSync(dest, head + tpl.replace("/*__DATA__*/null", () => data));
 console.log("wrote", dest, Math.round(fs.statSync(dest).size / 1024) + "KB");
+
+// Clases: un JSON por tema en learn/temas, con el % de ofertas de su habilidad y las estrellas de learn/repos.json
+{
+  const LEARN = path.join(__dirname, "..", "learn");
+  const stars = (() => { try { return JSON.parse(fs.readFileSync(path.join(LEARN, "repos.json"), "utf8")); } catch (e) { return {}; } })();
+  const order = ["apis", "js", "git", "llm", "prompt", "python", "sql", "rag", "agentes", "datos", "negocio", "postular", "ingles"];
+  const temas = fs.readdirSync(path.join(LEARN, "temas")).filter((f) => f.endsWith(".json")).map((f) => {
+    const t = JSON.parse(fs.readFileSync(path.join(LEARN, "temas", f), "utf8"));
+    const bad = [];
+    for (const k of ["id", "titulo", "resumen", "skill", "intro", "objetivos", "herramientas", "cursos", "repos", "sesiones"]) if (t[k] == null) bad.push(k);
+    if (!Array.isArray(t.sesiones) || t.sesiones.length !== 8) bad.push("8 sesiones");
+    (t.sesiones || []).forEach((s, i) => { for (const k of ["t", "min", "texto", "claves", "practica", "preguntas"]) if (s[k] == null) bad.push(`sesión ${i + 1}: ${k}`); });
+    if (!DEMAND.some((d) => d[0] === t.skill)) bad.push("skill desconocida: " + t.skill);
+    if (bad.length) { console.error(`learn/temas/${f}: falta ${bad.join(", ")}`); process.exit(1); }
+    for (const r of t.repos) { const k = r.u.replace("https://github.com/", "").toLowerCase(); if (stars[k]) r.stars = stars[k]; }
+    return t;
+  }).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  const pct = {}; for (const s of skillList) pct[s.l] = s.all;
+  const css = tpl.match(/<style>([\s\S]*?)<\/style>/)[1];
+  const page = fs.readFileSync(path.join(LEARN, "template.html"), "utf8")
+    .replace("/*__BASE_CSS__*/", () => css)
+    .replace("/*__LEARN__*/null", () => JSON.stringify({ temas, pct }).replace(/</g, "\u003c"));
+  const out2 = path.join(__dirname, "..", "public", "clases.html");
+  fs.writeFileSync(out2, head + page);
+  console.log("wrote", out2, temas.length, "temas", Math.round(fs.statSync(out2).size / 1024) + "KB");
+}

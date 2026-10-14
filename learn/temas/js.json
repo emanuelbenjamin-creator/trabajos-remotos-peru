@@ -1,0 +1,144 @@
+{
+  "id": "js",
+  "semana": 1,
+  "titulo": "JavaScript para automatización",
+  "resumen": "El lenguaje de los nodos Code de n8n y de casi toda la web. Lo justo para transformar datos sin depender de nodos hechos.",
+  "skill": "JavaScript / TypeScript",
+  "intro": "JavaScript es el lenguaje que corre en todos los navegadores y en Node.js, y es el que usa n8n en sus nodos Code y en sus expresiones. No necesitas ser desarrollador web: necesitas el JavaScript que sirve para limpiar, combinar y transformar datos.\n\nEn las ofertas, JavaScript o TypeScript aparece en casi una de cada cinco, y en una de cada cuatro de las que coinciden con tu perfil. Saberlo te permite resolver en 5 líneas lo que con nodos visuales toma 10 pasos, y es la puerta a TypeScript, React y Node.js si después quieres ir más allá.\n\nEstas 8 sesiones van de lo básico a usarlo de verdad dentro de n8n, con ejercicios sobre datos reales.",
+  "objetivos": [
+    "Leer y escribir variables, condiciones, funciones y bucles.",
+    "Manipular arrays y objetos con map, filter, reduce y desestructuración.",
+    "Trabajar con textos y fechas sin errores de formato.",
+    "Entender promesas y async/await para llamadas a APIs.",
+    "Escribir nodos Code en n8n que transformen muchos items.",
+    "Depurar errores con console.log y leyendo el mensaje de error."
+  ],
+  "herramientas": [
+    { "n": "Visual Studio Code", "u": "https://code.visualstudio.com/", "para": "Editor para escribir y probar código.", "costo": "Gratis" },
+    { "n": "Node.js", "u": "https://nodejs.org/", "para": "Ejecuta JavaScript fuera del navegador, en tu PC.", "costo": "Gratis" },
+    { "n": "n8n (nodo Code)", "u": "https://docs.n8n.io/build/code-in-n8n", "para": "Donde vas a usar JavaScript a diario.", "costo": "Gratis autoalojado" },
+    { "n": "Consola del navegador (F12)", "u": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide", "para": "Probar una línea de JavaScript al instante, sin instalar nada.", "costo": "Gratis" },
+    { "n": "regex101", "u": "https://regex101.com/", "para": "Probar expresiones regulares para extraer datos de textos.", "costo": "Gratis" }
+  ],
+  "cursos": [
+    { "n": "The Modern JavaScript Tutorial", "u": "https://javascript.info/", "para": "El mejor tutorial escrito, de cero a avanzado. También existe en español.", "plataforma": "javascript.info", "idioma": "Inglés", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "JavaScript moderno (versión en español)", "u": "https://es.javascript.info/", "para": "Traducción del tutorial anterior.", "plataforma": "javascript.info", "idioma": "Español", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "freeCodeCamp: JavaScript Algorithms and Data Structures", "u": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8", "para": "Ejercicios en el navegador con certificación gratuita.", "plataforma": "freeCodeCamp", "idioma": "Inglés", "duracion": "≈ 300 h", "costo": "gratis" },
+    { "n": "freeCodeCamp en español: JavaScript", "u": "https://www.freecodecamp.org/espanol/learn/javascript-algorithms-and-data-structures", "para": "La misma ruta, traducida.", "plataforma": "freeCodeCamp", "idioma": "Español", "duracion": "≈ 300 h", "costo": "gratis" },
+    { "n": "The Odin Project", "u": "https://www.theodinproject.com/", "para": "Ruta completa de desarrollo web con proyectos reales.", "plataforma": "The Odin Project", "idioma": "Inglés", "duracion": "Meses", "costo": "gratis" },
+    { "n": "The Complete JavaScript Course (Jonas Schmedtmann)", "u": "https://www.udemy.com/course/the-complete-javascript-course/", "para": "Uno de los cursos de JavaScript más completos y mejor valorados.", "plataforma": "Udemy", "idioma": "Inglés", "duracion": "≈ 70 h", "costo": "pago" },
+    { "n": "Curso Básico de JavaScript", "u": "https://platzi.com/cursos/javascript/", "para": "Fundamentos en español con ejercicios.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 5 h", "costo": "pago" }
+  ],
+  "repos": [
+    { "u": "https://github.com/Asabeneh/30-Days-Of-JavaScript", "para": "Reto de 30 días con teoría y ejercicios diarios." },
+    { "u": "https://github.com/mouredev/hello-javascript", "para": "Curso de JavaScript desde cero de MoureDev, en español." },
+    { "u": "https://github.com/trekhleb/javascript-algorithms", "para": "Algoritmos y estructuras de datos explicados con código." },
+    { "u": "https://github.com/microsoft/Web-Dev-For-Beginners", "para": "Curso de Microsoft de 12 semanas sobre desarrollo web." }
+  ],
+  "sesiones": [
+    {
+      "t": "Variables, tipos y operadores",
+      "min": 45,
+      "texto": "Una variable es una caja con nombre. En JavaScript moderno se crean con `const` (no se reasigna) y `let` (sí se reasigna); evita `var`, que es antiguo.\n\nLos tipos básicos son texto (`\"hola\"`), número (`42`), booleano (`true`), `null`, `undefined`, objetos y arrays. JavaScript convierte tipos solo, y eso causa sorpresas: `\"5\" + 1` da `\"51\"`. Por eso compara siempre con `===`, que no convierte.\n\nLos textos con backticks permiten insertar variables: `` `Hola ${nombre}` ``. Lo vas a usar todo el tiempo para armar mensajes y URLs.",
+      "claves": ["`const` y `let`", "Tipos básicos", "`===` en lugar de `==`", "Template strings con `${}`"],
+      "practica": "En la consola del navegador crea `const nombre`, `let edad` y arma con template string la frase «Ana tiene 30 años». Prueba `\"5\" + 1` y `\"5\" * 1` y explica el resultado.",
+      "preguntas": [
+        { "q": "¿Cuándo uso `let` en lugar de `const`?", "a": "Solo cuando vas a cambiar el valor, por ejemplo un contador. Por defecto usa `const`." },
+        { "q": "¿Qué diferencia hay entre `null` y `undefined`?", "a": "`undefined` significa que no se asignó nada; `null` es un vacío puesto a propósito. En datos de APIs verás ambos." },
+        { "q": "¿Por qué `0.1 + 0.2` no da exactamente `0.3`?", "a": "Por cómo se guardan los decimales en binario. Para dinero, redondea con `toFixed(2)` o trabaja en céntimos." }
+      ],
+      "links": [{ "n": "javascript.info: fundamentos", "u": "https://es.javascript.info/" }]
+    },
+    {
+      "t": "Condiciones y funciones",
+      "min": 45,
+      "texto": "Con `if`, `else if` y `else` decides qué camino seguir. Para elegir un valor en una línea existe el ternario: `const tipo = monto > 1000 ? \"grande\" : \"pequeño\"`.\n\nUna función agrupa pasos que repites. La forma moderna es la función flecha: `const iva = (monto) => monto * 0.18`. Recibe parámetros, hace algo y devuelve un resultado con `return`.\n\nDos operadores te salvarán de errores con datos incompletos: `?.` lee un campo solo si existe (`cliente?.email`) y `??` pone un valor por defecto si algo es null o undefined (`telefono ?? \"sin teléfono\"`).",
+      "claves": ["`if` / `else` y ternario", "Funciones flecha", "`return`", "`?.` y `??` para datos incompletos"],
+      "practica": "Escribe una función `clasificarLead(lead)` que devuelva «caliente» si el presupuesto es mayor a 5000 y tiene email, «tibio» si solo tiene email y «frío» en otro caso. Pruébala con tres objetos.",
+      "preguntas": [
+        { "q": "¿Qué devuelve una función sin `return`?", "a": "`undefined`. En una función flecha de una sola línea sin llaves, el return es implícito." },
+        { "q": "¿Qué pasa con `cliente.direccion.ciudad` si `direccion` no existe?", "a": "Da error. Con `cliente.direccion?.ciudad` obtienes `undefined` sin romper el flujo." },
+        { "q": "¿Cuál es la diferencia entre `||` y `??`?", "a": "`||` reemplaza cualquier valor falso (incluidos `0` y `\"\"`); `??` solo reemplaza null y undefined. Para números usa `??`." }
+      ],
+      "links": [{ "n": "MDN: guía de JavaScript", "u": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide" }]
+    },
+    {
+      "t": "Arrays: map, filter y reduce",
+      "min": 55,
+      "texto": "Casi todo lo que transformas en automatización es una lista: filas, leads, productos, mensajes. Tres métodos resuelven el 90 % de los casos.\n\n`map` transforma cada elemento y devuelve una lista del mismo tamaño: `emails.map(e => e.toLowerCase())`. `filter` se queda con los que cumplen una condición: `leads.filter(l => l.pais === \"Perú\")`. `reduce` resume la lista en un solo valor, como una suma: `ventas.reduce((total, v) => total + v.monto, 0)`.\n\nTambién conviene conocer `find` (el primero que cumple), `some` y `every` (¿alguno o todos cumplen?), `sort` y `includes`. Encadenarlos es elegante: filtrar, luego transformar, luego sumar.",
+      "claves": ["`map` transforma", "`filter` selecciona", "`reduce` resume", "`find`, `some`, `sort`, `includes`"],
+      "practica": "Con el array de `/users` de JSONPlaceholder: obtén solo los emails que terminan en `.biz`, en minúsculas, y cuenta cuántos usuarios viven en una ciudad que empieza con «S».",
+      "preguntas": [
+        { "q": "¿`map` modifica el array original?", "a": "No, devuelve uno nuevo. `sort` sí modifica el original; para evitarlo usa `[...lista].sort()` o `toSorted()`." },
+        { "q": "¿Qué devuelve `filter` si nadie cumple?", "a": "Un array vacío `[]`, no `null`. Revisa `.length` antes de usar el primer elemento." },
+        { "q": "¿Cómo ordeno por un número?", "a": "`lista.sort((a, b) => a.precio - b.precio)` de menor a mayor; invierte la resta para mayor a menor." }
+      ],
+      "links": [{ "n": "MDN: Array.prototype.map", "u": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" }]
+    },
+    {
+      "t": "Objetos, desestructuración y spread",
+      "min": 45,
+      "texto": "Un objeto agrupa datos con nombre: `{ nombre: \"Ana\", email: \"ana@x.com\" }`. Lees con punto (`lead.email`) o con corchetes cuando el nombre está en una variable (`lead[campo]`).\n\nLa desestructuración saca campos en una línea: `const { nombre, email } = lead`. El operador spread copia y combina: `{ ...lead, estado: \"contactado\" }` crea un objeto nuevo con todo lo de lead más el campo nuevo. Es la forma limpia de enriquecer datos en un flujo.\n\n`Object.keys`, `Object.values` y `Object.entries` te permiten recorrer un objeto cuando no sabes qué campos trae, algo común con respuestas de APIs.",
+      "claves": ["Punto y corchetes", "Desestructuración", "Spread `...`", "`Object.entries`"],
+      "practica": "Toma un usuario de JSONPlaceholder y crea un objeto nuevo solo con nombre, email y ciudad (que está dentro de `address`), más un campo `fuente: \"api\"`.",
+      "preguntas": [
+        { "q": "¿Cómo renombro un campo al desestructurar?", "a": "`const { email: correo } = lead` crea la variable `correo` con el valor de `lead.email`." },
+        { "q": "¿El spread copia también los objetos internos?", "a": "No: hace una copia superficial. Los objetos anidados siguen compartidos. Para copia completa usa `structuredClone(obj)`." },
+        { "q": "¿Cómo convierto un objeto en filas clave-valor?", "a": "`Object.entries(obj)` devuelve `[[clave, valor], ...]`, perfecto para recorrerlo con `map`." }
+      ],
+      "links": [{ "n": "javascript.info: objetos", "u": "https://javascript.info/" }]
+    },
+    {
+      "t": "Textos, fechas y expresiones regulares",
+      "min": 50,
+      "texto": "Limpiar textos es tarea diaria: `trim()` quita espacios, `toLowerCase()` normaliza, `split(\",\")` separa, `replace` reemplaza e `includes` busca.\n\nLas fechas son traicioneras por las zonas horarias. `new Date().toISOString()` da la fecha en UTC, que es lo que esperan las APIs. Perú está en UTC−5. n8n incluye la librería Luxon: `$now.setZone(\"America/Lima\").toFormat(\"dd/LL/yyyy\")` resuelve la mayoría de casos.\n\nLas expresiones regulares buscan patrones: un email, un teléfono, un RUC. No hace falta memorizarlas: escríbelas y pruébalas en regex101, o pídele una al LLM y verifícala allí.",
+      "claves": ["`trim`, `split`, `replace`, `includes`", "UTC vs hora local", "Luxon en n8n (`$now`)", "Regex probadas en regex101"],
+      "practica": "Dado un texto con varios correos y teléfonos mezclados, extrae todos los emails con una regex y conviértelos a minúsculas sin duplicados.",
+      "preguntas": [
+        { "q": "¿Por qué una fecha sale con un día de diferencia?", "a": "Porque se interpretó en UTC y se mostró en hora local (o al revés). Define siempre la zona horaria al formatear." },
+        { "q": "¿Cómo quito duplicados de una lista?", "a": "`[...new Set(lista)]`." },
+        { "q": "¿Debo validar emails solo con regex?", "a": "Sirve para filtrar formatos imposibles, pero no confirma que exista. Para eso hace falta enviar un correo o un servicio de verificación." }
+      ],
+      "links": [{ "n": "regex101", "u": "https://regex101.com/" }]
+    },
+    {
+      "t": "Asincronía: promesas y async/await",
+      "min": 50,
+      "texto": "Llamar a una API toma tiempo y JavaScript no se queda esperando: sigue con lo demás. Una promesa representa un resultado que llegará después.\n\nCon `async` y `await` el código se lee de arriba abajo: `const res = await fetch(url); const datos = await res.json();`. Envuélvelo en `try/catch` para capturar errores de red o de la API.\n\nPara varias llamadas independientes usa `await Promise.all([...])`: corren en paralelo y terminas antes. Pero cuidado con los límites de uso: 500 llamadas a la vez pueden darte un 429. En n8n, prefiere el nodo HTTP Request con Batching para eso.",
+      "claves": ["Promesa", "`async` / `await`", "`try` / `catch`", "`Promise.all` y límites de uso"],
+      "practica": "En Node.js, escribe una función async que traiga los usuarios 1, 2 y 3 de JSONPlaceholder en paralelo con `Promise.all` y muestre sus nombres. Luego provoca un error con una URL mala y captúralo.",
+      "preguntas": [
+        { "q": "¿Qué pasa si olvido `await`?", "a": "Obtienes la promesa, no el dato. Verás `Promise { <pending> }` o campos undefined." },
+        { "q": "Si una de las promesas de `Promise.all` falla, ¿qué ocurre?", "a": "Todo falla. Si quieres seguir con las que sí funcionaron, usa `Promise.allSettled`." },
+        { "q": "¿`fetch` lanza error con un 404?", "a": "No. Solo falla por problemas de red. Revisa `res.ok` o `res.status` para detectar 4xx y 5xx." }
+      ],
+      "links": [{ "n": "MDN: Promise", "u": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" }]
+    },
+    {
+      "t": "El nodo Code de n8n",
+      "min": 55,
+      "texto": "El nodo Code ejecuta tu JavaScript sobre los items del flujo. Tiene dos modos: «Run Once for All Items», donde recibes todos con `$input.all()` y devuelves un array; y «Run Once for Each Item», donde trabajas con `$json` del item actual.\n\nLo que devuelves debe tener la forma de n8n: una lista de objetos `{ json: {...} }`. Ese es el error número uno al empezar.\n\nDesde el código también puedes leer otros nodos (`$('Nombre del nodo').all()`), usar Luxon para fechas y hacer `console.log` para ver valores en la consola del navegador. Úsalo cuando necesites lógica que con nodos visuales quedaría enredada.",
+      "claves": ["Modo todos los items vs cada item", "`$input.all()` y `$json`", "Devolver `[{ json: {...} }]`", "`$('Nodo')` para leer otros nodos"],
+      "practica": "Recibe 10 leads desde un nodo anterior, y en un solo nodo Code normaliza emails, quita duplicados, calcula la clasificación caliente/tibio/frío y devuelve solo los calientes.",
+      "preguntas": [
+        { "q": "Mi nodo Code da error de formato al devolver un array simple. ¿Por qué?", "a": "n8n espera objetos con la clave `json`. Devuelve `lista.map(x => ({ json: x }))`." },
+        { "q": "¿Cuándo prefiero el nodo Code sobre nodos visuales?", "a": "Cuando la transformación tiene varias condiciones, cálculos o recorridos. Si es un solo cambio de campo, un nodo Set es más claro para quien lo mantenga." },
+        { "q": "¿Puedo usar librerías externas?", "a": "En n8n autoalojado se pueden permitir algunos módulos con variables de entorno; en la nube hay limitaciones. Lo básico (Luxon, crypto) ya viene incluido." }
+      ],
+      "links": [{ "n": "n8n: código en n8n", "u": "https://docs.n8n.io/build/code-in-n8n" }]
+    },
+    {
+      "t": "Depurar y siguiente paso: TypeScript",
+      "min": 40,
+      "texto": "Depurar es leer el mensaje de error con calma: dice qué pasó y en qué línea. `Cannot read properties of undefined (reading 'email')` significa que el objeto antes de `.email` no existe. Pon `console.log` antes de la línea, mira el dato real y corrige.\n\nUn LLM es excelente para explicarte un error: pega el código, el mensaje y un ejemplo del dato. Pero entiende la solución antes de copiarla.\n\nTypeScript es JavaScript con tipos: declaras que `email` es un texto y el editor te avisa antes de ejecutar. Aparece junto a JavaScript en muchas ofertas. Cuando domines lo de este tema, un curso corto de TypeScript es el siguiente paso natural.",
+      "claves": ["Leer el mensaje de error", "`console.log` del dato real", "Usar el LLM para entender, no solo copiar", "TypeScript = JavaScript con tipos"],
+      "practica": "Toma tu nodo Code de la sesión anterior, rómpelo a propósito de tres formas distintas (campo inexistente, falta `await`, formato de salida) y anota el mensaje de cada error y cómo lo arreglaste.",
+      "preguntas": [
+        { "q": "¿Qué significa `is not a function`?", "a": "Que intentas llamar como función algo que no lo es, por ejemplo `.map` sobre un objeto en vez de un array." },
+        { "q": "¿Necesito TypeScript para trabajar en automatización?", "a": "No para empezar. Sí suma en puestos de desarrollo o si creas nodos propios para n8n, que se escriben en TypeScript." },
+        { "q": "¿Cómo pido ayuda bien a un LLM con un error?", "a": "Da el código, el error completo, un ejemplo del dato de entrada y lo que esperabas obtener. Pide que explique la causa, no solo el arreglo." }
+      ],
+      "links": [{ "n": "freeCodeCamp: rutas de aprendizaje", "u": "https://www.freecodecamp.org/learn" }]
+    }
+  ]
+}

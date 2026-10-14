@@ -1,0 +1,148 @@
+{
+  "id": "apis",
+  "semana": 1,
+  "titulo": "APIs REST, JSON y webhooks",
+  "resumen": "Cómo se hablan las aplicaciones entre sí. Es la base de todo flujo de n8n, de cualquier integración y de las llamadas a un LLM.",
+  "skill": "APIs REST y webhooks",
+  "intro": "Una API es la puerta por la que un programa le pide datos o acciones a otro. Cuando n8n lee una fila de Google Sheets, cuando un CRM recibe un lead o cuando le mandas un prompt a GPT o a Claude, por debajo hay una petición HTTP a una API REST que responde en JSON.\n\nEs la habilidad técnica más pedida en las ofertas de este panel después del inglés y las habilidades blandas, y es la que más aparece en las ofertas que coinciden con tu perfil. Quien entiende APIs puede conectar cualquier herramienta con cualquier otra, aunque no exista un nodo hecho para eso.\n\nEn estas 8 sesiones vas a pasar de usar nodos ya armados a leer la documentación de cualquier API, autenticarte, manejar errores y recibir eventos con webhooks. Al final lo despliegas en la nube con Docker, que también piden muchas ofertas.",
+  "objetivos": [
+    "Explicar qué pasa en una petición HTTP: método, URL, headers, body y código de estado.",
+    "Leer y escribir JSON sin errores y transformarlo en n8n.",
+    "Autenticarte con API key, Bearer token y OAuth2.",
+    "Consumir cualquier API desde Hoppscotch y desde el nodo HTTP Request de n8n.",
+    "Recibir eventos con webhooks y responder correctamente.",
+    "Manejar paginación, límites de uso y errores sin que el flujo se caiga.",
+    "Levantar n8n con Docker y publicarlo en un servidor."
+  ],
+  "herramientas": [
+    { "n": "n8n", "u": "https://n8n.io/", "para": "Plataforma de automatización. Úsala en la nube (prueba gratis) o en tu PC con Docker.", "costo": "Gratis autoalojado · nube de pago" },
+    { "n": "Hoppscotch", "u": "https://hoppscotch.io/", "para": "Probar APIs desde el navegador sin instalar nada.", "costo": "Gratis" },
+    { "n": "Postman", "u": "https://www.postman.com/downloads/", "para": "El cliente de APIs más usado en empresas. Útil para colecciones y pruebas.", "costo": "Gratis · planes de pago para equipos" },
+    { "n": "webhook.site", "u": "https://webhook.site/", "para": "Te da una URL para ver exactamente qué envía un webhook.", "costo": "Gratis" },
+    { "n": "JSONPlaceholder", "u": "https://jsonplaceholder.typicode.com/", "para": "API falsa para practicar GET, POST, PUT y DELETE.", "costo": "Gratis" },
+    { "n": "Docker Desktop", "u": "https://www.docker.com/products/docker-desktop/", "para": "Correr n8n y bases de datos en contenedores.", "costo": "Gratis para uso personal" },
+    { "n": "Visual Studio Code", "u": "https://code.visualstudio.com/", "para": "Editor para JSON, código y archivos de configuración.", "costo": "Gratis" }
+  ],
+  "cursos": [
+    { "n": "n8n Learn: cursos oficiales nivel 1 y 2", "u": "https://learn.n8n.io/", "para": "El camino oficial para aprender n8n, con flujos guiados y certificado.", "plataforma": "n8n", "idioma": "Inglés", "duracion": "≈ 6 h", "costo": "gratis" },
+    { "n": "Postman Academy", "u": "https://academy.postman.com/", "para": "Fundamentos de APIs y pruebas, con insignias verificables.", "plataforma": "Postman", "idioma": "Inglés", "duracion": "≈ 4 h por curso", "costo": "gratis" },
+    { "n": "Panorama de HTTP (MDN)", "u": "https://developer.mozilla.org/es/docs/Web/HTTP/Guides/Overview", "para": "La referencia más confiable sobre cómo funciona HTTP.", "plataforma": "MDN", "idioma": "Español", "duracion": "≈ 1 h", "costo": "gratis" },
+    { "n": "Docker: Get started", "u": "https://docs.docker.com/get-started/", "para": "Guía oficial de contenedores, imágenes y volúmenes.", "plataforma": "Docker", "idioma": "Inglés", "duracion": "≈ 3 h", "costo": "gratis" },
+    { "n": "Curso de API REST", "u": "https://platzi.com/cursos/api/", "para": "Consumo de APIs REST paso a paso, en español.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 4 h", "costo": "pago" },
+    { "n": "Cursos de n8n en Udemy", "u": "https://www.udemy.com/courses/search/?q=n8n", "para": "Varios cursos prácticos de n8n con IA; revisa la fecha de actualización y las reseñas antes de comprar.", "plataforma": "Udemy", "idioma": "Inglés y español", "duracion": "5–15 h", "costo": "pago" },
+    { "n": "Curso de n8n", "u": "https://platzi.com/cursos/n8n/", "para": "Automatización con n8n en español.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 4 h", "costo": "pago" }
+  ],
+  "repos": [
+    { "u": "https://github.com/public-apis/public-apis", "para": "Cientos de APIs gratuitas por categoría para practicar." },
+    { "u": "https://github.com/n8n-io/n8n", "para": "El código de n8n. Mira los issues y el changelog para entender cómo evoluciona." },
+    { "u": "https://github.com/enescingoz/awesome-n8n-templates", "para": "Plantillas de n8n listas para importar y estudiar." },
+    { "u": "https://github.com/Zie619/n8n-workflows", "para": "Miles de flujos de n8n organizados por servicio." },
+    { "u": "https://github.com/n8n-io/self-hosted-ai-starter-kit", "para": "Docker Compose oficial con n8n, Ollama, Qdrant y Postgres." }
+  ],
+  "sesiones": [
+    {
+      "t": "Qué es una API y cómo viaja una petición HTTP",
+      "min": 45,
+      "texto": "Imagina un restaurante: tú no entras a la cocina, le pides al mesero. La API es ese mesero. Tu programa (el cliente) envía una petición a una dirección (el endpoint) y el servidor responde.\n\nToda petición HTTP tiene cuatro partes: el método (qué quieres hacer), la URL (a qué recurso), los headers (datos extra como el formato o tu clave) y, a veces, un body con los datos que envías. La respuesta trae un código de estado y normalmente un body en JSON.\n\nREST es un estilo de diseño: cada cosa es un recurso con su URL (`/users/7`, `/orders`) y los métodos dicen la acción. Por eso, cuando aprendes una API REST, las demás se parecen mucho.",
+      "claves": ["Cliente, servidor y endpoint", "Método, URL, headers y body", "REST: recursos con URL propia", "Respuesta = código de estado + body"],
+      "practica": "Abre Hoppscotch y haz un GET a `https://jsonplaceholder.typicode.com/users/1`. Identifica el código de estado, los headers de la respuesta y el body.",
+      "preguntas": [
+        { "q": "¿Cuál es la diferencia entre una API y un endpoint?", "a": "La API es el conjunto completo de operaciones que ofrece un servicio. Un endpoint es una dirección concreta dentro de esa API, por ejemplo `/users/1`." },
+        { "q": "¿Dónde van los datos que envío al crear algo?", "a": "En el body de la petición, normalmente en JSON. En la URL solo van identificadores y filtros cortos (query parameters)." },
+        { "q": "¿Por qué casi todas las APIs modernas responden en JSON?", "a": "Porque es texto liviano, fácil de leer para humanos y de convertir en objetos en cualquier lenguaje, incluido JavaScript, que es el lenguaje de los nodos Code de n8n." }
+      ],
+      "links": [{ "n": "MDN: panorama de HTTP", "u": "https://developer.mozilla.org/es/docs/Web/HTTP/Guides/Overview" }]
+    },
+    {
+      "t": "JSON a fondo: objetos, arrays y rutas",
+      "min": 45,
+      "texto": "JSON solo tiene seis tipos de valor: texto entre comillas dobles, número, `true`/`false`, `null`, objeto `{}` y array `[]`. Con eso se describe cualquier cosa: un cliente, un pedido con productos, la respuesta de un LLM.\n\nLo que más se practica en el trabajo es leer rutas: si la respuesta es `{\"data\": {\"items\": [{\"name\": \"Ana\"}]}}`, el nombre está en `data.items[0].name`. En n8n escribes exactamente eso dentro de una expresión: `{{ $json.data.items[0].name }}`.\n\nLos errores típicos son comillas simples, comas al final y olvidar que los arrays empiezan en 0. Un validador de JSON te ahorra horas.",
+      "claves": ["Seis tipos de valor", "Rutas con punto y corchetes", "Arrays empiezan en 0", "Expresiones de n8n: `{{ $json.campo }}`"],
+      "practica": "Toma la respuesta de `/users` de JSONPlaceholder y escribe las rutas para obtener la ciudad del tercer usuario y el nombre de la empresa del primero. Pruébalas en un nodo Set de n8n.",
+      "preguntas": [
+        { "q": "¿Por qué `{'a': 1}` no es JSON válido?", "a": "Porque JSON exige comillas dobles en las claves y en los textos. Debe ser `{\"a\": 1}`." },
+        { "q": "¿Qué devuelve `items[2]` si el array tiene 2 elementos?", "a": "Nada (undefined): el último índice es 1. Es la causa de muchos errores en flujos que asumen que siempre hay datos." },
+        { "q": "¿Cómo trata n8n una respuesta que es un array?", "a": "Normalmente separa cada elemento en un item. Así los nodos siguientes se ejecutan una vez por elemento." }
+      ],
+      "links": [{ "n": "MDN: trabajar con JSON", "u": "https://developer.mozilla.org/es/docs/Learn_web_development/Core/Scripting/JSON" }, { "n": "n8n: trabajar con datos", "u": "https://docs.n8n.io/build/work-with-data" }]
+    },
+    {
+      "t": "Métodos y códigos de estado",
+      "min": 40,
+      "texto": "GET lee, POST crea, PUT reemplaza, PATCH modifica una parte y DELETE borra. GET no debe cambiar nada en el servidor; por eso puedes repetirlo sin miedo.\n\nLos códigos de estado te dicen qué pasó sin leer el body: los 2xx son éxito (200 OK, 201 creado, 204 sin contenido), los 3xx redirecciones, los 4xx son errores tuyos (400 petición mal formada, 401 sin autenticar, 403 sin permiso, 404 no existe, 429 demasiadas peticiones) y los 5xx son errores del servidor.\n\nSaber leerlos es la mitad del debugging: un 401 se arregla con la credencial, un 429 esperando y un 500 reintentando más tarde.",
+      "claves": ["GET, POST, PUT, PATCH, DELETE", "2xx éxito · 4xx tu error · 5xx error del servidor", "401 vs 403", "429 = límite de uso"],
+      "practica": "En JSONPlaceholder haz un POST a `/posts` con un body JSON, luego un PATCH a `/posts/1` y un DELETE. Anota el código que devuelve cada uno.",
+      "preguntas": [
+        { "q": "¿Qué diferencia hay entre 401 y 403?", "a": "401: el servidor no sabe quién eres (falta o es inválida la credencial). 403: sabe quién eres, pero no tienes permiso para eso." },
+        { "q": "¿Cuándo uso PUT y cuándo PATCH?", "a": "PUT reemplaza el recurso completo; PATCH cambia solo los campos que envías. La mayoría de APIs modernas usan PATCH para actualizar." },
+        { "q": "Recibo 500 de vez en cuando. ¿Qué hago?", "a": "Configura reintentos con espera creciente. Si persiste, el problema es del servidor: guarda el caso y avisa al proveedor." }
+      ],
+      "links": [{ "n": "MDN: métodos HTTP", "u": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods" }, { "n": "MDN: códigos de estado", "u": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status" }]
+    },
+    {
+      "t": "Autenticación: API keys, tokens y OAuth2",
+      "min": 50,
+      "texto": "Casi toda API real pide identificarte. Las tres formas más comunes son: una API key en un header (`x-api-key: ...`), un token Bearer (`Authorization: Bearer ...`) y OAuth2, donde el usuario autoriza a tu app desde una pantalla de Google, HubSpot o Slack y tu app recibe un token temporal.\n\nLa regla de oro: una clave nunca va en el código ni en un repositorio público. En n8n se guardan como credenciales cifradas; en código, en variables de entorno o en un archivo `.env` que está en `.gitignore`.\n\nSi una clave se filtra, se revoca y se crea otra. GitHub incluso escanea repos públicos buscando claves expuestas.",
+      "claves": ["API key en header", "Bearer token", "OAuth2 y tokens que expiran", "Credenciales de n8n y archivos `.env`"],
+      "practica": "Crea una cuenta gratuita en una API de la lista public-apis que pida API key (por ejemplo, clima) y llámala desde n8n guardando la clave como credencial Header Auth.",
+      "preguntas": [
+        { "q": "¿Por qué OAuth2 es más seguro que pedir la contraseña del usuario?", "a": "Porque tu app nunca ve la contraseña: recibe un token con permisos limitados que el usuario puede revocar cuando quiera." },
+        { "q": "Subí una API key a GitHub por error. ¿Basta con borrar el archivo?", "a": "No. Queda en el historial de Git. Revoca la clave en el proveedor de inmediato y crea una nueva." },
+        { "q": "¿Qué es un refresh token?", "a": "Un token de larga duración que sirve para pedir nuevos access tokens cuando expiran, sin que el usuario vuelva a iniciar sesión. n8n lo maneja solo en sus credenciales OAuth2." }
+      ],
+      "links": [{ "n": "n8n: credenciales", "u": "https://docs.n8n.io/integrations/builtin/credentials" }]
+    },
+    {
+      "t": "El nodo HTTP Request de n8n",
+      "min": 50,
+      "texto": "Cuando n8n no tiene un nodo para un servicio, el nodo HTTP Request lo reemplaza. Configuras método, URL, autenticación, query parameters, headers y body, y el resultado sale como JSON para los nodos siguientes.\n\nUn truco muy útil: casi toda documentación de APIs trae un ejemplo en `curl`. En HTTP Request puedes importar ese curl y n8n arma la petición por ti.\n\nAprende también las opciones avanzadas: Batching para no saturar la API, Pagination para traer todas las páginas, y Response para recibir el código de estado completo y decidir qué hacer con él.",
+      "claves": ["Importar desde curl", "Query, headers y body", "Batching y Pagination", "Expresiones dentro de la URL"],
+      "practica": "Construye un flujo: Manual Trigger → HTTP Request a la API de GitHub (`https://api.github.com/repos/n8n-io/n8n`) → Set que guarde nombre, estrellas y fecha de actualización.",
+      "preguntas": [
+        { "q": "¿Cómo paso un valor de un nodo anterior a la URL?", "a": "Con una expresión, por ejemplo `https://api.ejemplo.com/users/{{ $json.id }}`." },
+        { "q": "La API devuelve 100 resultados por página y hay 950. ¿Qué uso?", "a": "La opción Pagination del nodo, indicando cómo se pide la siguiente página (número de página, cursor o URL que viene en la respuesta)." },
+        { "q": "¿Por qué activar Batching?", "a": "Para enviar las peticiones en grupos con pausas y no superar el límite de uso de la API (evitar el error 429)." }
+      ],
+      "links": [{ "n": "n8n: nodo HTTP Request", "u": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest" }]
+    },
+    {
+      "t": "Webhooks: que las apps te avisen",
+      "min": 45,
+      "texto": "Con una API tú preguntas; con un webhook el otro sistema te avisa. Le das una URL a Stripe, a un formulario o a GitHub, y cada vez que pasa algo (un pago, una respuesta, un push) te envía un POST con los datos.\n\nEn n8n el nodo Webhook crea esa URL. Tiene dos versiones: la de prueba, que solo escucha mientras pruebas, y la de producción, que funciona cuando el flujo está activo. Confundirlas es el error más común.\n\nBuenas prácticas: responde rápido (un 200 en menos de unos segundos) y procesa después, valida que el aviso venga de quien dice (firma o secreto compartido) y prepárate para recibir el mismo evento dos veces.",
+      "claves": ["Polling vs webhook", "URL de prueba vs producción", "Responder rápido", "Validar la firma y evitar duplicados"],
+      "practica": "Crea un nodo Webhook en n8n, envíale un POST desde Hoppscotch con un JSON de un lead y guarda el lead en Google Sheets. Repite el envío con webhook.site para ver la petición cruda.",
+      "preguntas": [
+        { "q": "Mi webhook funciona al probar pero no cuando cierro n8n. ¿Por qué?", "a": "Estás usando la URL de prueba. Activa el flujo y usa la URL de producción." },
+        { "q": "¿Por qué podría llegar el mismo evento dos veces?", "a": "Porque si tu servidor tarda o falla, el emisor reintenta. Guarda el id del evento y descarta los repetidos (idempotencia)." },
+        { "q": "¿Qué conviene más para saber si llegó un correo nuevo: webhook o consultar cada minuto?", "a": "El webhook, si el servicio lo ofrece: es inmediato y no gasta peticiones. Consultar cada cierto tiempo (polling) es el plan B." }
+      ],
+      "links": [{ "n": "n8n: nodo Webhook", "u": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook" }]
+    },
+    {
+      "t": "Errores, reintentos y límites de uso",
+      "min": 45,
+      "texto": "Un flujo que funciona una vez no es un flujo de producción. Las APIs fallan, se demoran o te limitan. Lo que distingue a un profesional es que su automatización sigue funcionando y avisa cuando algo sale mal.\n\nEn n8n tienes tres herramientas: Retry On Fail en cada nodo (reintentos con espera), la opción On Error para seguir por otra rama en vez de detenerse, y un Error Workflow global que te manda un mensaje con el detalle cuando cualquier flujo falla.\n\nPara los límites, lee la documentación: suelen indicar cuántas peticiones por minuto permiten y devuelven headers como `Retry-After`. Respeta esos números con Batching o un nodo Wait.",
+      "claves": ["Retry On Fail", "Rama de error", "Error Workflow con aviso", "Header `Retry-After`"],
+      "practica": "Crea un Error Workflow que te envíe por correo o Telegram el nombre del flujo, el nodo y el mensaje de error. Provoca un fallo con una URL inexistente y comprueba que llega el aviso.",
+      "preguntas": [
+        { "q": "¿Debo reintentar un error 400?", "a": "No. Un 400 significa que tu petición está mal; reintentarla dará el mismo error. Se reintentan 429 y 5xx." },
+        { "q": "¿Qué información debe traer una alerta de error útil?", "a": "Qué flujo, qué nodo, el mensaje, la hora y un enlace a la ejecución. Con eso cualquiera puede investigar." },
+        { "q": "¿Cómo explico esto en una entrevista?", "a": "Cuenta un caso: «mis flujos tienen reintentos, una rama de error y un aviso a Slack; si una API cae, nadie pierde datos». Es justo lo que buscan." }
+      ],
+      "links": [{ "n": "n8n: manejo de errores", "u": "https://docs.n8n.io/build/flow-logic/handle-errors-gracefully" }]
+    },
+    {
+      "t": "Desplegar n8n con Docker en la nube",
+      "min": 60,
+      "texto": "Docker empaqueta una aplicación con todo lo que necesita en una imagen, y la ejecuta en un contenedor aislado. Así n8n corre igual en tu PC, en un servidor o en la nube. Docker y la nube (AWS, Azure, Google Cloud) aparecen en un buen número de ofertas, así que saber lo básico suma.\n\nCon `docker run` o un archivo `docker-compose.yml` defines la imagen de n8n, el puerto, un volumen para no perder tus flujos y las variables de entorno. El starter kit oficial añade Postgres, Qdrant y Ollama para proyectos de IA.\n\nPara publicarlo puedes usar un VPS barato, Render o Railway. Lo importante: HTTPS, una contraseña fuerte y copias de seguridad del volumen.",
+      "claves": ["Imagen, contenedor y volumen", "`docker-compose.yml`", "Variables de entorno", "HTTPS y copias de seguridad"],
+      "practica": "Instala Docker Desktop y levanta n8n en tu PC siguiendo la guía oficial. Importa un flujo, apaga y vuelve a encender el contenedor y verifica que el flujo sigue ahí gracias al volumen.",
+      "preguntas": [
+        { "q": "¿Por qué necesito un volumen?", "a": "Porque un contenedor se puede borrar y recrear. El volumen guarda los datos de n8n fuera del contenedor para que no se pierdan." },
+        { "q": "¿n8n en la nube oficial o autoalojado?", "a": "La nube oficial es más simple y tiene soporte; autoalojado es gratis y más flexible pero te toca mantenerlo. Para aprender, autoalojado en tu PC." },
+        { "q": "¿Qué es lo mínimo de seguridad al publicarlo?", "a": "HTTPS, usuario con contraseña fuerte, n8n actualizado y no exponer puertos de la base de datos a internet." }
+      ],
+      "links": [{ "n": "n8n: instalar con Docker", "u": "https://docs.n8n.io/deploy/host-n8n/install-options/install-with-docker" }, { "n": "Docker: Get started", "u": "https://docs.docker.com/get-started/" }]
+    }
+  ]
+}

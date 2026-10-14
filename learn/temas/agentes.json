@@ -1,0 +1,402 @@
+{
+  "id": "agentes",
+  "semana": 2,
+  "titulo": "Agentes de IA y MCP",
+  "resumen": "LLMs que deciden pasos y usan herramientas: patrones, memoria, MCP, límites de seguridad y agentes en n8n.",
+  "skill": "Agentes de IA",
+  "intro": "Un agente de IA es un LLM que trabaja en ciclo: recibe un objetivo, decide qué hacer, usa una herramienta (buscar, consultar una base, enviar un correo), mira el resultado y decide el siguiente paso, hasta terminar. Es la evolución natural del tool use que viste en la semana 1.\n\nEn el panel aparece en más de un tercio de las ofertas que coinciden con tu perfil, y es la palabra de moda en IA. Pero las empresas que saben buscan algo concreto: alguien que distinga cuándo hace falta un agente y cuándo basta un flujo fijo, y que sepa ponerle límites para que sea confiable.\n\nEn estas 8 sesiones aprendes los patrones que usan los equipos serios, construyes agentes en n8n, conoces MCP (el estándar para conectar herramientas a los modelos) y terminas el Proyecto 2 con un agente que actúa.",
+  "objetivos": [
+    "Distinguir flujos fijos, flujos con LLM y agentes, y elegir el adecuado.",
+    "Aplicar patrones: encadenar, enrutar, paralelizar, orquestar y evaluar.",
+    "Construir agentes en n8n con herramientas y memoria.",
+    "Entender y usar MCP para conectar herramientas.",
+    "Poner límites: pasos máximos, permisos, aprobación humana y costos.",
+    "Conocer frameworks de código (LangGraph, CrewAI) para cuando n8n no alcance."
+  ],
+  "herramientas": [
+    {
+      "n": "n8n (AI Agent)",
+      "u": "https://docs.n8n.io/build/integrate-ai",
+      "para": "Agentes visuales con herramientas, memoria y sub-flujos.",
+      "costo": "Gratis autoalojado"
+    },
+    {
+      "n": "Model Context Protocol",
+      "u": "https://modelcontextprotocol.io/",
+      "para": "Estándar abierto para conectar herramientas y datos a los LLM.",
+      "costo": "Gratis (open source)"
+    },
+    {
+      "n": "Claude Desktop / clientes MCP",
+      "u": "https://claude.ai/",
+      "para": "Probar servidores MCP conectados a un asistente.",
+      "costo": "Gratis con límites"
+    },
+    {
+      "n": "LangGraph",
+      "u": "https://langchain-ai.github.io/langgraph/",
+      "para": "Framework en Python para agentes con estados y control fino.",
+      "costo": "Gratis (open source)"
+    },
+    {
+      "n": "CrewAI",
+      "u": "https://crewai.com/",
+      "para": "Framework para equipos de agentes con roles.",
+      "costo": "Gratis (open source) · plataforma de pago"
+    }
+  ],
+  "cursos": [
+    {
+      "n": "Hugging Face AI Agents Course",
+      "u": "https://huggingface.co/learn/agents-course/unit0/introduction",
+      "para": "Curso completo y gratuito de agentes, con certificado.",
+      "plataforma": "Hugging Face",
+      "idioma": "Inglés",
+      "duracion": "≈ 4 semanas",
+      "costo": "gratis"
+    },
+    {
+      "n": "MCP: Build Rich-Context AI Apps with Anthropic",
+      "u": "https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic",
+      "para": "Curso corto oficial sobre MCP: servidores, clientes y casos.",
+      "plataforma": "DeepLearning.AI",
+      "idioma": "Inglés",
+      "duracion": "≈ 2 h",
+      "costo": "gratis"
+    },
+    {
+      "n": "Hugging Face MCP Course",
+      "u": "https://huggingface.co/learn/mcp-course/unit0/introduction",
+      "para": "MCP de cero a construir tu propio servidor.",
+      "plataforma": "Hugging Face",
+      "idioma": "Inglés",
+      "duracion": "≈ 2 semanas",
+      "costo": "gratis"
+    },
+    {
+      "n": "AI Agents in LangGraph",
+      "u": "https://www.deeplearning.ai/courses/ai-agents-in-langgraph",
+      "para": "Construir un agente desde cero y luego con LangGraph.",
+      "plataforma": "DeepLearning.AI",
+      "idioma": "Inglés",
+      "duracion": "≈ 1,5 h",
+      "costo": "gratis"
+    },
+    {
+      "n": "Introduction to LangGraph",
+      "u": "https://academy.langchain.com/courses/intro-to-langgraph",
+      "para": "Curso oficial de LangChain Academy.",
+      "plataforma": "LangChain Academy",
+      "idioma": "Inglés",
+      "duracion": "≈ 6 h",
+      "costo": "gratis"
+    },
+    {
+      "n": "Agentic AI (Andrew Ng)",
+      "u": "https://www.deeplearning.ai/courses/agentic-ai",
+      "para": "Patrones de diseño de agentes: reflexión, herramientas, planificación y multiagente. Gratis como oyente; el certificado requiere la membresía Pro (≈ USD 25 al mes).",
+      "plataforma": "DeepLearning.AI",
+      "idioma": "Inglés",
+      "duracion": "≈ 10 h",
+      "costo": "gratis"
+    },
+    {
+      "n": "IBM RAG and Agentic AI",
+      "u": "https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai",
+      "para": "Certificado profesional que cubre RAG y agentes.",
+      "plataforma": "Coursera",
+      "idioma": "Inglés",
+      "duracion": "≈ 3 meses",
+      "costo": "pago"
+    }
+  ],
+  "repos": [
+    {
+      "u": "https://github.com/microsoft/ai-agents-for-beginners",
+      "para": "Curso de Microsoft sobre agentes en lecciones cortas, con traducciones."
+    },
+    {
+      "u": "https://github.com/NirDiamant/GenAI_Agents",
+      "para": "Decenas de agentes de ejemplo explicados paso a paso."
+    },
+    {
+      "u": "https://github.com/modelcontextprotocol/servers",
+      "para": "Servidores MCP oficiales y de la comunidad."
+    },
+    {
+      "u": "https://github.com/microsoft/mcp-for-beginners",
+      "para": "Curso de MCP para principiantes en varios lenguajes."
+    },
+    {
+      "u": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "para": "Colección de apps con agentes y RAG listas para estudiar."
+    },
+    {
+      "u": "https://github.com/langchain-ai/langgraph",
+      "para": "Framework de agentes con estados."
+    }
+  ],
+  "sesiones": [
+    {
+      "t": "Qué es un agente y cuándo NO usarlo",
+      "min": 45,
+      "texto": "Hay un espectro. Un flujo fijo hace siempre los mismos pasos (n8n clásico). Un flujo con LLM usa el modelo en pasos definidos por ti (tu Proyecto 1). Un agente decide él mismo qué pasos dar y cuántos.\n\nLos agentes son potentes para tareas abiertas (investigar, atender consultas variadas, resolver problemas con varias herramientas), pero son más caros, más lentos y menos predecibles. La recomendación de los equipos que más agentes construyen es empezar por lo más simple que funcione y agregar autonomía solo cuando aporta.\n\nPregunta clave: ¿puedo dibujar el diagrama de pasos de antemano? Si sí, haz un flujo. Si los pasos dependen de lo que se va encontrando, considera un agente.",
+      "claves": [
+        "Flujo fijo → flujo con LLM → agente",
+        "Autonomía tiene costo",
+        "Empezar simple",
+        "¿Puedo dibujar los pasos?"
+      ],
+      "practica": "Lee el artículo de Anthropic «Building effective agents» y clasifica 5 procesos de una empresa (por ejemplo: facturación, soporte, reportes) como flujo fijo, flujo con LLM o agente, justificando cada uno.",
+      "preguntas": [
+        {
+          "q": "¿Un chatbot es un agente?",
+          "a": "No necesariamente. Si solo conversa, es un chat. Es agente cuando decide usar herramientas y dar varios pasos para cumplir un objetivo."
+        },
+        {
+          "q": "¿Por qué no usar agentes para todo?",
+          "a": "Porque cada decisión del modelo puede fallar y los errores se acumulan en muchos pasos. Donde el proceso es conocido, un flujo es más barato y confiable."
+        },
+        {
+          "q": "¿Qué responde un buen candidato si le preguntan por agentes?",
+          "a": "Que los usa cuando la tarea es abierta, con límites claros y evaluación, y que prefiere flujos cuando el proceso es predecible."
+        }
+      ],
+      "links": [
+        {
+          "n": "Anthropic: Building effective agents",
+          "u": "https://www.anthropic.com/engineering/building-effective-agents"
+        }
+      ]
+    },
+    {
+      "t": "Patrones de flujo con LLMs",
+      "min": 50,
+      "texto": "Antes de un agente completo existen patrones intermedios que resuelven la mayoría de casos.\n\nEncadenar: la salida de un paso es la entrada del siguiente (extraer → verificar → redactar). Enrutar: un LLM clasifica y manda cada caso al flujo especializado (reclamos a un lado, ventas a otro). Paralelizar: varias llamadas a la vez y luego se combinan (analizar un contrato por cláusulas). Orquestador y trabajadores: un LLM divide la tarea y asigna partes. Evaluador y optimizador: un LLM genera, otro revisa con criterios y se itera.\n\nEn n8n se arman con nodos Switch, Merge, sub-flujos y varias cadenas de LLM. Conocer estos nombres te permite hablar el mismo idioma que los equipos de IA.",
+      "claves": [
+        "Encadenar",
+        "Enrutar",
+        "Paralelizar",
+        "Orquestador-trabajadores",
+        "Evaluador-optimizador"
+      ],
+      "practica": "Convierte tu Proyecto 1 en un enrutador: según la categoría, cada solicitud va a una cadena distinta que redacta una respuesta especializada.",
+      "preguntas": [
+        {
+          "q": "¿Qué patrón uso para mejorar la calidad de un texto generado?",
+          "a": "Evaluador-optimizador: un paso genera, otro revisa con una rúbrica y devuelve correcciones, hasta cumplir o llegar a un máximo de intentos."
+        },
+        {
+          "q": "¿El enrutador puede ser un modelo barato?",
+          "a": "Sí, y conviene: clasificar es fácil. Deja los modelos caros para los pasos difíciles."
+        },
+        {
+          "q": "¿Esto es un agente?",
+          "a": "No del todo: tú definiste el camino. Son flujos agénticos, más predecibles que un agente libre."
+        }
+      ],
+      "links": [
+        {
+          "n": "Anthropic: Building effective agents",
+          "u": "https://www.anthropic.com/engineering/building-effective-agents"
+        }
+      ]
+    },
+    {
+      "t": "El ciclo del agente: razonar, actuar, observar",
+      "min": 45,
+      "texto": "Todo agente repite el mismo ciclo: piensa qué hacer, elige una herramienta y sus parámetros, recibe el resultado, y vuelve a pensar con esa nueva información. Termina cuando decide que tiene la respuesta o cuando llega a un límite.\n\nSus piezas: el modelo (el cerebro), el prompt del sistema (rol, objetivo, reglas), las herramientas (con buenas descripciones), la memoria (lo que recuerda de la conversación) y los límites (pasos máximos, tiempo, costo).\n\nCuando un agente falla, casi siempre es por herramientas mal descritas, demasiadas herramientas parecidas o un objetivo ambiguo. Revisar la traza (qué pensó y qué herramienta llamó en cada paso) es como depurar un agente.",
+      "claves": [
+        "Pensar → actuar → observar",
+        "Modelo, prompt, herramientas, memoria, límites",
+        "Descripciones de herramientas claras",
+        "Leer la traza"
+      ],
+      "practica": "Haz la Unidad 1 del curso de agentes de Hugging Face y dibuja el ciclo de un agente que reserva una reunión: qué herramientas necesita y qué pasos daría.",
+      "preguntas": [
+        {
+          "q": "¿Cuántas herramientas le doy a un agente?",
+          "a": "Las mínimas necesarias. Con muchas herramientas parecidas el modelo se confunde; agrúpalas o divide en agentes especializados."
+        },
+        {
+          "q": "¿Qué es la traza de un agente?",
+          "a": "El registro de cada paso: qué decidió, qué herramienta llamó con qué datos y qué recibió. En n8n se ve en la ejecución del AI Agent."
+        },
+        {
+          "q": "¿Por qué poner un máximo de pasos?",
+          "a": "Para que no quede en bucle gastando tokens si no encuentra la respuesta."
+        }
+      ],
+      "links": [
+        {
+          "n": "Hugging Face AI Agents Course",
+          "u": "https://huggingface.co/learn/agents-course/unit0/introduction"
+        }
+      ]
+    },
+    {
+      "t": "Agentes en n8n: herramientas y sub-flujos",
+      "min": 60,
+      "texto": "El nodo AI Agent de n8n se conecta a un modelo de chat, a una memoria y a herramientas. Las herramientas pueden ser nodos (Google Sheets, Gmail, Calendar, HTTP Request), tu Vector Store de RAG o un flujo completo de n8n usado como herramienta (Call n8n Workflow Tool).\n\nEsto último es poderoso: encapsulas lógica compleja y confiable en un sub-flujo (por ejemplo «crear lead en el CRM con validaciones») y el agente solo decide cuándo usarlo. Así combinas la flexibilidad del agente con la fiabilidad del flujo.\n\nPara cada herramienta escribe una descripción que diga qué hace, cuándo usarla y qué parámetros espera. Prueba con preguntas variadas y revisa en cada ejecución qué herramienta eligió.",
+      "claves": [
+        "AI Agent + modelo + memoria + herramientas",
+        "Nodos como herramientas",
+        "Sub-flujos como herramientas",
+        "Descripciones claras"
+      ],
+      "practica": "Crea un agente de asistente de ventas con tres herramientas: buscar productos en una hoja, consultar tu RAG de documentos y registrar un lead (como sub-flujo con validación).",
+      "preguntas": [
+        {
+          "q": "¿Por qué usar un sub-flujo como herramienta en vez de un nodo directo?",
+          "a": "Porque puedes validar datos, manejar errores y reutilizarlo. El agente no puede saltarse esas reglas."
+        },
+        {
+          "q": "El agente usa la herramienta equivocada. ¿Qué cambio primero?",
+          "a": "La descripción de las herramientas y el prompt del sistema. Si dos se parecen, hazlas más distintas o únelas."
+        },
+        {
+          "q": "¿Qué modelo uso para el agente?",
+          "a": "Uno con buen tool use. Los modelos pequeños fallan más eligiendo herramientas; prueba y mide."
+        }
+      ],
+      "links": [
+        {
+          "n": "n8n: IA en n8n",
+          "u": "https://docs.n8n.io/build/integrate-ai"
+        }
+      ]
+    },
+    {
+      "t": "Memoria y contexto",
+      "min": 45,
+      "texto": "Un agente no recuerda nada entre llamadas a menos que le des memoria. La memoria de corto plazo es el historial de la conversación: en n8n, Simple Memory guarda los últimos mensajes; para producción, una memoria en Postgres o Redis que sobreviva a reinicios. Se identifica cada conversación con un id de sesión.\n\nLa memoria de largo plazo guarda datos útiles de interacciones pasadas (preferencias del cliente, decisiones) en una base de datos o un vector store, y se recupera cuando hace falta, como un RAG de recuerdos.\n\nCuidado con el tamaño: más historial significa más tokens y más costo. Limita la ventana a los últimos N mensajes o resume las conversaciones largas.",
+      "claves": [
+        "Corto plazo: historial",
+        "Id de sesión",
+        "Largo plazo: base de datos o vectores",
+        "Limitar o resumir el historial"
+      ],
+      "practica": "Agrega a tu agente una memoria en Postgres (Supabase) con id de sesión, y comprueba que recuerda el nombre del usuario entre mensajes pero no entre sesiones distintas.",
+      "preguntas": [
+        {
+          "q": "¿Simple Memory sirve en producción?",
+          "a": "Para pruebas sí; en producción se pierde al reiniciar y no escala. Usa una memoria con base de datos."
+        },
+        {
+          "q": "¿Qué guardo en memoria de largo plazo?",
+          "a": "Datos que sirven en el futuro y que el usuario aceptó compartir: preferencias, pedidos anteriores. Nunca datos sensibles sin necesidad."
+        },
+        {
+          "q": "¿Cómo evito que la conversación se vuelva carísima?",
+          "a": "Limita la ventana de mensajes o resume periódicamente el historial en un mensaje corto."
+        }
+      ],
+      "links": [
+        {
+          "n": "AI Agents for Beginners (Microsoft)",
+          "u": "https://github.com/microsoft/ai-agents-for-beginners"
+        }
+      ]
+    },
+    {
+      "t": "MCP: el estándar para conectar herramientas",
+      "min": 50,
+      "texto": "Model Context Protocol (MCP) es un estándar abierto, creado por Anthropic y adoptado por gran parte de la industria, para conectar modelos con herramientas y datos. Un servidor MCP expone herramientas (y también recursos y prompts); cualquier cliente compatible (Claude Desktop, editores de código, n8n, otros agentes) puede usarlas sin integraciones a medida.\n\nEs como un USB para la IA: escribes la conexión una vez y sirve en muchos lugares. Ya existen servidores para GitHub, bases de datos, Google Drive, Slack, navegadores y cientos más.\n\nn8n puede actuar como cliente (usar herramientas de un servidor MCP en su AI Agent) y como servidor (exponer tus flujos como herramientas para otros agentes). Revisa los permisos de cada servidor antes de conectarlo: tiene acceso real a tus datos.",
+      "claves": [
+        "Servidor y cliente MCP",
+        "Herramientas, recursos y prompts",
+        "Escribir una vez, usar en muchos clientes",
+        "n8n como cliente y como servidor"
+      ],
+      "practica": "Haz el curso corto de MCP de DeepLearning.AI. Luego conecta un servidor MCP (por ejemplo el de sistema de archivos o uno de la lista oficial) a un cliente y úsalo en una conversación.",
+      "preguntas": [
+        {
+          "q": "¿MCP reemplaza a las APIs?",
+          "a": "No. Un servidor MCP normalmente llama APIs por dentro. MCP estandariza cómo un modelo descubre y usa esas capacidades."
+        },
+        {
+          "q": "¿Es seguro instalar cualquier servidor MCP?",
+          "a": "No. Tiene los permisos que le des. Usa servidores oficiales o revisados, con permisos mínimos y credenciales propias."
+        },
+        {
+          "q": "¿Por qué importa para conseguir trabajo?",
+          "a": "Porque muchas empresas están conectando sus sistemas a agentes con MCP y buscan gente que entienda cómo hacerlo de forma segura."
+        }
+      ],
+      "links": [
+        {
+          "n": "modelcontextprotocol.io",
+          "u": "https://modelcontextprotocol.io/"
+        },
+        {
+          "n": "Servidores MCP",
+          "u": "https://github.com/modelcontextprotocol/servers"
+        }
+      ]
+    },
+    {
+      "t": "Agentes confiables: límites, aprobación humana y costos",
+      "min": 45,
+      "texto": "Un agente en producción necesita barandas. Límites: pasos máximos, tiempo máximo, presupuesto de tokens por tarea. Permisos mínimos: si solo debe leer el calendario, no le des permiso de borrar. Aprobación humana: para acciones irreversibles o caras (enviar a clientes, pagar, borrar), el agente prepara y una persona aprueba; n8n permite pausar un flujo esperando una respuesta.\n\nObservabilidad: registra cada ejecución con sus pasos, herramientas, tokens y resultado, para auditar y mejorar. Evaluación: igual que con prompts y RAG, un conjunto de tareas de prueba con el resultado esperado.\n\nAquí está la diferencia entre una demo vistosa y un sistema que una empresa se anima a usar.",
+      "claves": [
+        "Pasos, tiempo y presupuesto máximos",
+        "Permisos mínimos",
+        "Aprobación humana en acciones irreversibles",
+        "Registro y evaluación"
+      ],
+      "practica": "Agrega a tu agente un paso de aprobación: antes de registrar un lead o enviar un correo, envía la propuesta por Telegram o correo y espera tu confirmación.",
+      "preguntas": [
+        {
+          "q": "¿Qué acciones siempre deberían pasar por una persona?",
+          "a": "Las irreversibles o con impacto externo: enviar comunicaciones a clientes, pagos, borrados y cambios de permisos."
+        },
+        {
+          "q": "¿Cómo estimo el costo de un agente?",
+          "a": "Mide en pruebas cuántos pasos y tokens usa por tarea en promedio y en el peor caso, y multiplica por el volumen esperado."
+        },
+        {
+          "q": "¿Qué es la inyección de prompts indirecta en agentes?",
+          "a": "Instrucciones maliciosas dentro de datos que el agente lee (un correo, una web). Por eso los permisos mínimos y la aprobación humana son tan importantes."
+        }
+      ],
+      "links": [
+        {
+          "n": "Agents towards production",
+          "u": "https://github.com/NirDiamant/agents-towards-production"
+        }
+      ]
+    },
+    {
+      "t": "Proyecto 2 (parte 2): el asistente que actúa",
+      "min": 90,
+      "texto": "Convierte tu RAG en un agente útil. Además de responder sobre los documentos, que pueda: avisar por correo o Telegram cuando se agregue un documento nuevo relevante, crear una tarea o ticket cuando el usuario lo pida, y derivar a una persona cuando no sepa la respuesta.\n\nAplica todo lo del tema: herramientas con buenas descripciones, sub-flujos con validación, memoria con base de datos, máximo de pasos, aprobación humana para acciones externas y registro de ejecuciones.\n\nActualiza el README con el diagrama del agente, las herramientas, los límites de seguridad y la evaluación. Graba un video de 2 a 3 minutos mostrando una conversación completa, incluyendo un caso en que el agente dice que no sabe y deriva.",
+      "claves": [
+        "RAG + herramientas + memoria",
+        "Sub-flujos validados",
+        "Límites y aprobación",
+        "Video con caso de derivación"
+      ],
+      "practica": "Publica la versión final del Proyecto 2: flujos exportados, README en inglés con diagrama y límites, tabla de evaluación y video.",
+      "preguntas": [
+        {
+          "q": "¿Por qué mostrar en el video un caso en que no sabe?",
+          "a": "Porque demuestra que el sistema es confiable. Los clientes temen que la IA invente; ver que deriva genera confianza."
+        },
+        {
+          "q": "¿Y si un reclutador quiere probarlo?",
+          "a": "Ofrece un enlace al chat con límites de uso, o un video y el flujo exportado para que lo importen. No dejes abierto algo que gaste tu saldo sin control."
+        },
+        {
+          "q": "¿Cómo lo describo en mi CV?",
+          "a": "Una línea con resultado: «Built a RAG agent over 40 regulations with 92 % answer accuracy, source citations and human handoff (n8n, Supabase pgvector, Claude)»."
+        }
+      ],
+      "links": [
+        {
+          "n": "GenAI Agents",
+          "u": "https://github.com/NirDiamant/GenAI_Agents"
+        }
+      ]
+    }
+  ]
+}

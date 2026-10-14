@@ -30,6 +30,11 @@ jobs:
           node-version: 22
       - name: Descargar ofertas
         run: node scripts/fetch.mjs
+      - name: Revisar enlaces de las clases
+        run: node scripts/check-links.mjs
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generar la página
         run: node scripts/build.js
       - uses: actions/configure-pages@v5

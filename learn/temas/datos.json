@@ -1,0 +1,144 @@
+{
+  "id": "datos",
+  "semana": 3,
+  "titulo": "Sheets, Excel y dashboards",
+  "resumen": "Fórmulas, tablas dinámicas, limpieza de datos y tableros en Looker Studio o Power BI para mostrar resultados.",
+  "skill": "Análisis de datos / BI",
+  "intro": "Toda automatización termina en alguien que quiere ver números: cuántos leads entraron, cuánto tiempo se ahorró, qué producto vende más. Google Sheets, Excel y las herramientas de dashboards son el idioma común entre tú y el cliente.\n\nAnálisis de datos y BI aparece en cerca de una de cada seis ofertas, y Excel o Sheets en una de cada diez, sobre todo en puestos de operaciones, ventas y soporte, que suelen ser más accesibles. Además, un dashboard bien hecho es la mejor forma de mostrar el impacto de tus proyectos en el portafolio.\n\nEn estas 8 sesiones aprendes las fórmulas que se usan de verdad, tablas dinámicas, limpieza de datos, y a construir un dashboard en Looker Studio conectado a tus automatizaciones.",
+  "objetivos": [
+    "Usar las fórmulas clave: SI, BUSCARX, SUMAR.SI.CONJUNTO, QUERY, FILTER.",
+    "Limpiar datos desordenados de forma repetible.",
+    "Resumir con tablas dinámicas.",
+    "Elegir el gráfico correcto para cada pregunta.",
+    "Construir un dashboard en Looker Studio conectado a Sheets o Postgres.",
+    "Conocer Power BI y cuándo lo prefieren las empresas.",
+    "Medir y comunicar el impacto de una automatización."
+  ],
+  "herramientas": [
+    { "n": "Google Sheets", "u": "https://support.google.com/docs/answer/3093343", "para": "Hoja de cálculo en la nube, la más usada con n8n.", "costo": "Gratis" },
+    { "n": "Looker Studio", "u": "https://lookerstudio.google.com/", "para": "Dashboards gratuitos conectados a Sheets, Postgres y más.", "costo": "Gratis" },
+    { "n": "Power BI Desktop", "u": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi", "para": "Herramienta de BI de Microsoft, muy pedida en empresas.", "costo": "Gratis en escritorio · publicar requiere licencia" },
+    { "n": "Excel", "u": "https://exceljet.net/", "para": "Sigue siendo el estándar en finanzas y operaciones (Exceljet es su mejor referencia de fórmulas).", "costo": "De pago (Microsoft 365) · versión web gratis" },
+    { "n": "n8n (nodo Google Sheets)", "u": "https://n8n.io/", "para": "Llenar y leer hojas automáticamente.", "costo": "Gratis autoalojado" }
+  ],
+  "cursos": [
+    { "n": "Exceljet", "u": "https://exceljet.net/", "para": "Guías cortas y claras de cada fórmula de Excel, con ejemplos descargables.", "plataforma": "Exceljet", "idioma": "Inglés", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "Ben Collins: cursos y tutoriales de Google Sheets", "u": "https://www.benlcollins.com/", "para": "El referente de Google Sheets: QUERY, fórmulas avanzadas y dashboards.", "plataforma": "benlcollins.com", "idioma": "Inglés", "duracion": "A tu ritmo", "costo": "gratis" },
+    { "n": "Microsoft Learn: Power BI", "u": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi", "para": "Rutas oficiales de Power BI, desde cero hasta la certificación PL-300.", "plataforma": "Microsoft Learn", "idioma": "Inglés y español", "duracion": "Varias rutas", "costo": "gratis" },
+    { "n": "Excel Basics for Data Analysis (IBM)", "u": "https://www.coursera.org/learn/excel-basics-data-analysis-ibm", "para": "Excel aplicado a análisis de datos, con certificado.", "plataforma": "Coursera", "idioma": "Inglés", "duracion": "≈ 12 h", "costo": "pago" },
+    { "n": "Google Data Analytics Professional Certificate", "u": "https://www.coursera.org/professional-certificates/google-data-analytics", "para": "Certificado de Google muy reconocido: Sheets, SQL, Tableau y R.", "plataforma": "Coursera", "idioma": "Inglés y español", "duracion": "≈ 6 meses", "costo": "pago" },
+    { "n": "Curso de Excel Básico", "u": "https://platzi.com/cursos/excel-basico/", "para": "Excel desde cero en español.", "plataforma": "Platzi", "idioma": "Español", "duracion": "≈ 4 h", "costo": "pago" },
+    { "n": "Microsoft Excel: from Beginner to Advanced", "u": "https://www.udemy.com/course/microsoft-excel-2013-from-beginner-to-advanced-and-beyond/", "para": "Curso completo de Excel muy popular en Udemy.", "plataforma": "Udemy", "idioma": "Inglés", "duracion": "≈ 20 h", "costo": "pago" }
+  ],
+  "repos": [
+    { "u": "https://github.com/microsoft/Data-Science-For-Beginners", "para": "Curso de Microsoft sobre ciencia de datos, incluye visualización." },
+    { "u": "https://github.com/jakevdp/PythonDataScienceHandbook", "para": "Para pasar de hojas de cálculo a análisis con Python." },
+    { "u": "https://github.com/lerocha/chinook-database", "para": "Datos de ventas de ejemplo para tus dashboards." }
+  ],
+  "sesiones": [
+    {
+      "t": "Datos bien estructurados: la regla de oro",
+      "min": 40,
+      "texto": "La mitad de los problemas con hojas de cálculo vienen de cómo se guardan los datos. Regla de oro: una fila por registro, una columna por atributo, encabezados en la primera fila, sin celdas combinadas, sin totales en medio y sin colores como única forma de marcar información.\n\nEsto se llama datos ordenados (tidy). Así los pueden leer n8n, una tabla dinámica, Looker Studio o pandas sin trabajo extra.\n\nSepara siempre los datos crudos (una hoja que llena la automatización y nadie edita a mano) de los cálculos y reportes (otras hojas que leen de la primera). Es la diferencia entre una planilla que se rompe cada semana y una que funciona años.",
+      "claves": ["Una fila por registro", "Sin celdas combinadas ni totales intercalados", "Datos crudos separados de reportes", "Formato consistente de fechas y números"],
+      "practica": "Toma una hoja desordenada (o crea una con ventas mezcladas, totales y celdas combinadas) y reestructúrala en formato ordenado en una hoja nueva.",
+      "preguntas": [
+        { "q": "¿Por qué evitar celdas combinadas?", "a": "Porque rompen ordenamientos, filtros, fórmulas y la lectura automática desde n8n o Looker Studio." },
+        { "q": "¿Cómo guardo fechas?", "a": "Como fecha real (no texto), en un formato consistente. Idealmente año-mes-día para que ordenen bien." },
+        { "q": "¿Dónde pongo los totales?", "a": "En una hoja de reporte o una tabla dinámica, no dentro de los datos." }
+      ],
+      "links": [{ "n": "Ayuda de Google Sheets", "u": "https://support.google.com/docs/answer/3093343" }]
+    },
+    {
+      "t": "Fórmulas esenciales",
+      "min": 50,
+      "texto": "Con un puñado de fórmulas resuelves casi todo. SI (IF) decide: `=SI(C2>5000; \"grande\"; \"pequeño\")`. SUMAR.SI.CONJUNTO y CONTAR.SI.CONJUNTO suman o cuentan con varias condiciones. BUSCARX (XLOOKUP) trae datos de otra tabla y reemplaza a BUSCARV con menos errores.\n\nPara textos: CONCATENAR o el operador `&`, ESPACIOS (TRIM), MAYUSC/MINUSC, IZQUIERDA/DERECHA y DIVIDIR (SPLIT) en Sheets. Para fechas: HOY, MES, AÑO, DIAS.\n\nLos nombres cambian según el idioma de tu hoja y el separador de argumentos puede ser coma o punto y coma según la configuración regional. Aprende los nombres en inglés también: son los que verás en tutoriales y ofertas.",
+      "claves": ["SI / IF", "SUMAR.SI.CONJUNTO / SUMIFS", "BUSCARX / XLOOKUP", "Funciones de texto y fecha"],
+      "practica": "Con una tabla de ventas y otra de productos: trae el precio con BUSCARX, calcula el total, clasifica cada venta con SI y suma las ventas por vendedor y mes con SUMAR.SI.CONJUNTO.",
+      "preguntas": [
+        { "q": "¿Por qué BUSCARX en vez de BUSCARV?", "a": "Busca en cualquier dirección, no se rompe si insertas columnas y permite un valor si no encuentra nada." },
+        { "q": "Mi fórmula da error por las comas. ¿Qué pasa?", "a": "Tu configuración regional usa punto y coma como separador de argumentos. Cambia las comas por punto y coma." },
+        { "q": "¿Cómo evito que se vea #N/A?", "a": "Con SI.ERROR (IFERROR) o con el argumento de «no encontrado» de BUSCARX." }
+      ],
+      "links": [{ "n": "Exceljet: fórmulas", "u": "https://exceljet.net/" }]
+    },
+    {
+      "t": "QUERY, FILTER y fórmulas de matriz en Sheets",
+      "min": 45,
+      "texto": "Google Sheets tiene una joya: QUERY permite escribir consultas tipo SQL sobre un rango: `=QUERY(Datos!A:F; \"select B, sum(F) where C = 'Perú' group by B order by sum(F) desc\")`. Si hiciste el tema de SQL, ya sabes usarla.\n\nFILTER devuelve las filas que cumplen una condición, UNIQUE quita duplicados y SORT ordena. Son fórmulas de matriz: una sola fórmula llena muchas celdas y se actualiza sola cuando llegan datos nuevos desde n8n.\n\nIMPORTRANGE trae datos de otra hoja. Combinadas, estas fórmulas te permiten armar reportes que se actualizan solos sin tocar nada.",
+      "claves": ["QUERY con sintaxis tipo SQL", "FILTER, UNIQUE, SORT", "Fórmulas que llenan rangos", "IMPORTRANGE"],
+      "practica": "Sobre la hoja que llena tu Proyecto 1, crea una hoja de reporte con QUERY que muestre solicitudes por categoría y prioridad de la última semana, y que se actualice sola.",
+      "preguntas": [
+        { "q": "¿En QUERY las columnas se llaman por su encabezado?", "a": "No, por su letra (A, B, C) o como Col1, Col2 si el rango viene de otra fórmula." },
+        { "q": "¿Por qué mi FILTER da error de expansión?", "a": "Porque hay datos en las celdas donde la fórmula quiere escribir. Deja libre el espacio de abajo y a la derecha." },
+        { "q": "¿QUERY existe en Excel?", "a": "No con ese nombre. En Excel se usan FILTRAR, ORDENAR, tablas dinámicas o Power Query." }
+      ],
+      "links": [{ "n": "Ben Collins: Google Sheets", "u": "https://www.benlcollins.com/" }]
+    },
+    {
+      "t": "Limpiar datos de forma repetible",
+      "min": 45,
+      "texto": "Los datos reales llegan sucios: espacios extra, mayúsculas mezcladas, teléfonos en mil formatos, duplicados, fechas como texto. Limpiar a mano funciona una vez; tú necesitas que sea repetible.\n\nTres caminos según el caso. En la hoja: columnas auxiliares con fórmulas (ESPACIOS, MINUSC, SUSTITUIR) y quitar duplicados. En Excel: Power Query graba cada paso de limpieza y lo repite con un clic cuando llegan datos nuevos. En la automatización: limpiar en n8n (nodo Code o Set) antes de guardar, para que los datos lleguen limpios.\n\nLa mejor limpieza es la que no hace falta: valida en el origen con formularios que exijan formatos correctos.",
+      "claves": ["Problemas típicos: espacios, formatos, duplicados", "Columnas auxiliares", "Power Query", "Limpiar en n8n antes de guardar"],
+      "practica": "Crea una lista de 30 contactos con errores típicos y límpiala dos veces: con fórmulas en Sheets y con un nodo Code de n8n. Compara cuál mantendrías mejor.",
+      "preguntas": [
+        { "q": "¿Qué es Power Query?", "a": "Un editor de Excel y Power BI que registra pasos de transformación (quitar columnas, cambiar tipos, unir tablas) y los repite automáticamente." },
+        { "q": "¿Cómo detecto duplicados que no son idénticos?", "a": "Normaliza primero (minúsculas, sin espacios ni tildes) y compara la versión normalizada, por ejemplo el email." },
+        { "q": "¿Puedo usar un LLM para limpiar datos?", "a": "Sí, para casos difíciles como separar nombres o normalizar direcciones. Para reglas simples, una fórmula es más barata y predecible." }
+      ],
+      "links": [{ "n": "Microsoft Learn: Power BI y Power Query", "u": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi" }]
+    },
+    {
+      "t": "Tablas dinámicas",
+      "min": 40,
+      "texto": "Una tabla dinámica resume miles de filas en segundos: arrastras un campo a filas (por ejemplo, vendedor), otro a columnas (mes) y otro a valores (suma de ventas). Cambiar la pregunta es arrastrar otro campo.\n\nSirve para explorar antes de decidir qué mostrar en un dashboard: ¿qué región crece?, ¿qué categoría de solicitud tiene más prioridad alta?, ¿en qué día llegan más leads?\n\nAgrupa fechas por mes o semana, usa filtros para enfocarte y muestra porcentajes del total cuando importe la proporción. Es exactamente lo que hace `GROUP BY` en SQL, con el mouse.",
+      "claves": ["Filas, columnas, valores y filtros", "Agrupar fechas", "Porcentaje del total", "Explorar antes de graficar"],
+      "practica": "Con tus datos del Proyecto 1 (o la base Chinook exportada), crea tres tablas dinámicas que respondan tres preguntas de negocio distintas y escribe una conclusión de una línea para cada una.",
+      "preguntas": [
+        { "q": "Mi tabla dinámica no muestra los datos nuevos. ¿Por qué?", "a": "Porque el rango de origen es fijo. Usa columnas completas (A:F) o una tabla con formato que crezca sola, y actualiza." },
+        { "q": "¿Tabla dinámica o QUERY?", "a": "La tabla dinámica para explorar con el mouse; QUERY para reportes fijos que se actualizan solos." },
+        { "q": "¿Qué es una conclusión de negocio?", "a": "Una frase que lleva a una acción: «el 60 % de los reclamos son por demoras de envío; conviene revisar el proveedor logístico»." }
+      ],
+      "links": [{ "n": "Exceljet: tablas dinámicas", "u": "https://exceljet.net/" }]
+    },
+    {
+      "t": "Visualización: el gráfico correcto",
+      "min": 40,
+      "texto": "Cada gráfico responde una pregunta. Evolución en el tiempo: línea. Comparar categorías: barras (horizontales si los nombres son largos). Parte de un total: barras apiladas o, si son pocas partes, una dona. Relación entre dos variables: dispersión. Un número clave: una tarjeta grande con su variación.\n\nMenos es más: un color principal y otro para destacar, títulos que digan la conclusión («Los reclamos bajaron 30 % desde la automatización») en vez de solo el tema («Reclamos por mes»), ejes que empiezan en cero en barras y nada de 3D.\n\nPiensa en quién lo mira: un gerente quiere 3 números y una tendencia, no 15 gráficos.",
+      "claves": ["Línea, barras, dispersión, tarjeta", "Título con la conclusión", "Pocos colores con intención", "Diseñar para quien decide"],
+      "practica": "Toma tres de tus tablas dinámicas y conviértelas en el gráfico adecuado, con títulos que expresen la conclusión.",
+      "preguntas": [
+        { "q": "¿Cuándo usar un gráfico circular?", "a": "Casi nunca: solo para 2 o 3 partes de un total. Las barras se leen mejor." },
+        { "q": "¿Por qué el eje de las barras debe empezar en cero?", "a": "Porque el largo de la barra representa el valor; cortar el eje exagera las diferencias." },
+        { "q": "¿Cómo destaco lo importante?", "a": "Pinta en gris todo y en color solo la serie o el punto que quieres que vean." }
+      ],
+      "links": [{ "n": "Google Data Analytics (Coursera)", "u": "https://www.coursera.org/professional-certificates/google-data-analytics" }]
+    },
+    {
+      "t": "Dashboard en Looker Studio",
+      "min": 60,
+      "texto": "Looker Studio es gratuito, funciona en el navegador y se conecta directamente a Google Sheets, a Postgres (tu Supabase) y a muchas otras fuentes. Lo que construyas se actualiza cuando cambian los datos y se comparte con un enlace, como un documento de Google.\n\nEstructura de un buen dashboard: arriba, 3 o 4 tarjetas con los números clave y su variación; en el medio, la tendencia en el tiempo; abajo, el detalle por categoría y una tabla filtrable. Agrega un control de rango de fechas.\n\nLos campos calculados permiten crear métricas nuevas (tasa de conversión, tiempo ahorrado) sin tocar los datos.",
+      "claves": ["Fuentes: Sheets, Postgres", "Tarjetas, tendencia, detalle", "Control de fechas", "Campos calculados"],
+      "practica": "Conecta Looker Studio a la hoja o a la tabla de Supabase de tu Proyecto 1 y construye un dashboard con: total de solicitudes, porcentaje de prioridad alta, tendencia diaria y desglose por categoría.",
+      "preguntas": [
+        { "q": "¿Looker Studio es lo mismo que Looker?", "a": "No. Looker Studio (antes Data Studio) es gratuito; Looker es una plataforma empresarial de pago de Google Cloud." },
+        { "q": "¿Cómo comparto el dashboard sin dar acceso a los datos?", "a": "Compártelo como lector y configura las credenciales de la fuente como las del propietario." },
+        { "q": "¿Puedo poner el dashboard en mi portafolio?", "a": "Sí: inclúyelo como enlace público (con datos ficticios) o como captura en tu README." }
+      ],
+      "links": [{ "n": "Looker Studio", "u": "https://lookerstudio.google.com/" }]
+    },
+    {
+      "t": "Medir y comunicar el impacto",
+      "min": 45,
+      "texto": "Un cliente no compra «un flujo de n8n con IA»: compra horas ahorradas, menos errores o más ventas. Medir eso es lo que convierte un proyecto técnico en un caso de éxito.\n\nDefine la línea base antes de automatizar: cuánto tiempo toma hoy, cuántos errores hay, cuánto tarda la respuesta. Después mide lo mismo. Métricas típicas: horas ahorradas por mes (y su valor en dinero), tiempo de respuesta, porcentaje de casos resueltos sin intervención, errores evitados, costo de la solución.\n\nPresenta con la estructura problema → solución → resultado, con un número grande al inicio. Este mismo formato lo usarás en tu portafolio, en tu CV y en las entrevistas.",
+      "claves": ["Línea base antes y después", "Horas ahorradas y su valor", "Costo de la solución", "Problema → solución → resultado"],
+      "practica": "Escribe el caso de éxito de tu Proyecto 1 o 2 en una página: problema con números, solución en 3 líneas, resultados medidos y una captura del dashboard.",
+      "preguntas": [
+        { "q": "No tengo datos reales de antes. ¿Qué hago?", "a": "Haz una estimación razonable y explícita («si una persona tarda 2 minutos por solicitud y llegan 500 al mes...») y di que es una estimación." },
+        { "q": "¿Cómo calculo el valor en dinero?", "a": "Horas ahorradas por el costo por hora de quien hacía la tarea. Réstale el costo mensual de la solución." },
+        { "q": "¿Por qué el número grande al inicio?", "a": "Porque quien lee decide en segundos si sigue. «Ahorra 40 horas al mes» engancha más que la descripción técnica." }
+      ],
+      "links": [{ "n": "Looker Studio", "u": "https://lookerstudio.google.com/" }]
+    }
+  ]
+}
