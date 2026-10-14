@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.639
+CRM, Zapier y Make.
+
+00:00:02.589 --> 00:00:10.281
+Cómo funcionan las ventas en una empresa, HubSpot como CRM, y Zapier y Make además de n8n para atender a cualquier cliente.
+
+00:00:10.281 --> 00:00:14.488
+Este tema lo piden alrededor del 15 por ciento de las ofertas del panel.
+
+00:00:14.488 --> 00:00:18.946
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:19.900 --> 00:00:23.532
+Automatizar procesos de negocio exige entender el negocio.
+
+00:00:23.482 --> 00:00:36.124
+El CRM, Customer Relationship Management, es el sistema donde una empresa guarda sus contactos, oportunidades de venta y conversaciones; es el corazón de ventas, marketing y soporte, y de los procesos que más se automatizan.
+
+00:00:36.124 --> 00:00:43.718
+CRM aparece en cerca de una de cada siete ofertas, y es de las habilidades más pedidas en las ofertas accesibles, no senior,.
+
+00:00:43.718 --> 00:00:51.323
+Zapier y Make son los competidores de n8n: muchas empresas ya los usan y saber las tres herramientas te permite aceptar más proyectos.
+
+00:00:52.180 --> 00:01:12.042
+Al terminar este tema podrás: Explicar el embudo de ventas y el ciclo de vida de un cliente; Configurar HubSpot: contactos, empresas, negocios y etapas; Conectar un CRM por API y con n8n; Construir automatizaciones equivalentes en Zapier y Make; Elegir la herramienta correcta según el cliente; Entregar el Proyecto 3 con métricas de negocio.
+
+00:01:12.980 --> 00:01:17.213
+Sesión 1: Cómo vende una empresa: embudo y ciclo de vida.
+
+00:01:17.163 --> 00:01:28.537
+Un cliente pasa por etapas: desconocido, visitante, lead, dejó sus datos, lead calificado, tiene interés y presupuesto, oportunidad, hay una propuesta, cliente, cliente recurrente.
+
+00:01:28.537 --> 00:01:30.843
+Esto es el embudo de ventas.
+
+00:01:31.780 --> 00:01:36.231
+Sesión 2: HubSpot: contactos, empresas y negocios.
+
+00:01:36.181 --> 00:01:45.917
+HubSpot organiza la información en objetos: contactos, personas, empresas, negocios, oportunidades de venta con monto y etapa, y tickets, soporte,.
+
+00:01:45.917 --> 00:01:51.183
+Los objetos se asocian entre sí: un contacto trabaja en una empresa y participa en un negocio.
+
+00:01:52.040 --> 00:01:55.858
+Sesión 3: La API de HubSpot y n8n.
+
+00:01:55.808 --> 00:02:04.319
+Todo lo que haces en HubSpot con clics se puede hacer por API: crear contactos, actualizar propiedades, mover negocios de etapa, buscar duplicados.
+
+00:02:04.319 --> 00:02:10.919
+Para conectarte creas una app privada en HubSpot, eliges los permisos, scopes, mínimos y obtienes un token.
+
+00:02:11.840 --> 00:02:15.636
+Sesión 4: Zapier: automatizar en minutos.
+
+00:02:15.586 --> 00:02:25.747
+Zapier funciona con Zaps: un disparador, trigger: llegó un formulario, una fila nueva, un correo, y una o varias acciones, crear contacto, enviar mensaje,.
+
+00:02:25.747 --> 00:02:30.959
+Es la herramienta más fácil y con más integraciones; muchas empresas pequeñas ya la usan.
+
+00:02:31.840 --> 00:02:35.450
+Sesión 5: Make: escenarios visuales.
+
+00:02:35.400 --> 00:02:42.338
+Make, antes Integromat, arma escenarios con módulos conectados en un lienzo visual, muy parecido a n8n.
+
+00:02:42.338 --> 00:02:50.490
+Maneja bien datos complejos: iteradores para recorrer listas, agregadores para juntarlas, routers para bifurcar y manejadores de errores.
+
+00:02:51.440 --> 00:02:56.744
+Sesión 6: n8n, Zapier o Make: cómo elegir y cómo cotizar.
+
+00:02:56.694 --> 00:03:15.454
+Criterios para recomendar: volumen, muchas ejecuciones favorecen n8n autoalojado o Make, complejidad, código, agentes y lógica fina favorecen n8n, quién lo mantendrá, un equipo no técnico agradece Zapier, datos sensibles, n8n autoalojado mantiene todo en servidores propios, y qué usa ya el cliente.
+
+00:03:16.310 --> 00:03:19.800
+Sesión 7: IA aplicada a ventas y soporte.
+
+00:03:19.750 --> 00:03:22.307
+Aquí se juntan todos tus temas.
+
+00:03:22.307 --> 00:03:42.324
+Casos que las empresas pagan: calificar leads con un LLM según la información del formulario y de su web; enriquecer contactos, sector, tamaño de empresa,; redactar el primer correo de seguimiento personalizado para que el vendedor lo revise; resumir llamadas y actualizar el CRM; clasificar tickets de soporte y sugerir respuestas con RAG sobre la base de conocimiento.
+
+00:03:43.190 --> 00:03:47.357
+Sesión 8: Proyecto 3: de lead a reporte semanal.
+
+00:03:47.307 --> 00:03:50.115
+Junta el plan completo de la semana 3.
+
+00:03:50.115 --> 00:04:05.358
+Flujo: formulario o webhook recibe el lead, limpieza de datos, búsqueda de duplicados en HubSpot, IA calcula puntaje, razón y borrador de correo, upsert del contacto y negocio en HubSpot, aviso al vendedor con el borrador para aprobar, registro en Sheets o Supabase.
+
+00:04:05.358 --> 00:04:14.023
+Y un segundo flujo programado que cada lunes envía un reporte con leads nuevos, puntaje promedio, negocios por etapa y un enlace al dashboard de Looker Studio.
+
+00:04:14.870 --> 00:04:21.703
+Para estudiar este tema vas a usar: HubSpot CRM, Zapier, Make, n8n, API de HubSpot.
+
+00:04:21.653 --> 00:04:26.800
+Cursos gratis recomendados: HubSpot Academy y HubSpot CRM, curso,.
+
+00:04:26.800 --> 00:04:31.323
+Y si buscas un certificado, una buena opción de pago es Curso de HubSpot.
+
+00:04:32.270 --> 00:04:39.202
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:04:39.152 --> 00:04:42.211
+Empieza por la sesión uno y marca tu avance.
+
+00:04:42.211 --> 00:04:43.872
+Muchos éxitos!

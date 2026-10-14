@@ -1,0 +1,127 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.639
+Fundamentos de LLMs.
+
+00:00:02.589 --> 00:00:08.391
+Qué es un modelo de lenguaje, cómo funciona por dentro, cuáles existen y cuándo conviene cada uno.
+
+00:00:08.391 --> 00:00:12.674
+Este tema lo piden alrededor del 22 por ciento de las ofertas del panel.
+
+00:00:12.674 --> 00:00:17.132
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:17.980 --> 00:00:26.343
+Un LLM, Large Language Model, modelo de lenguaje grande, es un programa entrenado con enormes cantidades de texto para predecir la siguiente palabra.
+
+00:00:26.293 --> 00:00:35.821
+De esa habilidad, escalada a miles de millones de parámetros, salen capacidades como resumir, traducir, clasificar, escribir código y razonar paso a paso.
+
+00:00:35.821 --> 00:00:42.399
+Es lo que más crece en las ofertas: lo nombra cerca de una de cada cinco en general y la mitad de las que coinciden con tu perfil.
+
+00:00:42.399 --> 00:00:50.288
+Las empresas no buscan investigadores: buscan personas que sepan elegir el modelo correcto, entender sus límites y conectarlo a procesos reales.
+
+00:00:51.180 --> 00:01:14.167
+Al terminar este tema podrás: Explicar con tus palabras cómo un LLM genera texto; Calcular tokens y costo aproximado de una tarea; Entender ventana de contexto, temperatura y otros parámetros; Reconocer alucinaciones y saber cómo reducirlas; Comparar modelos comerciales y abiertos para un caso concreto; Correr un modelo abierto en tu PC con Ollama; Explicar riesgos de privacidad, sesgos y uso responsable.
+
+00:01:15.020 --> 00:01:18.608
+Sesión 1: Qué es un LLM y qué no es.
+
+00:01:18.558 --> 00:01:27.529
+Un LLM no busca en internet ni sabe cosas como una base de datos: aprendió patrones del lenguaje durante su entrenamiento y genera la continuación más probable de un texto.
+
+00:01:27.529 --> 00:01:31.572
+Por eso escribe con fluidez y también puede inventar con la misma seguridad.
+
+00:01:32.420 --> 00:01:35.932
+Sesión 2: Tokens, contexto y costo.
+
+00:01:35.882 --> 00:01:39.782
+Los modelos no leen palabras sino tokens: trozos de texto.
+
+00:01:39.782 --> 00:01:45.912
+En inglés un token es más o menos tres cuartos de palabra; en español suele haber algo más de tokens por palabra.
+
+00:01:45.912 --> 00:01:52.293
+Todo se mide en tokens: lo que envías, entrada, lo que responde, salida, y el límite de memoria.
+
+00:01:53.220 --> 00:01:57.485
+Sesión 3: Cómo funciona por dentro (sin matemáticas).
+
+00:01:57.435 --> 00:02:00.845
+Los LLM actuales usan la arquitectura transformer.
+
+00:02:00.845 --> 00:02:08.286
+La idea clave es la atención: para decidir el siguiente token, el modelo mira todas las palabras anteriores y pesa cuáles importan más.
+
+00:02:08.286 --> 00:02:13.454
+En el banco estaba lleno de peces, peces le indica que banco no es una entidad financiera.
+
+00:02:14.420 --> 00:02:18.893
+Sesión 4: Parámetros de generación: temperatura y compañía.
+
+00:02:18.843 --> 00:02:21.957
+Al llamar a un modelo puedes ajustar cómo genera.
+
+00:02:21.957 --> 00:02:32.600
+La temperatura controla el azar: cerca de 0 da respuestas consistentes, ideal para clasificar o extraer datos,; valores más altos dan variedad, útil para ideas o textos creativos,.
+
+00:02:33.460 --> 00:02:37.168
+Sesión 5: Alucinaciones y cómo reducirlas.
+
+00:02:37.118 --> 00:02:44.199
+Una alucinación es una respuesta que suena correcta pero es falsa: una ley que no existe, una cita inventada, un número equivocado.
+
+00:02:44.199 --> 00:02:48.154
+Ocurre porque el modelo genera texto probable, no verificado.
+
+00:02:49.060 --> 00:02:54.648
+Sesión 6: El mapa de modelos: GPT, Claude, Gemini y abiertos.
+
+00:02:54.598 --> 00:02:56.805
+Hay dos grandes familias.
+
+00:02:56.805 --> 00:03:04.497
+Los modelos comerciales se usan por API pagando por token: GPT de OpenAI, Claude de Anthropic y Gemini de Google son los principales.
+
+00:03:04.497 --> 00:03:14.145
+Los modelos abiertos publican sus pesos y puedes correrlos donde quieras: Llama, Meta, Mistral, Qwen, Alibaba, Gemma, Google, y DeepSeek, entre otros.
+
+00:03:15.060 --> 00:03:18.768
+Sesión 7: Modelos abiertos en tu PC con Ollama.
+
+00:03:18.718 --> 00:03:25.689
+Ollama descarga y ejecuta modelos abiertos con un comando: ollama run llama3.2 y ya puedes conversar en la terminal.
+
+00:03:26.540 --> 00:03:31.232
+Sesión 8: Uso responsable: privacidad, sesgos y seguridad.
+
+00:03:31.182 --> 00:03:36.022
+Antes de mandar datos a un LLM pregúntate: ¿puedo enviar esto a un tercero?
+
+00:03:36.022 --> 00:03:44.720
+Datos personales, información de clientes o documentos internos pueden estar protegidos por ley, en Perú, la Ley de Protección de Datos Personales, o por contrato.
+
+00:03:44.720 --> 00:03:50.664
+Revisa las condiciones del proveedor: los planes de API de empresa normalmente no usan tus datos para entrenar.
+
+00:03:51.540 --> 00:03:58.166
+Para estudiar este tema vas a usar: Claude, ChatGPT, Google AI Studio, Ollama, OpenRouter.
+
+00:03:58.116 --> 00:04:04.453
+Cursos gratis recomendados: Hugging Face LLM Course y Intro to Large Language Models, Andrej Karpathy,.
+
+00:04:04.453 --> 00:04:10.047
+Y si buscas un certificado, una buena opción de pago es Generative AI for Everyone, Andrew Ng,.
+
+00:04:10.940 --> 00:04:17.872
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:04:17.822 --> 00:04:20.881
+Empieza por la sesión uno y marca tu avance.
+
+00:04:20.881 --> 00:04:22.542
+Muchos éxitos!

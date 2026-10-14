@@ -1,0 +1,103 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.541
+SQL y bases de datos.
+
+00:00:02.491 --> 00:00:06.960
+Consultar, unir y resumir datos con SQL en Postgres y Supabase.
+
+00:00:06.960 --> 00:00:10.631
+La base de reportes, CRMs y RAG.
+
+00:00:10.631 --> 00:00:14.947
+Este tema lo piden alrededor del 23 por ciento de las ofertas del panel.
+
+00:00:14.947 --> 00:00:19.405
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:20.300 --> 00:00:31.001
+SQL es el lenguaje para hablar con bases de datos relacionales: tablas con filas y columnas, como una hoja de cálculo pero con reglas, millones de filas y muchas personas usándola a la vez.
+
+00:00:30.951 --> 00:00:35.398
+Casi toda empresa guarda sus clientes, ventas y pedidos en una base así.
+
+00:00:35.398 --> 00:00:45.505
+Aparece en cerca de una de cada cuatro ofertas del panel y es de las habilidades más transversales: la piden en ingeniería, en datos, en IA y también en puestos de operaciones y marketing.
+
+00:00:45.505 --> 00:00:52.531
+Además, en este plan la necesitas para RAG: Supabase con pgvector guarda tus documentos y sus embeddings en Postgres.
+
+00:00:53.500 --> 00:01:17.132
+Al terminar este tema podrás: Escribir consultas con SELECT, WHERE, ORDER BY y LIMIT; Resumir datos con GROUP BY y funciones de agregación; Unir tablas con JOIN; Crear tablas, insertar, actualizar y borrar datos con cuidado; Diseñar un modelo de datos simple con claves primarias y foráneas; Usar Supabase y conectarlo con n8n; Escribir consultas más avanzadas con subconsultas, CTE y funciones de ventana.
+
+00:01:17.980 --> 00:01:22.027
+Sesión 1: Bases de datos relacionales y tu primer SELECT.
+
+00:01:21.977 --> 00:01:30.270
+Una base de datos relacional guarda datos en tablas: cada fila es un registro, un cliente, y cada columna un atributo, nombre, email,.
+
+00:01:30.270 --> 00:01:34.499
+Las tablas se relacionan entre sí: un pedido pertenece a un cliente.
+
+00:01:35.380 --> 00:01:39.143
+Sesión 2: Filtros avanzados y valores nulos.
+
+00:01:39.093 --> 00:01:42.110
+WHERE combina condiciones con AND, OR y NOT.
+
+00:01:42.980 --> 00:01:47.355
+Sesión 3: Agregar y agrupar: COUNT, SUM y GROUP BY.
+
+00:01:48.180 --> 00:01:51.386
+Sesión 4: JOIN: unir tablas.
+
+00:01:51.336 --> 00:01:58.503
+Los datos se reparten en tablas para no repetirlos: los clientes en una, los pedidos en otra con una columna cliente_id.
+
+00:01:59.380 --> 00:02:04.738
+Sesión 5: Crear y modificar: CREATE, INSERT, UPDATE, DELETE.
+
+00:02:05.580 --> 00:02:09.026
+Sesión 6: Diseñar un modelo de datos simple.
+
+00:02:08.976 --> 00:02:12.593
+Diseñar es decidir qué tablas existen y cómo se relacionan.
+
+00:02:12.593 --> 00:02:20.547
+Regla práctica: cada cosa del negocio es una tabla, clientes, productos, pedidos, y cada dato se guarda en un solo lugar.
+
+00:02:20.547 --> 00:02:24.983
+Si te ves copiando el nombre del cliente en cada pedido, falta una tabla.
+
+00:02:25.840 --> 00:02:30.433
+Sesión 7: Supabase y n8n: tu base en producción.
+
+00:02:30.383 --> 00:02:37.671
+Supabase te da Postgres en la nube con un editor de tablas, un editor SQL, una API REST automática y autenticación.
+
+00:02:37.671 --> 00:02:40.949
+El plan gratuito alcanza para proyectos de portafolio.
+
+00:02:41.840 --> 00:02:47.482
+Sesión 8: SQL avanzado: subconsultas, CTE y funciones de ventana.
+
+00:02:47.432 --> 00:02:50.470
+Divide problemas complejos en pasos con nombre.
+
+00:02:51.320 --> 00:02:59.268
+Para estudiar este tema vas a usar: Supabase, SQLBolt, DBeaver, n8n, nodo Postgres, Chinook database.
+
+00:02:59.218 --> 00:03:05.053
+Cursos gratis recomendados: SQLBolt y Kaggle Learn: Intro to SQL y Advanced SQL.
+
+00:03:05.053 --> 00:03:10.898
+Y si buscas un certificado, una buena opción de pago es The Complete SQL Bootcamp, Jose Portilla,.
+
+00:03:11.750 --> 00:03:18.682
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:03:18.632 --> 00:03:21.691
+Empieza por la sesión uno y marca tu avance.
+
+00:03:21.691 --> 00:03:23.352
+Muchos éxitos!

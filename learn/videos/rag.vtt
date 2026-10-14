@@ -1,0 +1,127 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.661
+RAG y bases vectoriales.
+
+00:00:02.611 --> 00:00:10.052
+Hacer que un LLM responda con tus documentos: embeddings, fragmentos, búsqueda semántica, citas y evaluación.
+
+00:00:10.052 --> 00:00:14.160
+Este tema lo piden alrededor del 8 por ciento de las ofertas del panel.
+
+00:00:14.160 --> 00:00:18.618
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:19.500 --> 00:00:28.704
+RAG, Retrieval-Augmented Generation, generación aumentada por recuperación, resuelve el mayor límite de los LLM: no conocen los documentos de tu empresa.
+
+00:00:28.654 --> 00:00:36.019
+En lugar de reentrenar el modelo, buscas los fragmentos relevantes de tus documentos y se los das en el prompt para que responda con ellos y cite la fuente.
+
+00:00:36.019 --> 00:00:44.421
+Es la técnica más usada en proyectos reales de IA: asistentes de soporte, buscadores de normas, chat con manuales, análisis de contratos.
+
+00:00:44.421 --> 00:00:54.080
+En el panel aparece en menos ofertas que otras habilidades, pero en casi una de cada cinco de las que coinciden con tu perfil, y es lo que más te diferencia de quien solo usa ChatGPT.
+
+00:00:54.930 --> 00:01:19.753
+Al terminar este tema podrás: Explicar cuándo usar RAG, ajuste fino o simplemente un prompt largo; Entender embeddings y similitud semántica; Preparar documentos: extraer texto, limpiar y dividir en fragmentos; Guardar y buscar vectores en Supabase pgvector u otra base vectorial; Construir un RAG completo en n8n que cite sus fuentes; Mejorar la búsqueda con búsqueda híbrida, filtros y reranking; Evaluar un RAG con preguntas de prueba.
+
+00:01:20.590 --> 00:01:23.894
+Sesión 1: Qué es RAG y cuándo usarlo.
+
+00:01:23.844 --> 00:01:26.226
+Un RAG tiene dos fases.
+
+00:01:26.226 --> 00:01:33.481
+Indexación, una vez,: tomas los documentos, los divides en fragmentos, conviertes cada uno en un vector y los guardas.
+
+00:01:33.481 --> 00:01:43.009
+Consulta, cada pregunta,: conviertes la pregunta en vector, buscas los fragmentos más parecidos y se los das al LLM con la instrucción responde solo con esto y cita la fuente.
+
+00:01:43.870 --> 00:01:47.272
+Sesión 2: Embeddings y similitud semántica.
+
+00:01:47.222 --> 00:01:52.664
+Un embedding convierte un texto en una lista de cientos o miles de números que capturan su significado.
+
+00:01:52.664 --> 00:02:01.667
+Textos con significado parecido quedan cerca: ¿cómo pido vacaciones? y procedimiento para solicitar días libres tienen vectores cercanos aunque no compartan palabras.
+
+00:02:02.520 --> 00:02:06.567
+Sesión 3: Preparar documentos y dividir en fragmentos.
+
+00:02:06.517 --> 00:02:09.172
+La calidad del RAG empieza aquí.
+
+00:02:09.172 --> 00:02:17.935
+Primero extrae el texto limpio: los PDF escaneados necesitan OCR, las tablas suelen desordenarse y los encabezados y pies de página repetidos ensucian.
+
+00:02:17.935 --> 00:02:21.213
+Revisa a mano una muestra del texto extraído.
+
+00:02:22.120 --> 00:02:26.440
+Sesión 4: Bases vectoriales: pgvector y alternativas.
+
+00:02:26.390 --> 00:02:32.072
+Una base vectorial guarda vectores y encuentra los más cercanos rápidamente, incluso entre millones.
+
+00:02:32.072 --> 00:02:39.863
+Hay especializadas, Pinecone, Qdrant, Weaviate, Chroma, y extensiones de bases tradicionales como pgvector para Postgres.
+
+00:02:40.720 --> 00:02:44.450
+Sesión 5: RAG completo en n8n.
+
+00:02:44.400 --> 00:02:47.536
+En n8n un RAG son dos flujos.
+
+00:02:47.536 --> 00:02:57.818
+El de indexación: leer archivos, Google Drive, carpeta o formulario, Default Data Loader con un Text Splitter, nodo de Embeddings, Supabase Vector Store en modo insertar.
+
+00:02:57.818 --> 00:03:04.986
+El de consulta: Chat Trigger, AI Agent o Question and Answer Chain con el Vector Store como herramienta de búsqueda, respuesta.
+
+00:03:05.920 --> 00:03:10.896
+Sesión 6: Mejorar la recuperación: híbrida, filtros y reranking.
+
+00:03:10.846 --> 00:03:15.522
+Cuando el RAG básico no alcanza, estas técnicas son las que más mejoran.
+
+00:03:16.390 --> 00:03:19.257
+Sesión 7: Evaluar un RAG.
+
+00:03:19.207 --> 00:03:22.004
+Un RAG se evalúa en dos partes.
+
+00:03:22.004 --> 00:03:26.703
+Recuperación: ¿entre los fragmentos recuperados estaba el que tiene la respuesta?
+
+00:03:26.703 --> 00:03:33.881
+Generación: ¿la respuesta es correcta, usa solo el contexto, fidelidad, y responde lo que se preguntó, relevancia,?
+
+00:03:34.790 --> 00:03:39.908
+Sesión 8: Proyecto 2 (parte 1): asistente sobre documentos reales.
+
+00:03:39.858 --> 00:03:48.621
+Elige un dominio con documentos públicos y útiles: normas legales, reglamentos de una institución, manuales de un software o políticas de una empresa ficticia.
+
+00:03:48.621 --> 00:03:56.073
+Un asistente sobre normas legales peruanas, por ejemplo, conecta con proyectos de alertas normativas que ya existen en empresas y bancos.
+
+00:03:56.990 --> 00:04:05.779
+Para estudiar este tema vas a usar: n8n, nodos Vector Store y AI, Supabase + pgvector, Qdrant, Chroma, Embeddings de OpenAI.
+
+00:04:05.729 --> 00:04:12.307
+Cursos gratis recomendados: LangChain: Chat with Your Data y Vector Databases: from Embeddings to Applications.
+
+00:04:12.307 --> 00:04:18.513
+Y si buscas un certificado, una buena opción de pago es Retrieval Augmented Generation, DeepLearning.AI,.
+
+00:04:19.390 --> 00:04:26.322
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:04:26.272 --> 00:04:29.331
+Empieza por la sesión uno y marca tu avance.
+
+00:04:29.331 --> 00:04:30.992
+Muchos éxitos!

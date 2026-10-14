@@ -243,6 +243,8 @@ console.log("wrote", dest, Math.round(fs.statSync(dest).size / 1024) + "KB");
     (t.sesiones || []).forEach((s, i) => { for (const k of ["t", "min", "texto", "claves", "practica", "preguntas"]) if (s[k] == null) bad.push(`sesión ${i + 1}: ${k}`); });
     if (!DEMAND.some((d) => d[0] === t.skill)) bad.push("skill desconocida: " + t.skill);
     if (bad.length) { console.error(`learn/temas/${f}: falta ${bad.join(", ")}`); process.exit(1); }
+    // Video resumen del tema (scripts/make-videos.py), si existe
+    if (fs.existsSync(path.join(LEARN, "videos", t.id + ".mp4"))) t.video = true;
     for (const r of t.repos) { const k = r.u.replace("https://github.com/", "").toLowerCase(); if (stars[k]) r.stars = stars[k]; }
     return t;
   }).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
@@ -251,6 +253,11 @@ console.log("wrote", dest, Math.round(fs.statSync(dest).size / 1024) + "KB");
   const page = fs.readFileSync(path.join(LEARN, "template.html"), "utf8")
     .replace("/*__BASE_CSS__*/", () => css)
     .replace("/*__LEARN__*/null", () => JSON.stringify({ temas, pct }).replace(/</g, "\u003c"));
+  const vids = path.join(LEARN, "videos");
+  if (fs.existsSync(vids)) {
+    fs.mkdirSync(path.join(__dirname, "..", "public", "videos"), { recursive: true });
+    for (const f of fs.readdirSync(vids)) fs.copyFileSync(path.join(vids, f), path.join(__dirname, "..", "public", "videos", f));
+  }
   const out2 = path.join(__dirname, "..", "public", "clases.html");
   fs.writeFileSync(out2, head + page);
   console.log("wrote", out2, temas.length, "temas", Math.round(fs.statSync(out2).size / 1024) + "KB");

@@ -1,0 +1,130 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.727
+Sheets, Excel y dashboards.
+
+00:00:02.677 --> 00:00:09.342
+Fórmulas, tablas dinámicas, limpieza de datos y tableros en Looker Studio o Power BI para mostrar resultados.
+
+00:00:09.342 --> 00:00:13.669
+Este tema lo piden alrededor del 18 por ciento de las ofertas del panel.
+
+00:00:13.669 --> 00:00:18.127
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:18.990 --> 00:00:26.282
+Toda automatización termina en alguien que quiere ver números: cuántos leads entraron, cuánto tiempo se ahorró, qué producto vende más.
+
+00:00:26.232 --> 00:00:31.521
+Google Sheets, Excel y las herramientas de dashboards son el idioma común entre tú y el cliente.
+
+00:00:31.521 --> 00:00:42.414
+Análisis de datos y BI aparece en cerca de una de cada seis ofertas, y Excel o Sheets en una de cada diez, sobre todo en puestos de operaciones, ventas y soporte, que suelen ser más accesibles.
+
+00:00:42.414 --> 00:00:48.173
+Además, un dashboard bien hecho es la mejor forma de mostrar el impacto de tus proyectos en el portafolio.
+
+00:00:49.040 --> 00:01:11.809
+Al terminar este tema podrás: Usar las fórmulas clave: SI, BUSCARX, SUMAR.SI.CONJUNTO, QUERY, FILTER; Limpiar datos desordenados de forma repetible; Resumir con tablas dinámicas; Elegir el gráfico correcto para cada pregunta; Construir un dashboard en Looker Studio conectado a Sheets o Postgres; Conocer Power BI y cuándo lo prefieren las empresas; Medir y comunicar el impacto de una automatización.
+
+00:01:12.660 --> 00:01:16.587
+Sesión 1: Datos bien estructurados: la regla de oro.
+
+00:01:16.537 --> 00:01:20.842
+La mitad de los problemas con hojas de cálculo vienen de cómo se guardan los datos.
+
+00:01:20.842 --> 00:01:31.998
+Regla de oro: una fila por registro, una columna por atributo, encabezados en la primera fila, sin celdas combinadas, sin totales en medio y sin colores como única forma de marcar información.
+
+00:01:32.860 --> 00:01:35.880
+Sesión 2: Fórmulas esenciales.
+
+00:01:35.830 --> 00:01:38.922
+Con un puñado de fórmulas resuelves casi todo.
+
+00:01:38.922 --> 00:01:44.112
+SUMAR.SI.CONJUNTO y CONTAR.SI.CONJUNTO suman o cuentan con varias condiciones.
+
+00:01:44.112 --> 00:01:49.554
+BUSCARX, XLOOKUP, trae datos de otra tabla y reemplaza a BUSCARV con menos errores.
+
+00:01:50.460 --> 00:01:54.725
+Sesión 3: QUERY, FILTER y fórmulas de matriz en Sheets.
+
+00:01:54.675 --> 00:01:58.194
+Si hiciste el tema de SQL, ya sabes usarla.
+
+00:01:59.060 --> 00:02:02.495
+Sesión 4: Limpiar datos de forma repetible.
+
+00:02:02.445 --> 00:02:10.738
+Los datos reales llegan sucios: espacios extra, mayúsculas mezcladas, teléfonos en mil formatos, duplicados, fechas como texto.
+
+00:02:10.738 --> 00:02:14.923
+Limpiar a mano funciona una vez; tú necesitas que sea repetible.
+
+00:02:15.860 --> 00:02:18.650
+Sesión 5: Tablas dinámicas.
+
+00:02:18.600 --> 00:02:28.784
+Una tabla dinámica resume miles de filas en segundos: arrastras un campo a filas, por ejemplo, vendedor, otro a columnas, mes, y otro a valores, suma de ventas,.
+
+00:02:28.784 --> 00:02:31.614
+Cambiar la pregunta es arrastrar otro campo.
+
+00:02:32.470 --> 00:02:36.298
+Sesión 6: Visualización: el gráfico correcto.
+
+00:02:36.248 --> 00:02:38.772
+Cada gráfico responde una pregunta.
+
+00:02:38.772 --> 00:02:41.362
+Evolución en el tiempo: línea.
+
+00:02:41.362 --> 00:02:46.126
+Comparar categorías: barras, horizontales si los nombres son largos,.
+
+00:02:46.126 --> 00:02:50.988
+Parte de un total: barras apiladas o, si son pocas partes, una dona.
+
+00:02:50.988 --> 00:02:54.113
+Relación entre dos variables: dispersión.
+
+00:02:54.113 --> 00:02:57.621
+Un número clave: una tarjeta grande con su variación.
+
+00:02:58.470 --> 00:03:01.545
+Sesión 7: Dashboard en Looker Studio.
+
+00:03:01.495 --> 00:03:09.941
+Looker Studio es gratuito, funciona en el navegador y se conecta directamente a Google Sheets, a Postgres, tu Supabase, y a muchas otras fuentes.
+
+00:03:09.941 --> 00:03:15.644
+Lo que construyas se actualiza cuando cambian los datos y se comparte con un enlace, como un documento de Google.
+
+00:03:16.500 --> 00:03:19.564
+Sesión 8: Medir y comunicar el impacto.
+
+00:03:19.514 --> 00:03:26.004
+Un cliente no compra un flujo de n8n con IA: compra horas ahorradas, menos errores o más ventas.
+
+00:03:26.004 --> 00:03:30.101
+Medir eso es lo que convierte un proyecto técnico en un caso de éxito.
+
+00:03:30.950 --> 00:03:38.876
+Para estudiar este tema vas a usar: Google Sheets, Looker Studio, Power BI Desktop, Excel, n8n, nodo Google Sheets,.
+
+00:03:38.826 --> 00:03:44.650
+Cursos gratis recomendados: Exceljet y Ben Collins: cursos y tutoriales de Google Sheets.
+
+00:03:44.650 --> 00:03:50.561
+Y si buscas un certificado, una buena opción de pago es Excel Basics for Data Analysis, IBM,.
+
+00:03:51.430 --> 00:03:58.362
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:03:58.312 --> 00:04:01.371
+Empieza por la sesión uno y marca tu avance.
+
+00:04:01.371 --> 00:04:03.032
+Muchos éxitos!

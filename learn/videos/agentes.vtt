@@ -1,0 +1,130 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.442
+Agentes de IA y MCP.
+
+00:00:02.392 --> 00:00:10.784
+LLMs que deciden pasos y usan herramientas: patrones, memoria, MCP, límites de seguridad y agentes en n8n.
+
+00:00:10.784 --> 00:00:14.991
+Este tema lo piden alrededor del 15 por ciento de las ofertas del panel.
+
+00:00:14.991 --> 00:00:19.449
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:20.310 --> 00:00:33.420
+Un agente de IA es un LLM que trabaja en ciclo: recibe un objetivo, decide qué hacer, usa una herramienta, buscar, consultar una base, enviar un correo, mira el resultado y decide el siguiente paso, hasta terminar.
+
+00:00:33.420 --> 00:00:37.135
+Es la evolución natural del tool use que viste en la semana 1.
+
+00:00:37.135 --> 00:00:43.090
+En el panel aparece en más de un tercio de las ofertas que coinciden con tu perfil, y es la palabra de moda en IA.
+
+00:00:43.090 --> 00:00:51.875
+Pero las empresas que saben buscan algo concreto: alguien que distinga cuándo hace falta un agente y cuándo basta un flujo fijo, y que sepa ponerle límites para que sea confiable.
+
+00:00:52.710 --> 00:01:19.904
+Al terminar este tema podrás: Distinguir flujos fijos, flujos con LLM y agentes, y elegir el adecuado; Aplicar patrones: encadenar, enrutar, paralelizar, orquestar y evaluar; Construir agentes en n8n con herramientas y memoria; Entender y usar MCP para conectar herramientas; Poner límites: pasos máximos, permisos, aprobación humana y costos; Conocer frameworks de código, LangGraph, CrewAI, para cuando n8n no alcance.
+
+00:01:20.770 --> 00:01:24.271
+Sesión 1: Qué es un agente y cuándo NO usarlo.
+
+00:01:24.221 --> 00:01:25.816
+Hay un espectro.
+
+00:01:25.816 --> 00:01:30.263
+Un flujo fijo hace siempre los mismos pasos, n8n clásico,.
+
+00:01:30.263 --> 00:01:35.322
+Un flujo con LLM usa el modelo en pasos definidos por ti, tu Proyecto 1,.
+
+00:01:35.322 --> 00:01:38.611
+Un agente decide él mismo qué pasos dar y cuántos.
+
+00:01:39.570 --> 00:01:43.355
+Sesión 2: Patrones de flujo con LLMs.
+
+00:01:43.305 --> 00:01:48.265
+Antes de un agente completo existen patrones intermedios que resuelven la mayoría de casos.
+
+00:01:49.170 --> 00:01:54.058
+Sesión 3: El ciclo del agente: razonar, actuar, observar.
+
+00:01:54.008 --> 00:02:02.935
+Todo agente repite el mismo ciclo: piensa qué hacer, elige una herramienta y sus parámetros, recibe el resultado, y vuelve a pensar con esa nueva información.
+
+00:02:02.935 --> 00:02:06.913
+Termina cuando decide que tiene la respuesta o cuando llega a un límite.
+
+00:02:07.770 --> 00:02:12.626
+Sesión 4: Agentes en n8n: herramientas y sub-flujos.
+
+00:02:12.576 --> 00:02:18.618
+El nodo AI Agent de n8n se conecta a un modelo de chat, a una memoria y a herramientas.
+
+00:02:18.618 --> 00:02:30.255
+Las herramientas pueden ser nodos, Google Sheets, Gmail, Calendar, HTTP Request, tu Vector Store de RAG o un flujo completo de n8n usado como herramienta, Call n8n Workflow Tool,.
+
+00:02:31.170 --> 00:02:34.059
+Sesión 5: Memoria y contexto.
+
+00:02:34.009 --> 00:02:37.899
+Un agente no recuerda nada entre llamadas a menos que le des memoria.
+
+00:02:37.899 --> 00:02:48.629
+La memoria de corto plazo es el historial de la conversación: en n8n, Simple Memory guarda los últimos mensajes; para producción, una memoria en Postgres o Redis que sobreviva a reinicios.
+
+00:02:48.629 --> 00:02:52.092
+Se identifica cada conversación con un id de sesión.
+
+00:02:52.970 --> 00:02:57.443
+Sesión 6: MCP: el estándar para conectar herramientas.
+
+00:02:57.393 --> 00:03:06.801
+Model Context Protocol, MCP, es un estándar abierto, creado por Anthropic y adoptado por gran parte de la industria, para conectar modelos con herramientas y datos.
+
+00:03:06.801 --> 00:03:18.908
+Un servidor MCP expone herramientas, y también recursos y prompts,; cualquier cliente compatible, Claude Desktop, editores de código, n8n, otros agentes, puede usarlas sin integraciones a medida.
+
+00:03:19.770 --> 00:03:25.117
+Sesión 7: Agentes confiables: límites, aprobación humana y costos.
+
+00:03:25.067 --> 00:03:27.908
+Un agente en producción necesita barandas.
+
+00:03:27.908 --> 00:03:33.339
+Límites: pasos máximos, tiempo máximo, presupuesto de tokens por tarea.
+
+00:03:33.339 --> 00:03:38.398
+Permisos mínimos: si solo debe leer el calendario, no le des permiso de borrar.
+
+00:03:38.398 --> 00:03:49.412
+Aprobación humana: para acciones irreversibles o caras, enviar a clientes, pagar, borrar, el agente prepara y una persona aprueba; n8n permite pausar un flujo esperando una respuesta.
+
+00:03:50.370 --> 00:03:54.821
+Sesión 8: Proyecto 2 (parte 2): el asistente que actúa.
+
+00:03:54.771 --> 00:03:57.732
+Convierte tu RAG en un agente útil.
+
+00:03:57.732 --> 00:04:09.752
+Además de responder sobre los documentos, que pueda: avisar por correo o Telegram cuando se agregue un documento nuevo relevante, crear una tarea o ticket cuando el usuario lo pida, y derivar a una persona cuando no sepa la respuesta.
+
+00:04:10.610 --> 00:04:20.219
+Para estudiar este tema vas a usar: n8n, AI Agent, Model Context Protocol, Claude Desktop / clientes MCP, LangGraph, CrewAI.
+
+00:04:20.169 --> 00:04:27.107
+Cursos gratis recomendados: Hugging Face AI Agents Course y MCP: Build Rich-Context AI Apps with Anthropic.
+
+00:04:27.107 --> 00:04:32.144
+Y si buscas un certificado, una buena opción de pago es IBM RAG and Agentic AI.
+
+00:04:33.010 --> 00:04:39.942
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:04:39.892 --> 00:04:42.951
+Empieza por la sesión uno y marca tu avance.
+
+00:04:42.951 --> 00:04:44.612
+Muchos éxitos!

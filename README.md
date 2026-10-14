@@ -48,3 +48,15 @@ node scripts/check-links.mjs
 ```
 
 Los sitios que bloquean robots (Udemy, Upwork, Canva…) salen como aviso y hay que revisarlos a mano. En GitHub Actions este paso corre antes del build y no bloquea la publicación.
+
+## Videos de las clases
+
+Cada tema tiene un video resumen de 3 a 5 minutos (diapositivas, voz neural en español de Perú y subtítulos). Se generan en tu computadora, no en GitHub Actions:
+
+```bash
+pip install edge-tts imageio-ffmpeg pillow
+python scripts/make-videos.py          # todos los temas
+python scripts/make-videos.py rag sql  # solo algunos
+```
+
+El script lee `learn/temas/*.json` y escribe `learn/videos/<tema>.mp4`, `.vtt` (subtítulos) y `.jpg` (portada). `build.js` los copia a `public/videos/` y los muestra en la página de cada tema. Usa las fuentes Segoe UI de Windows. Si cambias el texto de un tema, vuelve a generar su video y súbelo.

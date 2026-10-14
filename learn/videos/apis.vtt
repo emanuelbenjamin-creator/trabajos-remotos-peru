@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.814
+APIs REST, JSON y webhooks.
+
+00:00:02.764 --> 00:00:05.397
+Cómo se hablan las aplicaciones entre sí.
+
+00:00:05.397 --> 00:00:11.341
+Es la base de todo flujo de n8n, de cualquier integración y de las llamadas a un LLM.
+
+00:00:11.341 --> 00:00:15.723
+Este tema lo piden alrededor del 31 por ciento de las ofertas del panel.
+
+00:00:15.723 --> 00:00:20.181
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:21.100 --> 00:00:25.529
+Una API es la puerta por la que un programa le pide datos o acciones a otro.
+
+00:00:25.479 --> 00:00:36.559
+Cuando n8n lee una fila de Google Sheets, cuando un CRM recibe un lead o cuando le mandas un prompt a GPT o a Claude, por debajo hay una petición HTTP a una API REST que responde en JSON.
+
+00:00:36.559 --> 00:00:45.300
+Es la habilidad técnica más pedida en las ofertas de este panel después del inglés y las habilidades blandas, y es la que más aparece en las ofertas que coinciden con tu perfil.
+
+00:00:45.300 --> 00:00:51.179
+Quien entiende APIs puede conectar cualquier herramienta con cualquier otra, aunque no exista un nodo hecho para eso.
+
+00:00:52.100 --> 00:01:21.141
+Al terminar este tema podrás: Explicar qué pasa en una petición HTTP: método, URL, headers, body y código de estado; Leer y escribir JSON sin errores y transformarlo en n8n; Autenticarte con API key, Bearer token y OAuth2; Consumir cualquier API desde Hoppscotch y desde el nodo HTTP Request de n8n; Recibir eventos con webhooks y responder correctamente; Manejar paginación, límites de uso y errores sin que el flujo se caiga; Levantar n8n con Docker y publicarlo en un servidor.
+
+00:01:21.980 --> 00:01:26.541
+Sesión 1: Qué es una API y cómo viaja una petición HTTP.
+
+00:01:26.491 --> 00:01:30.959
+Imagina un restaurante: tú no entras a la cocina, le pides al mesero.
+
+00:01:30.959 --> 00:01:33.090
+La API es ese mesero.
+
+00:01:33.090 --> 00:01:39.253
+Tu programa, el cliente, envía una petición a una dirección, el endpoint, y el servidor responde.
+
+00:01:40.180 --> 00:01:44.478
+Sesión 2: JSON a fondo: objetos, arrays y rutas.
+
+00:01:44.428 --> 00:01:50.798
+Con eso se describe cualquier cosa: un cliente, un pedido con productos, la respuesta de un LLM.
+
+00:01:51.660 --> 00:01:54.920
+Sesión 3: Métodos y códigos de estado.
+
+00:01:54.870 --> 00:02:00.401
+GET lee, POST crea, PUT reemplaza, PATCH modifica una parte y DELETE borra.
+
+00:02:00.401 --> 00:02:04.955
+GET no debe cambiar nada en el servidor; por eso puedes repetirlo sin miedo.
+
+00:02:05.860 --> 00:02:10.956
+Sesión 4: Autenticación: API keys, tokens y OAuth2.
+
+00:02:10.906 --> 00:02:13.900
+Casi toda API real pide identificarte.
+
+00:02:14.860 --> 00:02:19.257
+Sesión 5: El nodo HTTP Request de n8n.
+
+00:02:19.207 --> 00:02:24.834
+Cuando n8n no tiene un nodo para un servicio, el nodo HTTP Request lo reemplaza.
+
+00:02:24.834 --> 00:02:33.291
+Configuras método, URL, autenticación, query parameters, headers y body, y el resultado sale como JSON para los nodos siguientes.
+
+00:02:34.140 --> 00:02:37.695
+Sesión 6: Webhooks: que las apps te avisen.
+
+00:02:37.645 --> 00:02:41.786
+Con una API tú preguntas; con un webhook el otro sistema te avisa.
+
+00:02:41.786 --> 00:02:51.194
+Le das una URL a Stripe, a un formulario o a GitHub, y cada vez que pasa algo, un pago, una respuesta, un push, te envía un POST con los datos.
+
+00:02:52.140 --> 00:02:56.165
+Sesión 7: Errores, reintentos y límites de uso.
+
+00:02:56.115 --> 00:02:59.633
+Un flujo que funciona una vez no es un flujo de producción.
+
+00:02:59.633 --> 00:03:02.737
+Las APIs fallan, se demoran o te limitan.
+
+00:03:02.737 --> 00:03:08.069
+Lo que distingue a un profesional es que su automatización sigue funcionando y avisa cuando algo sale mal.
+
+00:03:08.940 --> 00:03:12.768
+Sesión 8: Desplegar n8n con Docker en la nube.
+
+00:03:12.718 --> 00:03:18.717
+Docker empaqueta una aplicación con todo lo que necesita en una imagen, y la ejecuta en un contenedor aislado.
+
+00:03:18.717 --> 00:03:23.110
+Así n8n corre igual en tu PC, en un servidor o en la nube.
+
+00:03:23.110 --> 00:03:30.693
+Docker y la nube, AWS, Azure, Google Cloud, aparecen en un buen número de ofertas, así que saber lo básico suma.
+
+00:03:31.550 --> 00:03:39.083
+Para estudiar este tema vas a usar: n8n, Hoppscotch, Postman, webhook.site, JSONPlaceholder.
+
+00:03:39.033 --> 00:03:45.523
+Cursos gratis recomendados: n8n Learn: cursos oficiales nivel 1 y 2 y Postman Academy.
+
+00:03:45.523 --> 00:03:50.254
+Y si buscas un certificado, una buena opción de pago es Curso de API REST.
+
+00:03:51.150 --> 00:03:58.082
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:03:58.032 --> 00:04:01.091
+Empieza por la sesión uno y marca tu avance.
+
+00:04:01.091 --> 00:04:02.752
+Muchos éxitos!

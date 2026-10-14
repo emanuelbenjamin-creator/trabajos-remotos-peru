@@ -1,0 +1,136 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:01.712
+Git y GitHub.
+
+00:00:01.662 --> 00:00:05.834
+Guardar versiones de tu trabajo, colaborar y mostrar tus proyectos.
+
+00:00:05.834 --> 00:00:08.315
+GitHub es tu portafolio técnico.
+
+00:00:08.315 --> 00:00:12.521
+Este tema lo piden alrededor del 15 por ciento de las ofertas del panel.
+
+00:00:12.521 --> 00:00:16.979
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:17.900 --> 00:00:23.389
+Git guarda la historia de tus archivos: cada cambio queda registrado y puedes volver atrás.
+
+00:00:23.339 --> 00:00:30.551
+GitHub es el sitio donde se publican esos repositorios, se colabora y, para ti, donde un reclutador ve lo que sabes hacer.
+
+00:00:30.551 --> 00:00:36.473
+Aparece en una de cada siete ofertas, pero en la práctica lo dan por sentado en casi cualquier puesto técnico.
+
+00:00:36.473 --> 00:00:45.619
+Y hay un motivo más: tu perfil de GitHub con flujos de n8n documentados, proyectos de RAG y un README claro en inglés vale más que un certificado.
+
+00:00:46.500 --> 00:00:59.081
+Al terminar este tema podrás: Crear repositorios y guardar cambios con commits claros; Sincronizar tu trabajo con GitHub, push y pull,; Trabajar con ramas y pull requests; Resolver un conflicto sin miedo; Proteger claves con .
+
+00:00:59.031 --> 00:01:04.472
+gitignore y variables de entorno; Publicar un portafolio y documentar proyectos con un buen README.
+
+00:01:05.320 --> 00:01:08.318
+Sesión 1: Por qué Git y cómo piensa.
+
+00:01:08.268 --> 00:01:14.704
+Sin Git, versionas con nombres como flujo_final_v3_ahora_si.json.
+
+00:01:14.704 --> 00:01:21.019
+Con Git, cada versión es un commit: una foto del proyecto con un mensaje que explica qué cambió y quién lo hizo.
+
+00:01:21.920 --> 00:01:26.076
+Sesión 2: Tu primer repositorio: init, add y commit.
+
+00:01:26.026 --> 00:01:29.140
+git init convierte una carpeta en repositorio.
+
+00:01:29.140 --> 00:01:33.456
+git status te dice qué cambió y qué está preparado; úsalo todo el tiempo.
+
+00:01:34.320 --> 00:01:37.766
+Sesión 3: GitHub: remote, push y pull.
+
+00:01:37.716 --> 00:01:43.245
+Para subir tu repositorio crea uno vacío en GitHub y conéctalo: git remote add origin URL.
+
+00:01:43.245 --> 00:01:46.577
+Luego git push -u origin main sube tus commits.
+
+00:01:46.577 --> 00:01:52.522
+Desde ahí, git push sube lo nuevo y git pull trae lo que otros, o tú desde otra PC, subieron.
+
+00:01:53.380 --> 00:01:55.875
+Sesión 4: Ramas y merge.
+
+00:01:55.825 --> 00:01:58.710
+Una rama es una línea de trabajo paralela.
+
+00:01:58.710 --> 00:02:03.856
+Creas una para probar algo sin tocar la versión que funciona: git switch -c nueva-funcion.
+
+00:02:03.856 --> 00:02:08.850
+Trabajas, haces commits y, cuando está lista, la unes a main con git merge.
+
+00:02:09.780 --> 00:02:13.062
+Sesión 5: Pull requests y colaboración.
+
+00:02:13.012 --> 00:02:21.010
+Un pull request, PR, es la propuesta de unir una rama a otra, con espacio para revisar el código, comentar línea por línea y aprobar.
+
+00:02:21.010 --> 00:02:27.501
+Es el corazón del trabajo en equipo en GitHub, y en una empresa remota es como más te comunicarás con otros desarrolladores.
+
+00:02:28.380 --> 00:02:32.034
+Sesión 6: Conflictos y cómo deshacer cosas.
+
+00:02:31.984 --> 00:02:35.633
+Un conflicto aparece cuando dos ramas cambiaron la misma línea.
+
+00:02:35.633 --> 00:02:39.774
+Tú eliges el resultado, borras las marcas, haces add y commit.
+
+00:02:39.774 --> 00:02:43.041
+VS Code te ofrece botones para aceptar una u otra.
+
+00:02:43.980 --> 00:02:47.961
+Sesión 7: Secretos, .gitignore y un buen README.
+
+00:02:47.911 --> 00:02:56.893
+gitignore lista lo que Git no debe guardar: archivos .env con claves, carpetas de dependencias, node_modules, .venv, datos personales.
+
+00:02:56.893 --> 00:02:59.996
+Créalo al empezar, no cuando ya subiste algo.
+
+00:03:00.860 --> 00:03:04.208
+Sesión 8: Tu portafolio en GitHub Pages.
+
+00:03:04.158 --> 00:03:08.364
+GitHub Pages publica gratis una web estática desde un repositorio.
+
+00:03:08.364 --> 00:03:13.391
+Si el repo se llama tuusuario.github.io, la web queda en esa dirección.
+
+00:03:13.391 --> 00:03:19.444
+Es perfecta para tu portafolio: una página con tus proyectos, enlaces a cada repo y un video demo.
+
+00:03:20.300 --> 00:03:26.947
+Para estudiar este tema vas a usar: Git, GitHub, GitHub Desktop, Visual Studio Code, GitHub Pages.
+
+00:03:26.897 --> 00:03:32.350
+Cursos gratis recomendados: Pro Git, libro oficial en español, y GitHub Skills.
+
+00:03:32.350 --> 00:03:37.759
+Y si buscas un certificado, una buena opción de pago es Introduction to Git and GitHub, Google,.
+
+00:03:38.700 --> 00:03:45.632
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:03:45.582 --> 00:03:48.641
+Empieza por la sesión uno y marca tu avance.
+
+00:03:48.641 --> 00:03:50.302
+Muchos éxitos!

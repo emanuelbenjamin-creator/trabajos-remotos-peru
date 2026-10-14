@@ -1,0 +1,109 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:02.497
+JavaScript para automatización.
+
+00:00:02.447 --> 00:00:06.555
+El lenguaje de los nodos Code de n8n y de casi toda la web.
+
+00:00:06.555 --> 00:00:10.270
+Lo justo para transformar datos sin depender de nodos hechos.
+
+00:00:10.270 --> 00:00:14.663
+Este tema lo piden alrededor del 19 por ciento de las ofertas del panel.
+
+00:00:14.663 --> 00:00:19.121
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:19.980 --> 00:00:28.004
+JavaScript es el lenguaje que corre en todos los navegadores y en Node.js, y es el que usa n8n en sus nodos Code y en sus expresiones.
+
+00:00:27.954 --> 00:00:34.390
+No necesitas ser desarrollador web: necesitas el JavaScript que sirve para limpiar, combinar y transformar datos.
+
+00:00:34.390 --> 00:00:41.722
+En las ofertas, JavaScript o TypeScript aparece en casi una de cada cinco, y en una de cada cuatro de las que coinciden con tu perfil.
+
+00:00:41.722 --> 00:00:50.638
+Saberlo te permite resolver en 5 líneas lo que con nodos visuales toma 10 pasos, y es la puerta a TypeScript, React y Node.js si después quieres ir más allá.
+
+00:00:51.580 --> 00:01:14.294
+Al terminar este tema podrás: Leer y escribir variables, condiciones, funciones y bucles; Manipular arrays y objetos con map, filter, reduce y desestructuración; Trabajar con textos y fechas sin errores de formato; Entender promesas y async/await para llamadas a APIs; Escribir nodos Code en n8n que transformen muchos items; Depurar errores con console.log y leyendo el mensaje de error.
+
+00:01:15.180 --> 00:01:18.888
+Sesión 1: Variables, tipos y operadores.
+
+00:01:18.838 --> 00:01:21.308
+Una variable es una caja con nombre.
+
+00:01:21.308 --> 00:01:28.486
+En JavaScript moderno se crean con const, no se reasigna, y let, sí se reasigna,; evita var, que es antiguo.
+
+00:01:29.380 --> 00:01:32.487
+Sesión 2: Condiciones y funciones.
+
+00:01:32.437 --> 00:01:35.868
+Con if, else if y else decides qué camino seguir.
+
+00:01:35.868 --> 00:01:40.851
+Para elegir un valor en una línea existe el ternario: `const tipo = monto > 1000 ?
+
+00:01:40.851 --> 00:01:42.785
+grande" : "pequeño"`.
+
+00:01:43.640 --> 00:01:47.523
+Sesión 3: Arrays: map, filter y reduce.
+
+00:01:47.473 --> 00:01:53.832
+Casi todo lo que transformas en automatización es una lista: filas, leads, productos, mensajes.
+
+00:01:53.832 --> 00:01:57.340
+Tres métodos resuelven el 90 % de los casos.
+
+00:01:58.240 --> 00:02:01.948
+Sesión 4: Objetos, desestructuración y spread.
+
+00:02:02.840 --> 00:02:06.996
+Sesión 5: Textos, fechas y expresiones regulares.
+
+00:02:07.840 --> 00:02:12.564
+Sesión 6: Asincronía: promesas y async/await.
+
+00:02:12.514 --> 00:02:17.573
+Llamar a una API toma tiempo y JavaScript no se queda esperando: sigue con lo demás.
+
+00:02:17.573 --> 00:02:21.026
+Una promesa representa un resultado que llegará después.
+
+00:02:21.880 --> 00:02:25.326
+Sesión 7: El nodo Code de n8n.
+
+00:02:25.276 --> 00:02:28.969
+El nodo Code ejecuta tu JavaScript sobre los items del flujo.
+
+00:02:29.880 --> 00:02:33.665
+Sesión 8: Depurar y siguiente paso: TypeScript.
+
+00:02:33.615 --> 00:02:38.127
+Depurar es leer el mensaje de error con calma: dice qué pasó y en qué línea.
+
+00:02:38.127 --> 00:02:42.389
+Pon console.log antes de la línea, mira el dato real y corrige.
+
+00:02:43.280 --> 00:02:53.151
+Para estudiar este tema vas a usar: Visual Studio Code, Node.js, n8n, nodo Code, Consola del navegador, F12, regex101.
+
+00:02:53.101 --> 00:02:59.209
+Cursos gratis recomendados: The Modern JavaScript Tutorial y JavaScript moderno, versión en español,.
+
+00:02:59.209 --> 00:03:05.098
+Y si buscas un certificado, una buena opción de pago es The Complete JavaScript Course, Jonas Schmedtmann,.
+
+00:03:05.960 --> 00:03:12.892
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:03:12.842 --> 00:03:15.901
+Empieza por la sesión uno y marca tu avance.
+
+00:03:15.901 --> 00:03:17.562
+Muchos éxitos!

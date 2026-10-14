@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:03.185
+LLMs por API y prompt engineering.
+
+00:00:03.135 --> 00:00:11.767
+Llamar a GPT, Claude o Gemini desde n8n y Python, escribir prompts que funcionan siempre, obtener JSON y darle herramientas al modelo.
+
+00:00:11.767 --> 00:00:15.952
+Este tema lo piden alrededor del 4 por ciento de las ofertas del panel.
+
+00:00:15.952 --> 00:00:20.410
+Son ocho sesiones; en este video te cuento qué vas a aprender en cada una.
+
+00:00:21.300 --> 00:00:27.489
+Usar un chat es fácil; integrar un LLM en un proceso que corre mil veces al día sin fallar es un oficio.
+
+00:00:27.439 --> 00:00:33.951
+Aquí está la diferencia entre sé usar ChatGPT y sé construir con LLMs, que es lo que pagan las ofertas.
+
+00:00:33.951 --> 00:00:44.200
+Prompt engineering aparece pocas veces escrito tal cual en los avisos, porque se da por incluido en LLM, IA generativa y agentes, que sí aparecen en buena parte de las ofertas de tu perfil.
+
+00:00:44.200 --> 00:00:50.548
+Lo que piden en la práctica es saber llamar al modelo por API, controlar el formato de salida y conectarlo con herramientas.
+
+00:00:51.500 --> 00:01:13.373
+Al terminar este tema podrás: Llamar a los principales modelos por API desde n8n y desde Python; Escribir prompts con rol, contexto, instrucciones, ejemplos y formato; Obtener salidas en JSON validadas; Usar tool use, function calling, para que el modelo use herramientas; Comparar prompts y modelos con un conjunto de pruebas; Controlar costo, latencia y errores en producción.
+
+00:01:14.300 --> 00:01:18.292
+Sesión 1: Tu primera llamada a un LLM por API.
+
+00:01:18.242 --> 00:01:31.682
+Todas las APIs de chat funcionan parecido: envías una lista de mensajes con su rol, system con las instrucciones generales, user con lo que pide la persona y assistant con respuestas anteriores, y recibes la respuesta del modelo junto con cuántos tokens usaste.
+
+00:01:32.540 --> 00:01:35.724
+Sesión 2: Anatomía de un buen prompt.
+
+00:01:35.674 --> 00:01:40.372
+Un prompt profesional se parece a las instrucciones que le darías a un practicante nuevo.
+
+00:01:40.372 --> 00:01:52.304
+Tiene: rol, quién es, contexto, para qué empresa, qué público, tarea, qué hacer exactamente, restricciones, qué no hacer, longitud, tono, y formato de salida, cómo entregarlo,.
+
+00:01:53.160 --> 00:01:57.830
+Sesión 3: Ejemplos (few-shot) y razonamiento paso a paso.
+
+00:01:57.780 --> 00:02:00.413
+Mostrar es más poderoso que explicar.
+
+00:02:00.413 --> 00:02:07.614
+Con 2 a 5 ejemplos de entrada y salida esperada, few-shot, el modelo copia el patrón: formato, criterio y tono.
+
+00:02:07.614 --> 00:02:11.897
+Elige ejemplos variados, incluyendo casos difíciles y bordes.
+
+00:02:12.760 --> 00:02:15.944
+Sesión 4: Salida en JSON estructurado.
+
+00:02:15.894 --> 00:02:19.139
+Para automatizar necesitas datos, no prosa.
+
+00:02:19.990 --> 00:02:23.250
+Sesión 5: Tool use (function calling).
+
+00:02:23.200 --> 00:02:25.648
+Tool use le da al modelo manos.
+
+00:02:25.648 --> 00:02:32.881
+Cuando la pregunta lo requiere, el modelo no inventa: responde quiero llamar a buscar_pedido con numero=1234.
+
+00:02:32.881 --> 00:02:38.192
+Tu código ejecuta la función, le devuelve el resultado y el modelo redacta la respuesta final.
+
+00:02:39.050 --> 00:02:42.715
+Sesión 6: Comparar modelos y evaluar prompts.
+
+00:02:42.665 --> 00:02:45.320
+Cómo sabes si tu prompt nuevo es mejor?
+
+00:02:45.320 --> 00:02:46.764
+Midiéndolo.
+
+00:02:46.764 --> 00:02:51.701
+Arma un conjunto de prueba: 20 a 50 casos reales con la respuesta correcta.
+
+00:02:51.701 --> 00:02:56.257
+Cada vez que cambias el prompt o el modelo, corres todos y cuentas aciertos.
+
+00:02:57.130 --> 00:03:02.139
+Sesión 7: Producción: costo, latencia, límites y seguridad.
+
+00:03:02.089 --> 00:03:05.082
+En producción tu flujo hará miles de llamadas.
+
+00:03:05.082 --> 00:03:06.984
+Cuida cuatro cosas.
+
+00:03:07.930 --> 00:03:12.862
+Sesión 8: Proyecto 1: clasificador inteligente de solicitudes.
+
+00:03:12.812 --> 00:03:15.729
+Junta todo en un proyecto para tu portafolio.
+
+00:03:15.729 --> 00:03:33.496
+Flujo: un formulario, n8n Form o Google Forms, o un webhook recibe una solicitud, el LLM devuelve JSON con categoría, prioridad, resumen y si requiere humano, se guarda en Google Sheets, si la prioridad es alta, llega un aviso por correo o Telegram, cualquier error dispara tu Error Workflow.
+
+00:03:34.360 --> 00:03:43.685
+Para estudiar este tema vas a usar: Anthropic Console, API de Claude, OpenAI Platform, Google AI Studio, n8n, nodos AI, Google Colab.
+
+00:03:43.635 --> 00:03:50.431
+Cursos gratis recomendados: ChatGPT Prompt Engineering for Developers y Building Systems with the ChatGPT API.
+
+00:03:50.431 --> 00:03:56.331
+Y si buscas un certificado, una buena opción de pago es Prompt Engineering for ChatGPT, Vanderbilt,.
+
+00:03:57.190 --> 00:04:04.122
+Todo el detalle, los ejercicios, las preguntas con sus respuestas y los enlaces a cursos y repositorios están en la página del tema.
+
+00:04:04.072 --> 00:04:07.131
+Empieza por la sesión uno y marca tu avance.
+
+00:04:07.131 --> 00:04:08.792
+Muchos éxitos!
