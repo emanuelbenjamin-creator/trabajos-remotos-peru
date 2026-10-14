@@ -244,7 +244,9 @@ console.log("wrote", dest, Math.round(fs.statSync(dest).size / 1024) + "KB");
     if (!DEMAND.some((d) => d[0] === t.skill)) bad.push("skill desconocida: " + t.skill);
     if (bad.length) { console.error(`learn/temas/${f}: falta ${bad.join(", ")}`); process.exit(1); }
     // Video resumen del tema (scripts/make-videos.py), si existe
-    if (fs.existsSync(path.join(LEARN, "videos", t.id + ".mp4"))) t.video = true;
+    // Si hay una versión hecha en NotebookLM (learn/videos/notebooklm/<tema>.mp4), esa tiene prioridad
+    if (fs.existsSync(path.join(LEARN, "videos", "notebooklm", t.id + ".mp4"))) t.video = "notebooklm";
+    else if (fs.existsSync(path.join(LEARN, "videos", t.id + ".mp4"))) t.video = "voz";
     for (const r of t.repos) { const k = r.u.replace("https://github.com/", "").toLowerCase(); if (stars[k]) r.stars = stars[k]; }
     return t;
   }).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
@@ -256,7 +258,7 @@ console.log("wrote", dest, Math.round(fs.statSync(dest).size / 1024) + "KB");
   const vids = path.join(LEARN, "videos");
   if (fs.existsSync(vids)) {
     fs.mkdirSync(path.join(__dirname, "..", "public", "videos"), { recursive: true });
-    for (const f of fs.readdirSync(vids)) fs.copyFileSync(path.join(vids, f), path.join(__dirname, "..", "public", "videos", f));
+    fs.cpSync(vids, path.join(__dirname, "..", "public", "videos"), { recursive: true });
   }
   const out2 = path.join(__dirname, "..", "public", "clases.html");
   fs.writeFileSync(out2, head + page);

@@ -155,10 +155,16 @@ details.qa p { color: #c5cedb }
     if (t.video) {
       var vs = el("section"); vs.appendChild(el("h2", null, "Video resumen"));
       var v = el("video", "panel vid"); v.controls = true; v.preload = "none"; v.playsInline = true;
-      v.poster = "videos/" + t.id + ".jpg"; v.src = "videos/" + t.id + ".mp4";
-      var tr = el("track"); tr.kind = "subtitles"; tr.srclang = "es"; tr.label = "Español"; tr.src = "videos/" + t.id + ".vtt"; v.appendChild(tr);
+      v.poster = "videos/" + t.id + ".jpg";
+      if (t.video === "notebooklm") v.src = "videos/notebooklm/" + t.id + ".mp4";
+      else {
+        v.src = "videos/" + t.id + ".mp4";
+        var tr = el("track"); tr.kind = "subtitles"; tr.srclang = "es"; tr.label = "Español"; tr.src = "videos/" + t.id + ".vtt"; v.appendChild(tr);
+      }
       vs.appendChild(v);
-      vs.appendChild(el("p", "sec-note", "Un recorrido de unos 5 minutos por las 8 sesiones del tema, con subtítulos. Voz generada por computadora."));
+      vs.appendChild(el("p", "sec-note", t.video === "notebooklm"
+        ? "Video explicativo del tema, generado con NotebookLM de Google a partir del contenido de estas clases."
+        : "Un recorrido de unos 5 minutos por las 8 sesiones del tema, con subtítulos. Voz generada por computadora."));
       app.appendChild(vs);
     }
 
